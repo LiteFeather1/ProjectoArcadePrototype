@@ -1,0 +1,33 @@
+Font: PixelOldEnglish  Style: Regular
+Point Size: 108   SP/PD Ratio: 4.6%
+
+Characters included: 78/99
+Missing characters: 21
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+ID: 34	Hex: 22	Char ["]
+ID: 35	Hex: 23	Char [#]
+ID: 39	Hex: 27	Char [']
+ID: 46	Hex: 2E	Char [.]
+ID: 47	Hex: 2F	Char [/]
+ID: 57	Hex: 39	Char [9]
+ID: 58	Hex: 3A	Char [:]
+ID: 59	Hex: 3B	Char [;]
+ID: 60	Hex: 3C	Char []
+ID: 62	Hex: 3E	Char [>]
+ID: 63	Hex: 3F	Char [?]
+ID: 64	Hex: 40	Char [@]
+ID: 92	Hex: 5C	Char [\]
+ID: 123	Hex: 7B	Char [{]
+ID: 124	Hex: 7C	Char [|]
+ID: 125	Hex: 7D	Char [}]
+ID: 126	Hex: 7E	Char [~]
+ID: 160	Hex: A0	Char [ ]
+ID: 8203	Hex: 200B	Char [​]
+ID: 8230	Hex: 2026	Char […]
+ID: 9633	Hex: 25A1	Char [□]
+
+Characters excluded from packing:
+----------------------------------------
