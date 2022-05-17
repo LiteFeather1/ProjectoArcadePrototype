@@ -9,6 +9,7 @@ public class Jump : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _fallMultiplier = 2.5f;
     [SerializeField] private float _lowJumpMultiplier = 3f;
+    private float _pistonSpeed;
     private float _autoJumpReseter = .2f;
     private float _autoJump;
     [Header("Secondary Jumps")]
@@ -61,7 +62,7 @@ public class Jump : MonoBehaviour
     {
         if (_autoJump > 0 && _gd.IsGrounded())
         {
-            _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            _rb.AddForce(Vector2.up * _jumpForce * _gd.GetPistonSpeed(), ForceMode2D.Impulse);
             _autoJump--;
         }
     }

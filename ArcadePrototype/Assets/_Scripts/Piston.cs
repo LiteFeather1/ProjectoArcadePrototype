@@ -2,34 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveWhenPlayerAbove : MoveablePlats
+public class Piston : MoveWhenPlayerAbove
 {
-    [SerializeField] protected Vector3 _whereToMove;
-    protected Vector3 _realWhereTo;
-    protected Vector3 _startPos;
-    protected bool _moveToWhere;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        _startPos = transform.position;
-        _realWhereTo = transform.position;
-        _realWhereTo += _whereToMove;
-    }
-
-    protected virtual void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(_startPos, _realWhereTo);
-    }
-
+    [SerializeField] private float _delayToMove;
     IEnumerator MoveToWhere()
     {
-        while(_moveToWhere && transform.position != _realWhereTo)
+        yield return new WaitForSeconds(_delayToMove);
+        while (_moveToWhere && transform.position != _realWhereTo)
         {
             transform.position = Vector2.MoveTowards(transform.position, _realWhereTo, _speed * Time.deltaTime);
             yield return null;
         }
+        yield return new WaitForSeconds(_delayToMove);
+        _moveToWhere = false;
+        StartCoroutine(MoveBack());
     }
 
     IEnumerator MoveBack()
@@ -44,7 +30,7 @@ public class MoveWhenPlayerAbove : MoveablePlats
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             _moveToWhere = true;
             StartCoroutine(MoveToWhere());
@@ -55,8 +41,17 @@ public class MoveWhenPlayerAbove : MoveablePlats
         base.OnCollisionExit2D(collision);
         if (collision.gameObject.tag == "Player")
         {
-            _moveToWhere = false;
-            StartCoroutine(MoveBack());
+
         }
+    }
+
+    public float GetMySpeed()
+    {
+        if(_moveToWhere)
+        {
+            return _speed;
+        }
+
+        return 1;
     }
 }

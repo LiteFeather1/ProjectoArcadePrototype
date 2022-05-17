@@ -6,6 +6,7 @@ public class AddForceOnCollision : MonoBehaviour
 {
     [SerializeField] protected float _bounceForce;
 
+
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
