@@ -19,6 +19,8 @@ public class HorizontalMoviment : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _ac;
     private Detections _gd;
+
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -65,5 +67,10 @@ public class HorizontalMoviment : MonoBehaviour
 
             _rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
         }
+    }
+
+    private void OnDisable()
+    {
+        _rb.velocity = Vector2.zero;
     }
 }

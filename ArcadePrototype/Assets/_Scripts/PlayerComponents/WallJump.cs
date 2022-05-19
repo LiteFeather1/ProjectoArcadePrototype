@@ -54,7 +54,7 @@ public class WallJump : MonoBehaviour
             _jumping = false;
             int direction = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
             float up = Input.GetKey(KeyCode.W) ? .25f : 1;
-            _rb.AddForce(new Vector2 (_jumpForce.x * -direction * up, _jumpForce.y), ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2 (_jumpForce.x * -direction * up  * _detection.GetPistonSideSpeed(), _jumpForce.y), ForceMode2D.Impulse);
         }
     }
 

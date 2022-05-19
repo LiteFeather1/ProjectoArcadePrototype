@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RotateObject : MonoBehaviour
 {
-    [SerializeField] private Vector3 _rotation;
+    [SerializeField] protected Vector3 _rotation;
 
-    void Update()
+    protected virtual void Update()
     {
-        transform.Rotate(_rotation);
+        transform.Rotate(_rotation * Time.deltaTime);
     }
 }

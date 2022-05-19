@@ -29,7 +29,6 @@ public class Piston : MoveWhenPlayerAbove
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D(collision);
         if (collision.gameObject.tag == "Player")
         {
             _moveToWhere = true;
@@ -38,7 +37,6 @@ public class Piston : MoveWhenPlayerAbove
     }
     protected override void OnCollisionExit2D(Collision2D collision)
     {
-        base.OnCollisionExit2D(collision);
         if (collision.gameObject.tag == "Player")
         {
 

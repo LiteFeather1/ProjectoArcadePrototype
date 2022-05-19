@@ -9,18 +9,25 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     private bool _canGetHit = true;
     private Vector2 _resetPos;
 
+    [Header("PlayerComponent")]
+    private HorizontalMoviment _hm;
+    private Jump _jump;
+
     private void Awake()
     {
         _resetPos = transform.position;
+        _hm = GetComponent<HorizontalMoviment>();
+        _jump = GetComponent<Jump>();
     }
 
-    public void TakeDamage(int hitAmount)
+    public void TakeDamage(int hitAmount, float stunDuration)
     {
         if (_canGetHit)
         {
             _canGetHit = false;
             _hitsToReset -= hitAmount;
             StartCoroutine(Co_invulnerability());
+            StartCoroutine(StunDuration_Co(stunDuration));
             if (_hitsToReset <= 0)
             {
                 Die();
@@ -39,6 +46,16 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(_invulnerabilityTime);
         _canGetHit = true;
     }
+
+    IEnumerator StunDuration_Co(float stunDuration)
+    {
+        _jump.enabled = false;
+        _hm.enabled = false;
+        yield return new WaitForSeconds(stunDuration);
+        _jump.enabled = true;
+        _hm.enabled = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "CheckPoint")
