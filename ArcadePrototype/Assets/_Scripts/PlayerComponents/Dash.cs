@@ -5,12 +5,11 @@ using UnityEngine;
 public class Dash : MonoBehaviour
 {
     [SerializeField] private AnimationCurve _dashSpeedCurve;
+    [SerializeField] private Camera _cam;
     private float _dashSpeed;
-    [SerializeField] private float _dashDuration;
     private float _dashTime;
 
-    private int _direction = 1;
-    public bool _canDash = true;
+    private bool _canDash = true;
     private bool _isDashing;
     private bool _wasOnGroundLastFrame;
 
@@ -27,7 +26,6 @@ public class Dash : MonoBehaviour
     private void Update()
     {
         DashInput();
-        ChangeDirection();
         ReplenishDashOnceGroundedAgain();
     }
     private void FixedUpdate()
@@ -35,20 +33,9 @@ public class Dash : MonoBehaviour
         DashAction();
     }
     
-    private void ChangeDirection()
-    {
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            _direction = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            _direction = -1;
-        }
-    }
     private void DashInput()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && _canDash)
+        if(Input.GetKeyDown(KeyCode.Mouse1) && _canDash)
         {
             _dashTime = 0f;
             _dashSpeed = _dashSpeedCurve.Evaluate(_dashTime);
@@ -65,15 +52,15 @@ public class Dash : MonoBehaviour
             _dashSpeed = _dashSpeedCurve.Evaluate(_dashTime);
             float yInput = Input.GetAxisRaw("Vertical");
             _hm.enabled = false;
-            _rb.velocity = new Vector2(_dashSpeed * _direction, _dashSpeed * yInput);
-            print("Dashed");
+            //_rb.velocity = new Vector2(_dashSpeed * _direction, _dashSpeed * yInput);
+            _rb.velocity = MouseDirection().normalized * _dashSpeed;
             StartCoroutine(Co_ExitDashing());
         }
     }
 
     IEnumerator Co_ExitDashing()
     {
-        yield return new WaitForSeconds(_dashSpeedCurve[_dashSpeedCurve.length - 1].time - 0.02f);
+        yield return new WaitForSeconds(_dashSpeedCurve[_dashSpeedCurve.length - 1].time - 0.2f);
         _isDashing = false;
         _hm.enabled = true;
         ReplenishDashAfterDashin();
@@ -91,7 +78,7 @@ public class Dash : MonoBehaviour
                 _canDash = true;
             }
         }
-        _wasOnGroundLastFrame = _d.IsGrounded() || _d.IsOnWall();
+        _wasOnGroundLastFrame = _d.IsGrounded();
     }
 
     private void ReplenishDashAfterDashin()
@@ -105,5 +92,13 @@ public class Dash : MonoBehaviour
     public void ReplenishDash()
     {
         _canDash = true;
+    }
+
+    private Vector2 MouseDirection()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = _cam.ScreenToWorldPoint(mousePosition);
+        Vector2 directionToMouse = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+        return directionToMouse;
     }
 }

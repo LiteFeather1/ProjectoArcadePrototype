@@ -68,7 +68,7 @@ public class Detections : MonoBehaviour
             Piston piston = hit.collider.GetComponent<Piston>();
             if (piston != null)
             {
-                if (piston.GetMySpeed() == 1)
+                if (piston.GetMySpeed() <= 1)
                 {
                     return 1;
                 }

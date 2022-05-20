@@ -12,9 +12,11 @@ public class Jump : MonoBehaviour
     private float _autoJumpReseter = .1f;
     private float _autoJump;
     private bool _canJump = true;
+
     [Header("Secondary Jumps")]
-    private bool _secondaryJumping;
+    [SerializeField] private float _secondaryJumpForce;
     [SerializeField] private int _howManySecondaryJumps = 1;
+    private bool _secondaryJumping;
     private int _secondaryJumpAmount;
     private bool _wasOnGroundLastFrame;
     private bool _disableGravity;
@@ -82,11 +84,11 @@ public class Jump : MonoBehaviour
 
     private void SecondJumpAction()
     {
-        if (_secondaryJumpAmount > 0 && _secondaryJumping)
+        if (_secondaryJumpAmount > 0 && _secondaryJumping && !_gd.IsOnWall())
         {
             _secondaryJumping = false;
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
-            _rb.AddForce(Vector2.up * (_jumpForce/4*3), ForceMode2D.Impulse);
+            _rb.AddForce(Vector2.up * (_secondaryJumpForce), ForceMode2D.Impulse);
             _secondaryJumpAmount--;
         }
     }

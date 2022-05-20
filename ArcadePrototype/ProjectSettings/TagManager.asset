@@ -27,9 +27,9 @@ TagManager:
   - Grid
   - Slope
   - Wall
-  - 
-  - 
-  - 
+  - EnemyBullets
+  - Enemy
+  - Level
   - 
   - 
   - 
