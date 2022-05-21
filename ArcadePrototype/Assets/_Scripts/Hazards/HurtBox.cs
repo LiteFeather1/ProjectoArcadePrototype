@@ -26,5 +26,10 @@ public class HurtBox : MonoBehaviour
             damageable.TakeDamage(_hitAmount, _stunDuration);
         }
     }
+
+    public void SetMyDamage(int damage)
+    {
+        _hitAmount = damage;
+    }
 }
 

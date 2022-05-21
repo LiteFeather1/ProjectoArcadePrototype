@@ -14,6 +14,7 @@ public class AddForceOnCollision : MonoBehaviour
         {
             Vector2 normal = collision.GetContact(0).normal;
             playerJump.AddForceOnCollision(-normal, _bounceForce, _disableTime);
+
         }
     }
 }

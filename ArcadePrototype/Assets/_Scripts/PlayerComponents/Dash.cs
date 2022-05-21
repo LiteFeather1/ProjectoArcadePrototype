@@ -7,6 +7,7 @@ public class Dash : MonoBehaviour
     [SerializeField] private AnimationCurve _dashSpeedCurve;
     [SerializeField] private Camera _cam;
     private float _dashSpeed;
+    private Vector2 _dashDirection;
     private float _dashTime;
 
     private bool _canDash = true;
@@ -28,6 +29,7 @@ public class Dash : MonoBehaviour
         DashInput();
         ReplenishDashOnceGroundedAgain();
     }
+
     private void FixedUpdate()
     {
         DashAction();
@@ -35,12 +37,13 @@ public class Dash : MonoBehaviour
     
     private void DashInput()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse1) && _canDash)
+        if(Input.GetKeyDown(KeyCode.Mouse1) && _canDash && !_isDashing)
         {
             _dashTime = 0f;
             _dashSpeed = _dashSpeedCurve.Evaluate(_dashTime);
             _canDash = false;
             _isDashing = true;
+            _dashDirection = MouseDirection();
         }
     }
 
@@ -53,7 +56,7 @@ public class Dash : MonoBehaviour
             float yInput = Input.GetAxisRaw("Vertical");
             _hm.enabled = false;
             //_rb.velocity = new Vector2(_dashSpeed * _direction, _dashSpeed * yInput);
-            _rb.velocity = MouseDirection().normalized * _dashSpeed;
+            _rb.velocity = _dashDirection.normalized * _dashSpeed;
             StartCoroutine(Co_ExitDashing());
         }
     }
