@@ -6,15 +6,17 @@ public class Detections : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private LayerMask _wallMask;
-    private CapsuleCollider2D _collider;
 
+    private CapsuleCollider2D _collider;
+    private Animator _ac;
     private void Awake()
     {
         _collider = GetComponent<CapsuleCollider2D>();
+        _ac = GetComponent<Animator>();
     }
     private void Update()
     {
-
+        _ac.SetBool("Grounded",IsGrounded());
     }
 
     public bool IsGrounded()
@@ -39,7 +41,7 @@ public class Detections : MonoBehaviour
     {
         if (!IsGrounded())
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, .25f, _wallMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, .33f, _wallMask);
 
             Color rayColor;
             if (hit.collider != null)
