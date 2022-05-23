@@ -17,12 +17,16 @@ public class Dash : MonoBehaviour
     private HorizontalMoviment _hm;
     private Detections _d;
     private Rigidbody2D _rb;
+    private Animator _ac;
+
+    private bool _triggerForAc = true;
 
     private void Awake()
     {
         _hm = GetComponent<HorizontalMoviment>();
         _d = GetComponent<Detections>();
         _rb = GetComponent<Rigidbody2D>();
+        _ac = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -44,6 +48,8 @@ public class Dash : MonoBehaviour
             _canDash = false;
             _isDashing = true;
             _dashDirection = MouseDirection();
+            _ac.SetTrigger("DashAccel");
+            _ac.SetBool("Dashing", _isDashing);
         }
     }
 
@@ -58,6 +64,7 @@ public class Dash : MonoBehaviour
             //_rb.velocity = new Vector2(_dashSpeed * _direction, _dashSpeed * yInput);
             _rb.velocity = _dashDirection.normalized * _dashSpeed;
             StartCoroutine(Co_ExitDashing());
+            DashFlip();
         }
     }
 
@@ -66,6 +73,8 @@ public class Dash : MonoBehaviour
         yield return new WaitForSeconds(_dashSpeedCurve[_dashSpeedCurve.length - 1].time - 0.2f);
         _isDashing = false;
         _hm.enabled = true;
+        _triggerForAc = true;
+        _ac.SetBool("Dashing", _isDashing);
         ReplenishDashAfterDashin();
     }
 
@@ -103,5 +112,12 @@ public class Dash : MonoBehaviour
         mousePosition = _cam.ScreenToWorldPoint(mousePosition);
         Vector2 directionToMouse = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         return directionToMouse;
+    }
+
+    private void DashFlip()
+    {
+        float direction = _dashDirection.x;
+
+        transform.rotation = Quaternion.Euler(0, direction > 0 ? 0 : 180, 0);
     }
 }

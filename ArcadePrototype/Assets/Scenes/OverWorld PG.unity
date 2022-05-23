@@ -6745,7 +6745,6 @@ GameObject:
   - component: {fileID: 600808408}
   - component: {fileID: 600808409}
   - component: {fileID: 600808397}
-  - component: {fileID: 600808411}
   - component: {fileID: 600808398}
   m_Layer: 31
   m_Name: Player
@@ -6922,7 +6921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dc839699a0b204b9d6f401a41eb56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 8.5
+  _jumpForce: 9
   _fallMultiplier: 2.5
   _lowJumpMultiplier: 3
   _secondaryJumpForce: 7.5
@@ -7045,18 +7044,6 @@ MonoBehaviour:
   _wallGrippingDemish: 10
   _wallClimbingDemish: 50
   _wallJumpDeminsh: 25
---- !u!114 &600808411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600808396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8beef32b93cdad5449fc74a5a6cdb283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &605026390
 GameObject:
   m_ObjectHideFlags: 0

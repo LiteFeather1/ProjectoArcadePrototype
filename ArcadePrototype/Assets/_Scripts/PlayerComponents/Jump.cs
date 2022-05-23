@@ -90,6 +90,7 @@ public class Jump : MonoBehaviour
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
             _rb.AddForce(Vector2.up * (_secondaryJumpForce), ForceMode2D.Impulse);
             _secondaryJumpAmount--;
+            _ac.SetTrigger("SecondJump");
         }
     }
 

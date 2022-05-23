@@ -33,6 +33,7 @@ public class HorizontalMoviment : MonoBehaviour
         {
             Flip();
         }
+        _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
     }
     private void FixedUpdate()
     {
@@ -52,7 +53,7 @@ public class HorizontalMoviment : MonoBehaviour
         _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
     }
 
-    protected void Flip()
+    public void Flip()
     {
         _facingRight = !_facingRight;
         transform.rotation = Quaternion.Euler(0, _facingRight ? 0 : 180, 0);
