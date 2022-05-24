@@ -16,7 +16,6 @@ public class ResetPosOnDisable : MonoBehaviour
     private void OnDisable()
     {
         transform.position = _startPos;
-        transform.rotation = _startRotation;
-        
+        transform.rotation = _startRotation;    
     }
 }

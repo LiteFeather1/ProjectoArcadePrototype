@@ -23,6 +23,7 @@ public class WallSlidingNClimbing : MonoBehaviour
     {
         WallSlidingAction();
     }
+
     private void WallSlidingAction()
     {
         float yInput = Input.GetAxisRaw("Vertical");

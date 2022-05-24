@@ -6,6 +6,7 @@ public class FlickBoxCollider : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D _component;
     [SerializeField] private float _timeBetween;
+
     void Start()
     {
         StartCoroutine(Co_Flicker());

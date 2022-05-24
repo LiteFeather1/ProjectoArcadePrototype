@@ -21,10 +21,12 @@ public class WallJump : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _wS = GetComponent<WallStamina>();
     }
+
     private void Update()
     {
         WallJumpInput();
     }
+
     private void FixedUpdate()
     {
         WallJumpAction();
@@ -52,7 +54,9 @@ public class WallJump : MonoBehaviour
         {
             _hm.enabled = false;
             StartCoroutine(Co_ReactivateHorizontalMoviment());
+
             _jumping = false;
+
             float direction = Input.GetAxisRaw("Horizontal");
             if (_wS.Stamina > 0)
             {
@@ -62,7 +66,6 @@ public class WallJump : MonoBehaviour
                 }
                 else if (direction != 0)
                 {
-                    print("hello");
                     direction = Input.GetAxisRaw("Horizontal");
                     _wS.DemishFromWallJump();
                 }
@@ -71,6 +74,7 @@ public class WallJump : MonoBehaviour
             {
                 direction = StoredDirection();
             }
+
             _rb.AddForce(new Vector2 (_jumpForce.x * -direction  * _detection.GetPistonSideSpeed(), _jumpForce.y), ForceMode2D.Impulse);
         }
     }

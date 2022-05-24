@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResetOnCol : ConstantMoviment
+public class SetPosOnColl : ConstantMoviment
 {
-    [SerializeField] private Transform _whereToReset;
+    [SerializeField] private Transform _whereToSet;
     private float _whereToHeight;
     private bool _canMove = true;
 
     protected override void Start()
     {
         base.Start();
-        _whereToHeight = _whereToReset.localScale.y;
+        _whereToHeight = _whereToSet.localScale.y;
     }
 
     protected override void Update()
@@ -28,7 +28,7 @@ public class ResetOnCol : ConstantMoviment
             _canMove = false;
             StartCoroutine(WaitToMove());
             float randomY = Random.Range(-_whereToHeight/2, _whereToHeight/2);
-            gameObject.transform.position = new Vector2(_whereToReset.position.x, _whereToReset.position.y + randomY);
+            gameObject.transform.position = new Vector2(_whereToSet.position.x, _whereToSet.position.y + randomY);
         }
     }
 

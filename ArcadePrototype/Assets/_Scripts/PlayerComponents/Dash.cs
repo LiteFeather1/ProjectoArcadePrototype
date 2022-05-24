@@ -19,8 +19,6 @@ public class Dash : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _ac;
 
-    private bool _triggerForAc = true;
-
     private void Awake()
     {
         _hm = GetComponent<HorizontalMoviment>();
@@ -73,7 +71,6 @@ public class Dash : MonoBehaviour
         yield return new WaitForSeconds(_dashSpeedCurve[_dashSpeedCurve.length - 1].time - 0.2f);
         _isDashing = false;
         _hm.enabled = true;
-        _triggerForAc = true;
         _ac.SetBool("Dashing", _isDashing);
         ReplenishDashAfterDashin();
     }
@@ -114,6 +111,7 @@ public class Dash : MonoBehaviour
         return directionToMouse;
     }
 
+    //Flips the player to face the direction of the dash
     private void DashFlip()
     {
         float direction = _dashDirection.x;

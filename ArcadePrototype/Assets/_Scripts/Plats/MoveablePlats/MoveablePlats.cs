@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Just bad architeture :/
 public class MoveablePlats : MonoBehaviour
 {
     [SerializeField] protected float _speed;

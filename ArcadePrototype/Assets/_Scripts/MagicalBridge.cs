@@ -6,12 +6,6 @@ public class MagicalBridge : MonoBehaviour
 {
 
     [SerializeField] private GameObject _myStand;
-    private Collider2D _myCollider;
-
-    private void Awake()
-    {
-        _myCollider = GetComponent<Collider2D>();
-    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {

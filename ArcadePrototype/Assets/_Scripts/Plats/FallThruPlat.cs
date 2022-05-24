@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeactivatablePlat : MonoBehaviour, IIteractable
+public class FallThruPlat : MonoBehaviour, IIteractable
 {
     private Collider2D _collider;
 

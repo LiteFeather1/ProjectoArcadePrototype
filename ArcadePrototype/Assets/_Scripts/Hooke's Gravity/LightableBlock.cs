@@ -21,13 +21,15 @@ public class LightableBlock : MonoBehaviour, Ilightnable
             RoundPosition();
         }
     }
+
     public IEnumerator Co_LightingReturnFalse(float time)
     {
         yield return new WaitForSeconds(time);
         _lightning = false;
         _once = false;
     }
-
+    // Moviment of the lightableblock,  Has to move just in the direction
+    // Maybe I should've used vector2.up.down..etc to have the direction be straight better
     private void Moviment(Vector3 whereTo)
     {
         if (!_once)
@@ -62,7 +64,7 @@ public class LightableBlock : MonoBehaviour, Ilightnable
     {
         return _lightning = false;
     }
-
+    // rounds the position when not moving AKA on _lighting "state"
     private void RoundPosition()
     {
         int posY = Mathf.RoundToInt(transform.position.y);
@@ -77,6 +79,8 @@ public class LightableBlock : MonoBehaviour, Ilightnable
         RoundPosition();
         _once = false;
     }
+
+   // it also collects coins
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
@@ -94,7 +98,6 @@ public class LightableBlock : MonoBehaviour, Ilightnable
     {
         if (collision.gameObject.tag != Tags.Spike && collision.gameObject.tag != Tags.Ladder )
         {
-            print("1");
             Stop();
         }
     }

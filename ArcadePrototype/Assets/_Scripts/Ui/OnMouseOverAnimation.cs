@@ -16,6 +16,7 @@ public class OnMouseOverAnimation : MonoBehaviour
         _stayed = true;
         StartCoroutine(MyAnimation());
     }
+
     public void OnExit()
     {
         _stayed = false;

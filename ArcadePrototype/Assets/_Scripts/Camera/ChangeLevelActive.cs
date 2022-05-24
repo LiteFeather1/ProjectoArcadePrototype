@@ -10,7 +10,7 @@ public class ChangeLevelActive : MonoBehaviour
     [SerializeField] private CinemachineConfiner _confiner;
 
     private PolygonCollider2D _myCollider;
-    public Vector2[] _points;
+    private Vector2[] _points;
 
     private void Start()
     {
@@ -27,6 +27,8 @@ public class ChangeLevelActive : MonoBehaviour
             Gizmos.DrawLine(_points[i], _points[i - 1]);
         }
     }
+
+    //GetsThe Points of the polygon collider to Draw the level size
     private void GetPoints()
     {
         _points = _myCollider.points;

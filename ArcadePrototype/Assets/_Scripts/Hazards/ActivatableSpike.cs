@@ -11,11 +11,13 @@ public class ActivatableSpike : MonoBehaviour
     [Range(-1, 1)][SerializeField] private int _y;
     private Vector3 _startPos;
     private Vector3 _pointToMove;
+
     private void Awake()
     {
         _startPos = _spikes.transform.position;
         _pointToMove = new Vector2(_spikes.transform.position.x + _x, _spikes.transform.position.y + _y);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

@@ -43,12 +43,6 @@ public class InteractInputs : MonoBehaviour
 
     private void GetAllMasksButPlayer()
     {
-        //for (int i = 0; i < 31; i++)
-        //{
-        //    string layerName = LayerMask.LayerToName(i);
-        //    print(layerName);
-        //    _deactivatableMask += LayerMask.GetMask(layerName);
-        //}
         _deactivatableMask -= LayerMask.GetMask("Player");
     }
 }

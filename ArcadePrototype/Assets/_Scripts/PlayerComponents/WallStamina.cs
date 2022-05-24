@@ -10,6 +10,7 @@ public class WallStamina : MonoBehaviour
     [Header ("Demishers By Time")]
     [SerializeField] private float _wallGrippingDemish;
     [SerializeField] private float _wallClimbingDemish;
+
     [Header ("Demishers By Input")]
     [SerializeField] private float _wallJumpDeminsh;
 

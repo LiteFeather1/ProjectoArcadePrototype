@@ -6,13 +6,15 @@ public class Lightning : MonoBehaviour
 {
     [SerializeField] private float _speed;
     private Isaac _harry;
-    [SerializeField] private GameObject _middleLightings;
+
     private Queue<GameObject> _lightings = new Queue<GameObject>();
+
     private bool _canMove = true;
     private bool _isHarrySolid = true;
 
     [SerializeField] private Animator _ac;
     [SerializeField] private SpriteRenderer _sr;
+
     private Vector2 _position;
     private Vector2 _currentPosition;
 
@@ -58,7 +60,7 @@ public class Lightning : MonoBehaviour
         }
     }
 
-    private void MoveObject(GameObject whatToMove)
+    private void MoveHarry(GameObject whatToMove)
     {
         _canMove = false;
 
@@ -102,7 +104,7 @@ public class Lightning : MonoBehaviour
     {
         if (collision.gameObject.tag == Tags.Steel)
         {
-            MoveObject(_harry.gameObject);
+            MoveHarry(_harry.gameObject);
         }
 
         if(collision.gameObject.tag == Tags.SteelBlock)
@@ -114,7 +116,7 @@ public class Lightning : MonoBehaviour
             }
             else
             {
-                MoveObject(_harry.gameObject);
+                MoveHarry(_harry.gameObject);
             }
         }
 

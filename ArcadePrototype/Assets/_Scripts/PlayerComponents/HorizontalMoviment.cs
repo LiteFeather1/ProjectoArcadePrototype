@@ -27,6 +27,7 @@ public class HorizontalMoviment : MonoBehaviour
         _ac = GetComponent<Animator>();
         _gd = GetComponent<Detections>();
     }
+
     private void Update()
     {
         if ((_direction < 0 && _facingRight) || (_direction > 0 && !_facingRight))

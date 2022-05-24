@@ -21,5 +21,4 @@ public class ComplexSingleton<T> : MonoBehaviour where T : ComplexSingleton<T>
 
         DontDestroyOnLoad(gameObject);
     }
-
 }

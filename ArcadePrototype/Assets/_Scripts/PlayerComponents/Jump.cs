@@ -31,17 +31,20 @@ public class Jump : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _ac = GetComponent<Animator>();
     }
+
     private void Update()
     {
         JumpInput();
         ReplenishSecondaryJumOnceGroundedAgain();
     }
+
     private void FixedUpdate()
     {
         JumpAction();
         Gravity();
         SecondJumpAction();
     }
+
     private void JumpInput()
     {
         if (Input.GetButtonDown("Jump"))
@@ -120,6 +123,7 @@ public class Jump : MonoBehaviour
         }
         _wasOnGroundLastFrame = _gd.IsGrounded() || _gd.IsOnWall();
     }
+
     public void ReplenishSecondaryJump()
     {
         _secondaryJumpAmount = _howManySecondaryJumps;
@@ -130,7 +134,7 @@ public class Jump : MonoBehaviour
         _rb.AddForce(normal * force);
         StartCoroutine(DisableGravity(timeToWait));
     }
-
+    //Disables gravity so the on add force can go higher without the player needing to press spaces
     IEnumerator DisableGravity(float timeToWait)
     {
         _disableGravity = true;

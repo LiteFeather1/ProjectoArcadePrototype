@@ -7,6 +7,7 @@ public class OnMouseHover : MonoBehaviour
 {
     [SerializeField] private Image _mySelf;
     [SerializeField] private Sprite _hoverSprite, _defaultSprite;
+
     public void OnHover()
     {
         _mySelf.sprite = _hoverSprite;

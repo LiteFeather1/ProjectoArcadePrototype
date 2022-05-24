@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class ShootingTrap : MonoBehaviour, IButtonable
 {
-    [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _speed = 500;
     [Range(0,3)][SerializeField] private int _damage;
     [SerializeField] private float _stunDuration;
     [SerializeField] private float _distanceToShot = 10;
+
     [SerializeField] private float _fireRate = 1;
+    private float _timePassed;
+
     [SerializeField] private int _howManyBullets = 1;
     [SerializeField] private float _timeBetweenBullets = 0.1f;
     [SerializeField] private float _spreadFactor;
-    private float _timePassed;
     [SerializeField] private float _bulletLifeSpan;
+
+    [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private Transform _objectToFace;
+
+    private bool _canShot = true;
 
     private void Update()
     {
@@ -27,8 +32,11 @@ public class ShootingTrap : MonoBehaviour, IButtonable
             _timePassed += Time.deltaTime;
             if (_timePassed > _fireRate)
             {
-                _timePassed = 0;
-                StartCoroutine(ShotInDirection());
+                if (_canShot)
+                {
+                    _timePassed = 0;
+                    StartCoroutine(ShotInDirection());
+                }
             }
         }
     }
@@ -60,10 +68,9 @@ public class ShootingTrap : MonoBehaviour, IButtonable
         }
     }
 
-
     public void ToInterract(bool state)
     {
-        throw new System.NotImplementedException();
+        _canShot = state;
     }
 
 

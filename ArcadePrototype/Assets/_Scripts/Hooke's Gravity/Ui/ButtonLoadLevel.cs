@@ -14,6 +14,7 @@ public class ButtonLoadLevel : MonoBehaviour
             _level = IG_GameManager.Instance.NextLevel;;
         }
     }
+    //Only works with Harry so far...
     public void OnPress()
     {
         SceneManager.LoadScene("Level" + _level.ToString());

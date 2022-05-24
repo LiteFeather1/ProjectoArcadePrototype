@@ -17,6 +17,7 @@ public class ConstantMoviment : MonoBehaviour
         Up,
         Down
     }
+
     protected virtual void Start()
     {
         PickDirection();
@@ -45,6 +46,7 @@ public class ConstantMoviment : MonoBehaviour
                 break;
         }
     }
+
     protected virtual void Moviment()
     {
         var step = _speed * Time.deltaTime;

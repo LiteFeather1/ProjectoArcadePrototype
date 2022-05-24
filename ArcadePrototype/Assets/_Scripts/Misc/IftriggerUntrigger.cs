@@ -5,6 +5,7 @@ using UnityEngine;
 public class IftriggerUntrigger : MonoBehaviour
 {
     private BoxCollider2D _myCollider;
+
     private void Start()
     {
         _myCollider = GetComponent<BoxCollider2D>();

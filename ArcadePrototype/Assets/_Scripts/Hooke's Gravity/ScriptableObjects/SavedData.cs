@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//This was a test that I never finished
 [CreateAssetMenu(fileName = "SaveData", menuName = "ScriptableObjects/SavedData", order = 1)]
 public class SavedData : ScriptableObject
 {

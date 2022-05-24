@@ -49,6 +49,7 @@ public class IG_GameManager : MonoBehaviour
 
     #endregion
 
+    //Timer for the for the time inside a level
     private void Timer()
     {
         if (!IG_UiManager.Instance.PauseScreenSwitch)

@@ -19,14 +19,5 @@ public class Radio_Button : MonoBehaviour
         }
 
         _myself.image.sprite = _pressedSprite;
-
-        //if(_selected)
-        //{ 
-        //    _myself.image.sprite = _pressedSprite;
-        //}
-        //else
-        //{
-        //    _myself.image.sprite = _notPressedSprite;
-        //}
     }
 }

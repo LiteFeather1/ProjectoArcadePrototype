@@ -38,7 +38,6 @@ public class Isaac : MonoBehaviour
     private int _randomRotDirection = 1;
     [SerializeField] private GameObject _wand;
     private bool _spiked;
-    private bool _collided;
 
     [Header("Reset Position")]
     private Vector2 resetPos;
@@ -55,6 +54,7 @@ public class Isaac : MonoBehaviour
         _jumpCurve = new AnimationCurve(new Keyframe(0, 0), kf, new Keyframe(.3f, 1));
         resetPos = transform.position;
     }
+
     void Update()
     {
         if (!IG_UiManager.Instance.PauseScreenSwitch)
@@ -64,16 +64,11 @@ public class Isaac : MonoBehaviour
             LightingInput();
             DetectLadder();
             StopLightableBlock(_lightningDir);
-            if (_wasOnGroundLastFrame != _grounded && !_onLadder && !_lightning)
-            {
-
-                Vector2 clampPos = new Vector2(transform.position.x, Mathf.RoundToInt(transform.position.y));
-                transform.position = clampPos;
-            }
-            _wasOnGroundLastFrame = _grounded;
-            
+            SnapToGround();
+            _wasOnGroundLastFrame = _grounded;         
         }
     }
+
     private void FixedUpdate()
     {
         if (!IG_UiManager.Instance.PauseScreenSwitch)
@@ -88,6 +83,7 @@ public class Isaac : MonoBehaviour
             _rb.velocity = Vector2.zero;
         }
     }
+
     private void HorizontalMoviment()
     {
         if (!_lightning)
@@ -95,9 +91,9 @@ public class Isaac : MonoBehaviour
             _direction = Input.GetAxisRaw("Horizontal");
             float moviment = _direction * _speed;
             Vector2 velocity = Vector2.right * moviment;
-            velocity.y = 0;
             _rb.velocity = velocity;
             _ac.SetFloat("Speed", Mathf.Abs(velocity.x));
+
             if ((_direction < 0 && _facingRight) || (_direction > 0 && !_facingRight))
             {
                 Flip();
@@ -111,6 +107,7 @@ public class Isaac : MonoBehaviour
         transform.localScale = new Vector3(_facingRight ? 1 : -1, 1, 1);
     }
 
+    //Rotate Isaac when not touching Ladder or ground
     private void Rotate()
     {
         if (!_grounded && !_onLadder)
@@ -118,7 +115,6 @@ public class Isaac : MonoBehaviour
             _rb.freezeRotation = false;
             _rb.MoveRotation(_rb.rotation + _rotateSpeed * Time.fixedDeltaTime);
         }
-        //else if lightning rotation
         else
         {
             _rb.freezeRotation = true;
@@ -136,10 +132,6 @@ public class Isaac : MonoBehaviour
             _randomRotDirection = _randomRotDirection * -1;
             _ac.SetTrigger("Jump");
             StartCoroutine(Co_Jump());
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            //transform.Translate(0, -1, 0, Space.World);
         }
     }
     private void JumpWithCurve()
@@ -171,9 +163,18 @@ public class Isaac : MonoBehaviour
         if (!_grounded)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, _groundMask);
-            Debug.DrawRay(transform.position, new Vector2(0, -.75f), Color.red);
+            Debug.DrawRay(transform.position, new Vector2(0, -1f), Color.red);
             _grounded = hit;
             _ac.SetBool("Grounded", _grounded);
+        }
+    }
+    //Helps harry stick to ground after aa lighting
+    private void SnapToGround()
+    {
+        if (_wasOnGroundLastFrame != _grounded && !_onLadder && !_lightning)
+        {
+            Vector2 clampPos = new Vector2(transform.position.x, Mathf.RoundToInt(transform.position.y));
+            transform.position = clampPos;
         }
     }
 
@@ -216,6 +217,7 @@ public class Isaac : MonoBehaviour
         _currentLightining = Instantiate(_firstLighting, position, Quaternion.Euler(0, 0, rotation));
         Lightning newLightning = _currentLightining.GetComponent<Lightning>();
         newLightning.HarryComponent(this);
+
         if (_grounded || _onLadder)
         {
             newLightning.IsHarrySolid(true);
@@ -226,6 +228,7 @@ public class Isaac : MonoBehaviour
         }
     }
 
+    //Checks if there is no block in one tile in the direction
     private bool CheckIfCanShootInDireciton(Vector2 direction)
     {
         Physics2D.queriesStartInColliders = false;
@@ -241,6 +244,7 @@ public class Isaac : MonoBehaviour
         }
     }
 
+    //Moves harry into the position the lighting has colidded
     public IEnumerator Co_MoveToPoint(Vector3 whereTo)
     {
         float currentDistance = Vector2.Distance(transform.position, whereTo);
@@ -348,6 +352,7 @@ public class Isaac : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         _spiked = false;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();

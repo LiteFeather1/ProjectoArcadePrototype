@@ -5,6 +5,8 @@ using System;
 
 public static class Pico8Colours
 {
+
+    // Holds all the colors of the pico8Pallete
     public static Color32 Black => new Color32(0 , 0, 0, 255);
 
     public static Color32 DarkBlue => new Color32(29, 43, 83, 255);
