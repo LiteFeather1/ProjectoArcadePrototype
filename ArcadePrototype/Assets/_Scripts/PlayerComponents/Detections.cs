@@ -54,7 +54,6 @@ public class Detections : MonoBehaviour
                 rayColor = Color.red;
             }
             Debug.DrawRay(transform.position, transform.right * .25f, rayColor, 0);
-            print(hit.collider);
             return hit.collider != null;
         }
 
