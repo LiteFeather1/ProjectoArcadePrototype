@@ -12,6 +12,7 @@ public class SavedData : ScriptableObject
     public Test NewTest => _test;
 }
 
+
 [Serializable]
 public struct Test
 {

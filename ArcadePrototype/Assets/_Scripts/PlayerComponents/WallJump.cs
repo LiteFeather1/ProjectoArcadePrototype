@@ -9,10 +9,13 @@ public class WallJump : MonoBehaviour
     private bool _jumping;
     private float _storedDirection;
 
+    int _direction;
+
     private Detections _detection;
     private HorizontalMoviment _hm;
     private Rigidbody2D _rb;
     private WallStamina _wS;
+    private Animator _ac;
 
     private void Awake()
     {
@@ -20,16 +23,22 @@ public class WallJump : MonoBehaviour
         _hm = GetComponent<HorizontalMoviment>();
         _rb = GetComponent<Rigidbody2D>();
         _wS = GetComponent<WallStamina>();
+        _ac = GetComponent<Animator>();
     }
 
     private void Update()
     {
         WallJumpInput();
+        Direction();
     }
 
     private void FixedUpdate()
     {
         WallJumpAction();
+    }
+    private void LateUpdate()
+    {
+        StoredDirection();
     }
 
     private void WallJumpInput()
@@ -57,25 +66,34 @@ public class WallJump : MonoBehaviour
 
             _jumping = false;
 
-            float direction = Input.GetAxisRaw("Horizontal");
+            float xForce = Input.GetAxisRaw("Horizontal");
+            float upForce = 0;
             if (_wS.Stamina > 0)
             {
-                if (direction == 0)
+                if (xForce == 0)
                 {
-                    direction = .25f;
-                }
-                else if (direction != 0)
-                {
-                    direction = Input.GetAxisRaw("Horizontal");
+                    xForce = .33f * _direction;
+                    upForce = .75f;
                     _wS.DemishFromWallJump();
+                    print("WallJumpin");
+                }
+                else if (xForce != 0)
+                {
+                    upForce = 1;
+                    xForce = Input.GetAxisRaw("Horizontal");
+                    _wS.DemishFromWallJump();
+                    print("WallJumpin");
                 }
             }
             else
             {
-                direction = StoredDirection();
+                xForce = StoredDirection();
+                upForce = 1;
             }
-
-            _rb.AddForce(new Vector2 (_jumpForce.x * -direction  * _detection.GetPistonSideSpeed(), _jumpForce.y), ForceMode2D.Impulse);
+            print(xForce);
+            _rb.AddForce(new Vector2 (_jumpForce.x * -xForce  * _detection.GetPistonSideSpeed(), _jumpForce.y * upForce), ForceMode2D.Impulse);
+            _ac.SetTrigger("WallJumped");
+            print("WallJumpin");
         }
     }
     private float StoredDirection()
@@ -89,6 +107,11 @@ public class WallJump : MonoBehaviour
     {
         yield return new WaitForSeconds(0.125f);
         _hm.enabled = true;
+    }
 
+    private void Direction()
+    {
+        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow))) _direction = 1;
+        else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.RightArrow))) _direction = -1;
     }
 }

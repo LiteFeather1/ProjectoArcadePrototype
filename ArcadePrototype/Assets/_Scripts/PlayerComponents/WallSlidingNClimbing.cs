@@ -11,12 +11,14 @@ public class WallSlidingNClimbing : MonoBehaviour
     private Detections _d;
     private Rigidbody2D _rb;
     private WallStamina _wallStamina;
+    private Animator _ac;
     // Start is called before the first frame update
     void Awake()
     {
         _d = GetComponent<Detections>();
         _rb = GetComponent<Rigidbody2D>();
         _wallStamina = GetComponent<WallStamina>();
+        _ac = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -27,13 +29,15 @@ public class WallSlidingNClimbing : MonoBehaviour
     private void WallSlidingAction()
     {
         float yInput = Input.GetAxisRaw("Vertical");
-        if (_d.IsOnWall() && !Input.GetButton("Jump") && Input.GetKey(KeyCode.Mouse0) && _wallStamina.Stamina > 0)
+        if (_d.IsOnWall() && !Input.GetButton("Jump") && (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.J)) && _wallStamina.Stamina > 0)
         {
+            _ac.SetBool("Gripping", true);
             if (yInput == 0)
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, 0);
                 _wallStamina.DemishFromWallGripping();
                 _rb.gravityScale = 0;
+                _ac.SetBool("WallClimbing", false);
             }
             else if (yInput < 0)
             {
@@ -45,11 +49,14 @@ public class WallSlidingNClimbing : MonoBehaviour
                 _wallStamina.DemishFromWallClimbing();
                 Vector2 up = new Vector2(_rb.velocity.x, _climbingSpeed);
                 _rb.velocity = up;
+                _ac.SetBool("WallClimbing", true);
             }
         }
         else
         {
             _rb.gravityScale = 1;
+            _ac.SetBool("WallClimbing", false);
+            _ac.SetBool("Gripping", false);
         }
         
     }

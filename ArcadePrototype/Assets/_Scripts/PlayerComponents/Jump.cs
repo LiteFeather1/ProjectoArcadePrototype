@@ -51,7 +51,7 @@ public class Jump : MonoBehaviour
         {
             _autoJump = _autoJumpReseter;
             _ac.SetTrigger("Jumped");
-            if (!_gd.IsGrounded())
+            if (!_gd.IsGrounded() && !_gd.IsOnWall())
             {
                 _secondaryJumping = true;
             }
@@ -87,13 +87,14 @@ public class Jump : MonoBehaviour
 
     private void SecondJumpAction()
     {
-        if (_secondaryJumpAmount > 0 && _secondaryJumping && !_gd.IsOnWall())
+        if (_secondaryJumpAmount > 0 && _secondaryJumping)
         {
             _secondaryJumping = false;
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
             _rb.AddForce(Vector2.up * (_secondaryJumpForce), ForceMode2D.Impulse);
             _secondaryJumpAmount--;
             _ac.SetTrigger("SecondJump");
+            print("Doubled");
         }
     }
 

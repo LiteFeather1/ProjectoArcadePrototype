@@ -5,7 +5,7 @@ using UnityEngine;
 public class WallStamina : MonoBehaviour
 {
     [SerializeField] private float _stamina = 100;
-    private float _maxStamina = 100;
+    private float _maxStamina;
 
     [Header ("Demishers By Time")]
     [SerializeField] private float _wallGrippingDemish;
@@ -24,6 +24,7 @@ public class WallStamina : MonoBehaviour
     private void Awake()
     {
         _d = GetComponent<Detections>();
+        _maxStamina = _stamina;
     }
 
     private void Update()
