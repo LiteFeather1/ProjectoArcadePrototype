@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Detections))]
@@ -19,7 +18,14 @@ public class Jump : MonoBehaviour
     private bool _secondaryJumping;
     private int _secondaryJumpAmount;
     private bool _wasOnGroundLastFrame;
+    public float _delayGroundCheck; // Delay for ground detections last frame
     private bool _disableGravity;
+
+    [Header("Particles")]
+    [SerializeField] private Transform _feetPos;
+    [SerializeField] private CustomAnimator _firstJumpParticle;
+    [SerializeField] private CustomAnimator _secondJumpParticle;
+    [SerializeField] private CustomAnimator _groundContackParticle;
 
     private Detections _gd;
     private Rigidbody2D _rb;
@@ -36,6 +42,7 @@ public class Jump : MonoBehaviour
     {
         JumpInput();
         ReplenishSecondaryJumOnceGroundedAgain();
+        Delay();
     }
 
     private void FixedUpdate()
@@ -68,6 +75,7 @@ public class Jump : MonoBehaviour
     {
         if (_autoJump > 0 && _gd.IsGrounded() && _canJump)
         {
+            _firstJumpParticle.PlayAnimation(_feetPos);
             _autoJump--;
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _gd.GetPistonSpeed());
             //_rb.AddForce(Vector2.up * _jumpForce * _gd.GetPistonSpeed(), ForceMode2D.Impulse);
@@ -94,6 +102,7 @@ public class Jump : MonoBehaviour
             _rb.AddForce(Vector2.up * (_secondaryJumpForce), ForceMode2D.Impulse);
             _secondaryJumpAmount--;
             _ac.SetTrigger("SecondJump");
+            _secondJumpParticle.PlayAnimation(_feetPos);
             print("Doubled");
         }
     }
@@ -117,12 +126,29 @@ public class Jump : MonoBehaviour
     /// Needs to be on the end of Update.
     /// </summary>
     private void ReplenishSecondaryJumOnceGroundedAgain()
-    {
-        if (_wasOnGroundLastFrame != _gd.IsGrounded())
+    {      
+        if (_wasOnGroundLastFrame != _gd.IsGrounded() && _delayGroundCheck > 0.1f && !_gd.IsOnWall())
         {
             _secondaryJumpAmount = _howManySecondaryJumps;
+            _groundContackParticle.PlayAnimation(transform);
+            print("played");
         }
         _wasOnGroundLastFrame = _gd.IsGrounded() || _gd.IsOnWall();
+    }
+
+    private float Delay()
+    {
+        if (_gd.IsGrounded() || _gd.IsOnWall())
+        {
+            _delayGroundCheck = 0;
+            return _delayGroundCheck;
+        }
+
+        else
+        {
+            _delayGroundCheck += Time.deltaTime;
+            return _delayGroundCheck;
+        }
     }
 
     public void ReplenishSecondaryJump()

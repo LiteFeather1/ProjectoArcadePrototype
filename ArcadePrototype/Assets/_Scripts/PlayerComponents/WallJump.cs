@@ -16,6 +16,7 @@ public class WallJump : MonoBehaviour
     private Rigidbody2D _rb;
     private WallStamina _wS;
     private Animator _ac;
+    [SerializeField] private CustomAnimator _wallJump;
 
     private void Awake()
     {
@@ -90,9 +91,10 @@ public class WallJump : MonoBehaviour
                 xForce = StoredDirection();
                 upForce = 1;
             }
-            print(xForce);
+
             _rb.AddForce(new Vector2 (_jumpForce.x * -xForce  * _detection.GetPistonSideSpeed(), _jumpForce.y * upForce), ForceMode2D.Impulse);
             _ac.SetTrigger("WallJumped");
+            _wallJump.PlayAnimation(transform);
             print("WallJumpin");
         }
     }

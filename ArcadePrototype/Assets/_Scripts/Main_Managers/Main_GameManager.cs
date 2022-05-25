@@ -3,8 +3,8 @@ using UnityEngine;
 public class Main_GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] _levels;
-
     public static Main_GameManager Instance;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -17,6 +17,7 @@ public class Main_GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
+
     private void Start()
     {
         DeactivateLevel();

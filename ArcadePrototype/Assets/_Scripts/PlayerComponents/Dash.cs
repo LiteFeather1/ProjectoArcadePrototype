@@ -14,6 +14,10 @@ public class Dash : MonoBehaviour
     private bool _isDashing;
     private bool _wasOnGroundLastFrame;
 
+    [Header ("Particles")]
+    [SerializeField] private ParticleSystem _dashParticle;
+    ParticleSystem.EmissionModule emission;
+
     private HorizontalMoviment _hm;
     private Detections _d;
     private Rigidbody2D _rb;
@@ -25,11 +29,13 @@ public class Dash : MonoBehaviour
         _d = GetComponent<Detections>();
         _rb = GetComponent<Rigidbody2D>();
         _ac = GetComponent<Animator>();
+        emission = _dashParticle.emission;
     }
     private void Update()
     {
         DashInput();
         ReplenishDashOnceGroundedAgain();
+        ParticleHandler();
     }
 
     private void FixedUpdate()
@@ -48,6 +54,7 @@ public class Dash : MonoBehaviour
             _dashDirection = MouseDirection();
             _ac.SetTrigger("DashAccel");
             _ac.SetBool("Dashing", _isDashing);
+            DashFlip();
         }
     }
 
@@ -59,10 +66,8 @@ public class Dash : MonoBehaviour
             _dashSpeed = _dashSpeedCurve.Evaluate(_dashTime);
             float yInput = Input.GetAxisRaw("Vertical");
             _hm.enabled = false;
-            //_rb.velocity = new Vector2(_dashSpeed * _direction, _dashSpeed * yInput);
             _rb.velocity = _dashDirection.normalized * _dashSpeed;
             StartCoroutine(Co_ExitDashing());
-            DashFlip();
         }
     }
 
@@ -117,5 +122,12 @@ public class Dash : MonoBehaviour
         float direction = _dashDirection.x;
 
         transform.rotation = Quaternion.Euler(0, direction > 0 ? 0 : 180, 0);
+    }
+
+    private void ParticleHandler()
+    {
+        if (_isDashing) emission.enabled = true;
+
+        else emission.enabled = false;
     }
 }
