@@ -18,7 +18,7 @@ public class Jump : MonoBehaviour
     private bool _secondaryJumping;
     private int _secondaryJumpAmount;
     private bool _wasOnGroundLastFrame;
-    public float _delayGroundCheck; // Delay for ground detections last frame
+    private float _delayGroundCheck; // Delay for ground detections last frame
     private bool _disableGravity;
 
     [Header("Particles")]
@@ -26,6 +26,8 @@ public class Jump : MonoBehaviour
     [SerializeField] private CustomAnimator _firstJumpParticle;
     [SerializeField] private CustomAnimator _secondJumpParticle;
     [SerializeField] private CustomAnimator _groundContackParticle;
+
+    private Vector2 _gravityStored;
 
     private Detections _gd;
     private Rigidbody2D _rb;
@@ -36,6 +38,7 @@ public class Jump : MonoBehaviour
         _gd = GetComponent<Detections>();
         _rb = GetComponent<Rigidbody2D>();
         _ac = GetComponent<Animator>();
+        _gravityStored = Physics2D.gravity;
     }
 
     private void Update()
@@ -75,7 +78,8 @@ public class Jump : MonoBehaviour
     {
         if (_autoJump > 0 && _gd.IsGrounded() && _canJump)
         {
-            _firstJumpParticle.PlayAnimation(_feetPos);
+            StartCoroutine(JumpSqueeze(0.75f, 1.3f, 0.15f));
+            _firstJumpParticle.PlayAnimation(transform);
             _autoJump--;
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _gd.GetPistonSpeed());
             //_rb.AddForce(Vector2.up * _jumpForce * _gd.GetPistonSpeed(), ForceMode2D.Impulse);
@@ -102,13 +106,15 @@ public class Jump : MonoBehaviour
             _rb.AddForce(Vector2.up * (_secondaryJumpForce), ForceMode2D.Impulse);
             _secondaryJumpAmount--;
             _ac.SetTrigger("SecondJump");
-            _secondJumpParticle.PlayAnimation(_feetPos);
+            _secondJumpParticle.PlayAnimation(transform);
             print("Doubled");
         }
     }
 
     private void Gravity()
     {
+        if (_gd.IsGrounded()) Physics2D.gravity = Vector2.zero;
+        else Physics2D.gravity = _gravityStored;
         if (!_disableGravity)
         {
             if (_rb.velocity.y < 0)
@@ -126,12 +132,12 @@ public class Jump : MonoBehaviour
     /// Needs to be on the end of Update.
     /// </summary>
     private void ReplenishSecondaryJumOnceGroundedAgain()
-    {      
+    {
         if (_wasOnGroundLastFrame != _gd.IsGrounded() && _delayGroundCheck > 0.1f && !_gd.IsOnWall())
         {
             _secondaryJumpAmount = _howManySecondaryJumps;
-            _groundContackParticle.PlayAnimation(transform);
-            print("played");
+            _groundContackParticle.PlayAnimation(_feetPos);
+            StartCoroutine(JumpSqueeze(1.3f, .8f, 0.05f));
         }
         _wasOnGroundLastFrame = _gd.IsGrounded() || _gd.IsOnWall();
     }
@@ -167,5 +173,25 @@ public class Jump : MonoBehaviour
         _disableGravity = true;
         yield return new WaitForSeconds(timeToWait);
         _disableGravity = false;
+    }
+
+    IEnumerator JumpSqueeze(float xSqueeze, float ySqueeze, float seconds)
+    {
+        Vector3 originalSize = Vector3.one;
+        Vector3 newSize = new Vector3(xSqueeze, ySqueeze, originalSize.z);
+        float t = 0f;
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            transform.localScale = Vector3.Lerp(originalSize, newSize, t);
+            yield return null;
+        }
+        t = 0f;
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            transform.localScale = Vector3.Lerp(newSize, originalSize, t);
+            yield return null;
+        }
     }
 }

@@ -35,7 +35,9 @@ public class Detections : MonoBehaviour
             rayColor = Color.red;
         }
         Debug.DrawRay(_collider.bounds.center + new Vector3(_collider.bounds.extents.x, 0), Vector2.down * (_collider.bounds.extents.y + extraHeightText), rayColor);
-        return hit.collider != null;
+        if (hit.point.y < transform.position.y)
+            return hit.collider != null;
+        else return false;
     }
 
     public bool IsOnWall()

@@ -6,8 +6,8 @@ public class CustomAnimator : MonoBehaviour
 {
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private float _sample;
-    [SerializeField] private float _frameRate = 1;
-    private float _speed;
+    [SerializeField] private float _speed = 1;
+    private float _speedToPlay;
 
     private SpriteRenderer _sR;
 
@@ -24,7 +24,7 @@ public class CustomAnimator : MonoBehaviour
     {
         _sR.enabled = true;
         float sampleRate = 1 / _sample;
-        _speed = sampleRate / _frameRate;
+        _speedToPlay = sampleRate / _speed;
         transform.position =  position.position;
         transform.rotation = position.rotation;
         StartCoroutine(Animation());
@@ -35,7 +35,7 @@ public class CustomAnimator : MonoBehaviour
         foreach (var sprite in _sprites)
         {
             _sR.sprite = sprite;
-            yield return new WaitForSeconds(_speed);
+            yield return new WaitForSeconds(_speedToPlay);
         }
         _sR.enabled = false;
     }

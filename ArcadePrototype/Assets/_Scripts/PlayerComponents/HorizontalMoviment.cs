@@ -20,6 +20,9 @@ public class HorizontalMoviment : MonoBehaviour
     private Animator _ac;
     private Detections _gd;
 
+    [Header ("Dust")]
+    [SerializeField] private ParticleSystem _dust;
+
 
     private void Awake()
     {
@@ -56,8 +59,10 @@ public class HorizontalMoviment : MonoBehaviour
 
     public void Flip()
     {
-        _facingRight = !_facingRight;
+        if (_direction > 0) _facingRight = true;
+        else _facingRight = false;
         transform.rotation = Quaternion.Euler(0, _facingRight ? 0 : 180, 0);
+        if(_gd.IsGrounded()) _dust.Play();
     }
 
     private void Friction()
