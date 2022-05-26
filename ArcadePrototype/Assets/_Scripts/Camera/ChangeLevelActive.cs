@@ -10,21 +10,24 @@ public class ChangeLevelActive : MonoBehaviour
     [SerializeField] private CinemachineConfiner _confiner;
 
     private PolygonCollider2D _myCollider;
-    private Vector2[] _points;
+    [SerializeField] private Vector2[] _points;
 
     private void Start()
     {
         _myCollider = GetComponent<PolygonCollider2D>();
         GetPoints();
     }
-
+    [ExecuteInEditMode]
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawLine(_points[0], _points[_points.Length - 1]);
-        for (int i = 1; i < _points.Length; i++)
+        if (_points !=  null)
         {
-            Gizmos.DrawLine(_points[i], _points[i - 1]);
+            Gizmos.DrawLine(_points[0], _points[_points.Length - 1]);
+            for (int i = 1; i < _points.Length; i++)
+            {
+                Gizmos.DrawLine(_points[i], _points[i - 1]);
+            }
         }
     }
 

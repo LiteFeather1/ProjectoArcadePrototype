@@ -6,12 +6,13 @@ public class Detections : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private LayerMask _wallMask;
+    [SerializeField] private Transform _rightFoot;
+    [SerializeField] private Transform _leftFoot;
 
-    private CapsuleCollider2D _collider;
     private Animator _ac;
+
     private void Awake()
     {
-        _collider = GetComponent<CapsuleCollider2D>();
         _ac = GetComponent<Animator>();
     }
     private void Update()
@@ -19,30 +20,25 @@ public class Detections : MonoBehaviour
         _ac.SetBool("Grounded",IsGrounded());
     }
 
+    private void OnDrawGizmos()
+    {
+        if (IsGrounded()) Gizmos.color = Color.green;
+        else Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(_leftFoot.position, .0675f);
+        Gizmos.DrawWireSphere(_rightFoot.position, .0675f);
+    }
     public bool IsGrounded()
     {
-        float extraHeightText = 0.01f;
-        Vector2 size = new Vector2(_collider.bounds.size.x - .2f, _collider.bounds.size.y);
-        RaycastHit2D hit = Physics2D.BoxCast(_collider.bounds.center, size, 0f, Vector2.down, extraHeightText, _groundMask);
-        //RaycastHit2D hit = Physics2D.CapsuleCast(_collider.bounds.center, _collider.bounds.size, CapsuleDirection2D.Vertical, 0f, Vector2.down, extraHeightText, _groundMask);
-        Color rayColor;
-        if(hit.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-        Debug.DrawRay(_collider.bounds.center + new Vector3(_collider.bounds.extents.x, 0), Vector2.down * (_collider.bounds.extents.y + extraHeightText), rayColor);
-        if (hit.point.y < transform.position.y)
-            return hit.collider != null;
-        else return false;
+        Collider2D hit1 = Physics2D.OverlapCircle(_rightFoot.position, .0675f, _groundMask);
+        Collider2D hit2 = Physics2D.OverlapCircle(_leftFoot.position, .0675f, _groundMask);
+
+        return hit1 != null || hit2 != null;
     }
 
     public bool IsOnWall()
     {
-        if (!IsGrounded())
+        if (true)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, .33f, _wallMask);
 
@@ -58,8 +54,6 @@ public class Detections : MonoBehaviour
             Debug.DrawRay(transform.position, transform.right * .25f, rayColor, 0);
             return hit.collider != null;
         }
-
-        return false;
     }
 
     public float GetPistonSpeed()
@@ -115,6 +109,5 @@ public class Detections : MonoBehaviour
         }
         return 1;
     }
-
 }
 

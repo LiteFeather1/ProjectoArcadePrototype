@@ -25,7 +25,7 @@ public class InteractInputs : MonoBehaviour
 
     private void DeactivatePlatsBellow()
     {
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             float extraHeightText = .125f;
             RaycastHit2D hit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeightText, _deactivatableMask);

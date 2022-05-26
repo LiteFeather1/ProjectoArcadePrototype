@@ -12,6 +12,11 @@ public class WallSlidingNClimbing : MonoBehaviour
     private Rigidbody2D _rb;
     private WallStamina _wallStamina;
     private Animator _ac;
+
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem _slidingParticle;
+    private ParticleSystem.EmissionModule _sliddingEmission;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,11 +24,13 @@ public class WallSlidingNClimbing : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _wallStamina = GetComponent<WallStamina>();
         _ac = GetComponent<Animator>();
+        _sliddingEmission = _slidingParticle.emission;
     }
 
     private void FixedUpdate()
     {
         WallSlidingAction();
+        SliddingEmissionHandler();
     }
 
     private void WallSlidingAction()
@@ -58,6 +65,11 @@ public class WallSlidingNClimbing : MonoBehaviour
             _ac.SetBool("WallClimbing", false);
             _ac.SetBool("Gripping", false);
         }
-        
+    }
+
+    private void SliddingEmissionHandler()
+    {
+        if (_rb.velocity.y < -0.1f && _d.IsOnWall() && Input.GetKey(KeyCode.Mouse0)) _slidingParticle.Play();
+        else _slidingParticle.Stop();
     }
 }

@@ -36,6 +36,7 @@ public class HorizontalMoviment : MonoBehaviour
         if ((_direction < 0 && _facingRight) || (_direction > 0 && !_facingRight))
         {
             Flip();
+            if (_gd.IsGrounded()) _dust.Play();
         }
         _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
     }
@@ -62,7 +63,6 @@ public class HorizontalMoviment : MonoBehaviour
         if (_direction > 0) _facingRight = true;
         else _facingRight = false;
         transform.rotation = Quaternion.Euler(0, _facingRight ? 0 : 180, 0);
-        if(_gd.IsGrounded()) _dust.Play();
     }
 
     private void Friction()

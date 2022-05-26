@@ -73,7 +73,7 @@ public class Dash : MonoBehaviour
 
     IEnumerator Co_ExitDashing()
     {
-        yield return new WaitForSeconds(_dashSpeedCurve[_dashSpeedCurve.length - 1].time - 0.2f);
+        yield return new WaitForSeconds(_dashSpeedCurve[_dashSpeedCurve.length - 1].time - 0.3f);
         _isDashing = false;
         _hm.enabled = true;
         _ac.SetBool("Dashing", _isDashing);

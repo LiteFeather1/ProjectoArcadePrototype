@@ -84,6 +84,7 @@ public class Jump : MonoBehaviour
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _gd.GetPistonSpeed());
             //_rb.AddForce(Vector2.up * _jumpForce * _gd.GetPistonSpeed(), ForceMode2D.Impulse);
             StartCoroutine(JumpCoolDown_Co());
+            print("Jumped");
         }
     }
 
@@ -113,8 +114,8 @@ public class Jump : MonoBehaviour
 
     private void Gravity()
     {
-        if (_gd.IsGrounded()) Physics2D.gravity = Vector2.zero;
-        else Physics2D.gravity = _gravityStored;
+        //if (_gd.IsGrounded()) Physics2D.gravity = Vector2.zero;
+        //else Physics2D.gravity = _gravityStored;
         if (!_disableGravity)
         {
             if (_rb.velocity.y < 0)
@@ -136,7 +137,7 @@ public class Jump : MonoBehaviour
         if (_wasOnGroundLastFrame != _gd.IsGrounded() && _delayGroundCheck > 0.1f && !_gd.IsOnWall())
         {
             _secondaryJumpAmount = _howManySecondaryJumps;
-            _groundContackParticle.PlayAnimation(_feetPos);
+            if(_rb.velocity.y < 1f) _groundContackParticle.PlayAnimation(_feetPos);
             StartCoroutine(JumpSqueeze(1.3f, .8f, 0.05f));
         }
         _wasOnGroundLastFrame = _gd.IsGrounded() || _gd.IsOnWall();

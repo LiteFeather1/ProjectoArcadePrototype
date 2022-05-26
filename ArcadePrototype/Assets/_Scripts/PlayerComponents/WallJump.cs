@@ -48,11 +48,11 @@ public class WallJump : MonoBehaviour
         {
             return;
         }
-        else if(_jumping)
+        else if (_jumping)
         {
             return;
         }
-        else if (Input.GetButtonDown("Jump"))
+        else if (Input.GetButtonDown("Jump") && !_detection.IsGrounded()) 
         {
             _jumping = true;
         }
@@ -60,7 +60,7 @@ public class WallJump : MonoBehaviour
 
     private void WallJumpAction()
     {
-        if(_jumping)
+        if(_jumping && !_detection.IsGrounded())
         {
             _hm.enabled = false;
             StartCoroutine(Co_ReactivateHorizontalMoviment());
@@ -76,14 +76,12 @@ public class WallJump : MonoBehaviour
                     xForce = .33f * _direction;
                     upForce = .75f;
                     _wS.DemishFromWallJump();
-                    print("WallJumpin");
                 }
                 else if (xForce != 0)
                 {
                     upForce = 1;
                     xForce = Input.GetAxisRaw("Horizontal");
                     _wS.DemishFromWallJump();
-                    print("WallJumpin");
                 }
             }
             else
