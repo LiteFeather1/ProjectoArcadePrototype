@@ -8,6 +8,7 @@ public class Detections : MonoBehaviour
     [SerializeField] private LayerMask _wallMask;
     [SerializeField] private Transform _rightFoot;
     [SerializeField] private Transform _leftFoot;
+    private bool _isDashing;
 
     private Animator _ac;
 
@@ -108,6 +109,17 @@ public class Detections : MonoBehaviour
             }
         }
         return 1;
+    }
+
+    public bool IsDashing()
+    {
+        return _isDashing;
+    }
+
+    public bool SetDashing(bool dashing)
+    {
+        _isDashing = dashing;
+        return dashing;
     }
 }
 

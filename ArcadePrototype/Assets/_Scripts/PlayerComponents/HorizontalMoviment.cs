@@ -38,6 +38,7 @@ public class HorizontalMoviment : MonoBehaviour
             Flip();
             if (_gd.IsGrounded()) _dust.Play();
         }
+        if ((_direction < 0 && transform.localRotation.y == 0) || (_direction > 0 && transform.localRotation.y == 180) && !_gd.IsDashing()) Flip();
         _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
     }
     private void FixedUpdate()

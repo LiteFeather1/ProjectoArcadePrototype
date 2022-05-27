@@ -36,6 +36,7 @@ public class Dash : MonoBehaviour
         DashInput();
         ReplenishDashOnceGroundedAgain();
         ParticleHandler();
+        _d.SetDashing(_isDashing);
     }
 
     private void FixedUpdate()
