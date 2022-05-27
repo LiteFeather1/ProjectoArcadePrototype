@@ -138,7 +138,7 @@ public class Jump : MonoBehaviour
         {
             _secondaryJumpAmount = _howManySecondaryJumps;
             if(_rb.velocity.y < 1f) _groundContackParticle.PlayAnimation(_feetPos);
-            StartCoroutine(JumpSqueeze(1.3f, .8f, 0.05f));
+            StartCoroutine(JumpSqueeze(1.3f, 1f, 0.05f));
         }
         _wasOnGroundLastFrame = _gd.IsGrounded() || _gd.IsOnWall();
     }

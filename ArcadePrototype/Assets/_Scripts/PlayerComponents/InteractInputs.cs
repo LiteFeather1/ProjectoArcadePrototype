@@ -44,5 +44,6 @@ public class InteractInputs : MonoBehaviour
     private void GetAllMasksButPlayer()
     {
         _deactivatableMask -= LayerMask.GetMask("Player");
+        _deactivatableMask -= LayerMask.GetMask("Level");
     }
 }

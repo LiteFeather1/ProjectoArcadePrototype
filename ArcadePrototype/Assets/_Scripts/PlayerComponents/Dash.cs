@@ -14,6 +14,8 @@ public class Dash : MonoBehaviour
     private bool _isDashing;
     private bool _wasOnGroundLastFrame;
 
+    private Vector2 _gravity;
+
     [Header ("Particles")]
     [SerializeField] private ParticleSystem _dashParticle;
     ParticleSystem.EmissionModule emission;
@@ -30,6 +32,7 @@ public class Dash : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _ac = GetComponent<Animator>();
         emission = _dashParticle.emission;
+        _gravity = Physics2D.gravity;
     }
     private void Update()
     {
@@ -48,6 +51,7 @@ public class Dash : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Mouse1) && _canDash && !_isDashing)
         {
+            Physics2D.gravity = Vector2.zero;
             _dashTime = 0f;
             _dashSpeed = _dashSpeedCurve.Evaluate(_dashTime);
             _canDash = false;
@@ -75,6 +79,7 @@ public class Dash : MonoBehaviour
     IEnumerator Co_ExitDashing()
     {
         yield return new WaitForSeconds(_dashSpeedCurve[_dashSpeedCurve.length - 1].time - 0.3f);
+        Physics2D.gravity = _gravity;
         _isDashing = false;
         _hm.enabled = true;
         _ac.SetBool("Dashing", _isDashing);
