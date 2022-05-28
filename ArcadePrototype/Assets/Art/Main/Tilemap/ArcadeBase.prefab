@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7674680073519976821}
   - component: {fileID: 7687805501637377365}
-  m_Layer: 31
+  m_Layer: 6
   m_Name: ArcadeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 43756506829879324}
   - component: {fileID: 8451435035583902411}
   - component: {fileID: 8729880159132524768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

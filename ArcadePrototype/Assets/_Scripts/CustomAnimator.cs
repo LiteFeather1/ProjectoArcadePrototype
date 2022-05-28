@@ -26,7 +26,7 @@ public class CustomAnimator : MonoBehaviour
         StartTheCo();
         _sR.enabled = true;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) StopTheCo();
     }

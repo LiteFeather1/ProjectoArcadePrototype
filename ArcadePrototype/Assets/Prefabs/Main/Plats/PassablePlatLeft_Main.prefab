@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9109486832921758878}
   - component: {fileID: 9109486832921758879}
   - component: {fileID: 9109486832921758877}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: PassablePlatLeft_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
