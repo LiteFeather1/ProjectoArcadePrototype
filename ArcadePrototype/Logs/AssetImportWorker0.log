@@ -518,3 +518,4 @@ Received Import Request.
 Start importing Assets/Art/Main/Misc/MarioPipe.aseprite using Guid(f477584aa9b51cb468e9b9b335ad67d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a40135a27c32819cab8f4bf20ea9497e') in 0.013588 seconds 
   Import took 0.017412 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
