@@ -19,6 +19,10 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         _hm = GetComponent<HorizontalMoviment>();
         _jump = GetComponent<Jump>();
     }
+    private void Start()
+    {
+        Main_UiManager.Instance.HealthToDisplay(_hitsToReset, 3);
+    }
 
     public void TakeDamage(int hitAmount, float stunDuration)
     {
@@ -28,6 +32,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
             _hitsToReset -= hitAmount;
             StartCoroutine(Co_invulnerability());
             StartCoroutine(StunDuration_Co(stunDuration));
+            Main_UiManager.Instance.HealthToDisplay(_hitsToReset, 3);
             if (_hitsToReset <= 0)
             {
                 Die();
@@ -39,6 +44,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     {
         transform.position = _resetPos;
         _hitsToReset = 3;
+        Main_UiManager.Instance.HealthToDisplay(_hitsToReset, 3);
     }
 
     IEnumerator Co_invulnerability()

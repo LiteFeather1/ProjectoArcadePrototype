@@ -5,17 +5,15 @@ using UnityEngine;
 public class ActivatableSpike : MonoBehaviour
 {
     [SerializeField] private float _delayToActivate;
-    [SerializeField] private float _spikeSpeed;
-    [SerializeField] private GameObject _spikes;
-    [Range(-1, 1)][SerializeField] private int _x;
-    [Range(-1, 1)][SerializeField] private int _y;
-    private Vector3 _startPos;
-    private Vector3 _pointToMove;
+
+    private bool _activated;
+
+    private Animator _ac;
+    [SerializeField] private Collider2D _collider;
 
     private void Awake()
     {
-        _startPos = _spikes.transform.position;
-        _pointToMove = new Vector2(_spikes.transform.position.x + _x, _spikes.transform.position.y + _y);
+        _ac = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,21 +27,10 @@ public class ActivatableSpike : MonoBehaviour
     IEnumerator MoveSpikes_Co()
     {
         yield return new WaitForSeconds(_delayToActivate);
-        while (_spikes.transform.position != _pointToMove)
-        {
-            _spikes.transform.position = Vector2.MoveTowards(_spikes.transform.position, _pointToMove, _spikeSpeed * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
+        _ac.SetBool("Activated", true);
+        _collider.enabled = true;
         yield return new WaitForSeconds(_delayToActivate * 2);
-        StartCoroutine(MoveBack());
-    }
-
-    protected virtual IEnumerator MoveBack()
-    {
-        while (_spikes.transform.position != _startPos)
-        {
-            _spikes.transform.position = Vector2.MoveTowards(_spikes.transform.position, _startPos, _spikeSpeed/2 * Time.deltaTime);
-            yield return null;
-        }
+        _ac.SetBool("Activated", false);
+        _collider.enabled = false;
     }
 }

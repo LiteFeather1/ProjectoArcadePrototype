@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AddForceOnCollision : MonoBehaviour
 {
-    [SerializeField] private float _bounceForce;
-    [SerializeField] private float _disableTime;
+    [SerializeField] private float _bounceForce = 250;
+    [SerializeField] private float _disableTime = 1;
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
