@@ -13,6 +13,8 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     private HorizontalMoviment _hm;
     private Jump _jump;
 
+    public int HitsToReset { get => _hitsToReset; set => _hitsToReset = Mathf.Clamp(value, 0, 3); }
+
     private void Awake()
     {
         _resetPos = transform.position;
@@ -21,7 +23,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     }
     private void Start()
     {
-        Main_UiManager.Instance.HealthToDisplay(_hitsToReset, 3);
+        Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
     }
 
     public void TakeDamage(int hitAmount, float stunDuration)
@@ -29,11 +31,11 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         if (_canGetHit)
         {
             _canGetHit = false;
-            _hitsToReset -= hitAmount;
+            HitsToReset -= hitAmount;
             StartCoroutine(Co_invulnerability());
             StartCoroutine(StunDuration_Co(stunDuration));
-            Main_UiManager.Instance.HealthToDisplay(_hitsToReset, 3);
-            if (_hitsToReset <= 0)
+            Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
+            if (HitsToReset <= 0)
             {
                 Die();
             }
@@ -43,8 +45,8 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     public void Die()
     {
         transform.position = _resetPos;
-        _hitsToReset = 3;
-        Main_UiManager.Instance.HealthToDisplay(_hitsToReset, 3);
+        HitsToReset = 3;
+        Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
     }
 
     IEnumerator Co_invulnerability()
@@ -60,6 +62,11 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(stunDuration);
         _jump.enabled = true;
         _hm.enabled = true;
+    }
+
+    public void RestoreHealth(int amountToRestore)
+    {
+        HitsToReset += amountToRestore;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

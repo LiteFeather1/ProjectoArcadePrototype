@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveWhenPlayerAbove : MoveablePlats
 {
     [SerializeField] protected Vector3 _whereToMove;
-    [SerializeField] private float _delayToMoveback = 1;
+    [SerializeField] private float _delayToMoveback = 1 ;
     protected Vector3 _realWhereTo;
     protected Vector3 _startPos;
     protected Vector3 _gizmosStartPos => transform.position;

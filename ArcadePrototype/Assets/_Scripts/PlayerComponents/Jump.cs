@@ -18,7 +18,6 @@ public class Jump : MonoBehaviour
     private bool _secondaryJumping;
     private int _secondaryJumpAmount;
     private bool _wasOnGroundLastFrame;
-    private float _delayGroundCheck; // Delay for ground detections last frame
     private bool _disableGravity;
 
     [Header("Particles")]
@@ -26,8 +25,6 @@ public class Jump : MonoBehaviour
     [SerializeField] private CustomAnimator _firstJumpParticle;
     [SerializeField] private CustomAnimator _secondJumpParticle;
     [SerializeField] private CustomAnimator _groundContackParticle;
-
-    private Vector2 _gravityStored;
 
     private Detections _gd;
     private Rigidbody2D _rb;
@@ -38,14 +35,13 @@ public class Jump : MonoBehaviour
         _gd = GetComponent<Detections>();
         _rb = GetComponent<Rigidbody2D>();
         _ac = GetComponent<Animator>();
-        _gravityStored = Physics2D.gravity;
+        _secondaryJumpAmount = _howManySecondaryJumps;
     }
 
     private void Update()
     {
         JumpInput();
         ReplenishSecondaryJumOnceGroundedAgain();
-        Delay();
     }
 
     private void FixedUpdate()
@@ -134,28 +130,13 @@ public class Jump : MonoBehaviour
     /// </summary>
     private void ReplenishSecondaryJumOnceGroundedAgain()
     {
-        if (_wasOnGroundLastFrame != _gd.IsGrounded() && _delayGroundCheck > 0.1f && !_gd.IsOnWall())
+        if (_wasOnGroundLastFrame != _gd.IsGrounded() && !_gd.IsOnWall())
         {
             _secondaryJumpAmount = _howManySecondaryJumps;
             if(_rb.velocity.y < 1f) _groundContackParticle.PlayAnimation(_feetPos);
             StartCoroutine(JumpSqueeze(1.3f, 1f, 0.05f));
         }
         _wasOnGroundLastFrame = _gd.IsGrounded() || _gd.IsOnWall();
-    }
-
-    private float Delay()
-    {
-        if (_gd.IsGrounded() || _gd.IsOnWall())
-        {
-            _delayGroundCheck = 0;
-            return _delayGroundCheck;
-        }
-
-        else
-        {
-            _delayGroundCheck += Time.deltaTime;
-            return _delayGroundCheck;
-        }
     }
 
     public void ReplenishSecondaryJump()
@@ -168,6 +149,7 @@ public class Jump : MonoBehaviour
         _rb.AddForce(normal * force);
         StartCoroutine(DisableGravity(timeToWait));
     }
+
     //Disables gravity so the on add force can go higher without the player needing to press spaces
     IEnumerator DisableGravity(float timeToWait)
     {

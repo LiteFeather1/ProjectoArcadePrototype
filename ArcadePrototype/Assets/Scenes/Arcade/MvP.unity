@@ -506,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 3
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!4 &367079453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6139636761505032463, guid: 2d477316b1449c441a322622f165310f, type: 3}
@@ -1178,6 +1179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 3
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!1 &755516132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,6 +2520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _staminaBar: {fileID: 26816481}
+  _healthBar: {fileID: 0}
 --- !u!4 &962456953
 Transform:
   m_ObjectHideFlags: 0
