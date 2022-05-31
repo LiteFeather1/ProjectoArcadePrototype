@@ -67,6 +67,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     public void RestoreHealth(int amountToRestore)
     {
         HitsToReset += amountToRestore;
+        Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
