@@ -8,7 +8,7 @@ public class MachineLoadLevel : MonoBehaviour, IIteractable
     [SerializeField] private string _levelToLoad;
     public void ToInteract()
     {
-        if(_levelToLoad != "")
-        SceneManager.LoadScene(_levelToLoad);
+        if (_levelToLoad != "")
+            SceneManager.LoadScene(_levelToLoad);
     }
 }
