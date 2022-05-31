@@ -49,18 +49,17 @@ public class MoveWhenPlayerAbove : MoveablePlats
         }
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnCollisionEnter2D(collision);
         if(collision.gameObject.tag == "Player")
         {
             _moveToWhere = true;
             StartCoroutine(MoveToWhere());
         }
     }
-    protected override void OnCollisionExit2D(Collision2D collision)
+
+    protected virtual void  OnTriggerExit2D(Collider2D collision)
     {
-        base.OnCollisionExit2D(collision);
         if (collision.gameObject.tag == "Player")
         {
             _moveToWhere = false;

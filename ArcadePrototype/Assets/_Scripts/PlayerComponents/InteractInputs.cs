@@ -6,6 +6,8 @@ public class InteractInputs : MonoBehaviour
 {
     [SerializeField] private LayerMask _deactivatableMask;
 
+    [SerializeField] private LayerMask _interactMask;
+
     private CapsuleCollider2D _collider;
 
     private void Awake()
@@ -21,6 +23,7 @@ public class InteractInputs : MonoBehaviour
     void Update()
     {
         DeactivatePlatsBellow();
+        InteractWithMachine();
     }
 
     private void DeactivatePlatsBellow()
@@ -29,6 +32,24 @@ public class InteractInputs : MonoBehaviour
         {
             float extraHeightText = .125f;
             RaycastHit2D hit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeightText, _deactivatableMask);
+            if (hit.collider != null)
+            {
+                IIteractable iteractable = hit.collider.GetComponent<IIteractable>();
+
+                if (iteractable != null)
+                {
+                    iteractable.ToInteract();
+                }
+            }
+        }
+    }
+
+    private void InteractWithMachine()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(_collider.bounds.center, transform.right, .25f, _interactMask);
+
             if (hit.collider != null)
             {
                 IIteractable iteractable = hit.collider.GetComponent<IIteractable>();

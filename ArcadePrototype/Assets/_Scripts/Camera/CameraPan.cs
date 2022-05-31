@@ -17,12 +17,12 @@ public class CameraPan : MonoBehaviour
     {
         float yInput = Input.GetAxisRaw("Vertical");
 
-        if (yInput > 0 && !_playerDetection.IsOnWall())
+        if (yInput > 0 && CanPan())
         {
             _time += Time.deltaTime;
             _yLerp = Mathf.Lerp(_yLerp, _maxYOffSet, _time * _speed);
         }
-        else if(yInput < 0 && !_playerDetection.IsOnWall())
+        else if(yInput < 0 && CanPan())
         {
             _time += Time.deltaTime;
             _yLerp = Mathf.Lerp(_yLerp, -_maxYOffSet, _time * _speed);
@@ -36,5 +36,10 @@ public class CameraPan : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.UpArrow)) _time = 0;
 
         _cineCamOffSet.m_Offset = new Vector3(_xLerp, _yLerp);
+    }
+     
+    private bool CanPan()
+    {
+        return !_playerDetection.IsOnWall() && _playerDetection.IsGrounded();
     }
 }

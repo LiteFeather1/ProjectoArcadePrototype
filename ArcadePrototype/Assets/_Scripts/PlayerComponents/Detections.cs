@@ -121,5 +121,11 @@ public class Detections : MonoBehaviour
         _isDashing = dashing;
         return dashing;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ICollectable collectable = collision.GetComponent<ICollectable>();
+        if (collectable != null) collectable.ToCollect();
+    }
 }
 
