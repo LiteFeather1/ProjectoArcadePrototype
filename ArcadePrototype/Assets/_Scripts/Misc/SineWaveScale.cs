@@ -8,10 +8,6 @@ public class SineWaveScale : MonoBehaviour
     [SerializeField] private float _scaleY;
     private Vector3 _newScale;
 
-
-    private void Start()
-    {
-    }
     private void Update()
     {
         _newScale = transform.localScale;

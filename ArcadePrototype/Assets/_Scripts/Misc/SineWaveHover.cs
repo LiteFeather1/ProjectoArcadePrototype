@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SineWaveHover : MonoBehaviour
 {
+    [SerializeField] private float _speed = 1;
     [SerializeField] private float _distanceY;
     [SerializeField] private float _distanceX;
     private Vector3 _newPosition;
@@ -17,11 +18,12 @@ public class SineWaveHover : MonoBehaviour
     }
     private void Update()
     {
+        print(Time.time);
         if (_canMove)
         {
             _newPosition = transform.position;
-            _newPosition.y += Mathf.Sin(Time.time) * Time.deltaTime * _distanceY;
-            _newPosition.x += Mathf.Sin(Time.time) * Time.deltaTime * _distanceX;
+            _newPosition.y += Mathf.Sin(Time.time / _speed) * Time.deltaTime * _distanceY;
+            _newPosition.x += Mathf.Sin(Time.time / _speed) * Time.deltaTime * _distanceX;
             transform.position = _newPosition;
         }
     }
