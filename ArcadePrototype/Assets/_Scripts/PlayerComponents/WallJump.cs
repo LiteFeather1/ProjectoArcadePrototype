@@ -75,7 +75,7 @@ public class WallJump : MonoBehaviour
                 {
                     xForce = .33f * _direction;
                     upForce = .75f;
-                    _wS.DemishFromWallJump();
+                    _wS.DemishFromWallJumpStraight();
                 }
                 else if (xForce != 0)
                 {

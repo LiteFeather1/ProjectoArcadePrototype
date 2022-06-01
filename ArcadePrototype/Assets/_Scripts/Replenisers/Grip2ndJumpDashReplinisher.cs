@@ -11,11 +11,13 @@ public class Grip2ndJumpDashReplinisher : MonoBehaviour
 
     private Collider2D _myColl;
     private SpriteRenderer _spriteRenderer;
+    private ParticleSystem _pS;
 
     private void Awake()
     {
         _myColl = GetComponent<Collider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _pS = GetComponent<ParticleSystem>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +28,7 @@ public class Grip2ndJumpDashReplinisher : MonoBehaviour
             if (_restoreSecondJump) collision.GetComponent<Jump>().ReplenishSecondaryJump();
             if (_restoreDash) collision.GetComponent<Dash>().ReplenishDash();
             StartCoroutine(DisableSrC());
+            _pS.Play();
         }
     }
 

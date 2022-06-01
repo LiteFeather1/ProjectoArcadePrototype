@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Buttons : Activators
 {
-    [SerializeField] private bool _onceButton;
-    private bool _canMove = true;
+    [SerializeField] protected bool _onceButton;
+    protected bool _canMove = true;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

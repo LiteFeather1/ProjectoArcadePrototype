@@ -17,7 +17,7 @@ public class ChangeLevelActive : MonoBehaviour
         _myCollider = GetComponent<PolygonCollider2D>();
         GetPoints();
     }
-    [ExecuteInEditMode]
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;

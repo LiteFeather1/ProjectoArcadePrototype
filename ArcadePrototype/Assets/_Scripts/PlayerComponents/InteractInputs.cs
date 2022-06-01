@@ -66,5 +66,6 @@ public class InteractInputs : MonoBehaviour
     {
         _deactivatableMask -= LayerMask.GetMask("Player");
         _deactivatableMask -= LayerMask.GetMask("Level");
+        _deactivatableMask -= LayerMask.GetMask("Machine");
     }
 }

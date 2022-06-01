@@ -11799,7 +11799,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    inWorldSpace: 0
+    inWorldSpace: 1
   InheritVelocityModule:
     enabled: 0
     m_Mode: 0
@@ -14775,7 +14775,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   _interactMask:
     serializedVersion: 2
-    m_Bits: 2147483656
+    m_Bits: 8
 --- !u!114 &6139636761505032449
 MonoBehaviour:
   m_ObjectHideFlags: 0

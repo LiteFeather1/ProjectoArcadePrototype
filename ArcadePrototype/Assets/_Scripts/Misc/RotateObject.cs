@@ -10,4 +10,9 @@ public class RotateObject : MonoBehaviour
     {
         transform.Rotate(_rotation * Time.deltaTime);
     }
+
+    public void InverseRotation()
+    {
+        _rotation = _rotation * -1;
+    }
 }

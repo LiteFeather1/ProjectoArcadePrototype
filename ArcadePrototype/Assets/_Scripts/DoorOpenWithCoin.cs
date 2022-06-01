@@ -9,6 +9,8 @@ public class DoorOpenWithCoin : MonoBehaviour
     [SerializeField] private Vector3 _whereToMove;
     private Vector3 _realWhereTo;
 
+    [SerializeField] private SpriteRenderer _lockSprite;
+
     private void Start() => _realWhereTo = transform.position + _whereToMove;
     public void CoinCollected()
     {
@@ -16,7 +18,11 @@ public class DoorOpenWithCoin : MonoBehaviour
         if (_coinsToCollect == 0) OpenDoor();
     }
 
-    private void OpenDoor() => StartCoroutine(DoorMoviment());
+    private void OpenDoor()
+    {
+        StartCoroutine(DoorMoviment());
+        _lockSprite.enabled = false;
+    }
 
     IEnumerator DoorMoviment()
     {

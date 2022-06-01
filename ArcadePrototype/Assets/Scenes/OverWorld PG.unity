@@ -636,6 +636,7 @@ MonoBehaviour:
   - {fileID: 4264950203487431052, guid: 6c2c7097890752945be3241bf193ab45, type: 3}
   - {fileID: 5310578511234400181, guid: 6c2c7097890752945be3241bf193ab45, type: 3}
   - {fileID: -4246823530171310371, guid: 6c2c7097890752945be3241bf193ab45, type: 3}
+  _looping: 0
   _sample: 4
   _speed: 2
 --- !u!212 &153797188
@@ -724,6 +725,7 @@ MonoBehaviour:
   - {fileID: -6772496512398970305, guid: d064dbb0518b10c478f83382694eb21f, type: 3}
   - {fileID: 6603449036618734911, guid: d064dbb0518b10c478f83382694eb21f, type: 3}
   - {fileID: -158109542328249087, guid: d064dbb0518b10c478f83382694eb21f, type: 3}
+  _looping: 0
   _sample: 4
   _speed: 4
 --- !u!212 &166965041
@@ -10589,6 +10591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!212 &254456288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10702,6 +10705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!114 &255069064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11000,10 +11004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayToActivate: 0.5
-  _spikeSpeed: 10
-  _spikes: {fileID: 1898709088}
-  _x: 0
-  _y: 1
+  _collider: {fileID: 0}
 --- !u!212 &327427484
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11618,6 +11619,7 @@ MonoBehaviour:
   - {fileID: 4599730734863876210, guid: 415db4ca6a6528e42a72e90269308075, type: 3}
   - {fileID: -5933357330190443275, guid: 415db4ca6a6528e42a72e90269308075, type: 3}
   - {fileID: 8875891070595972140, guid: 415db4ca6a6528e42a72e90269308075, type: 3}
+  _looping: 0
   _sample: 4
   _speed: 4
 --- !u!212 &380707914
@@ -11885,6 +11887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!1 &459911357
 GameObject:
   m_ObjectHideFlags: 0
@@ -11958,10 +11961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayToActivate: 0.5
-  _spikeSpeed: 10
-  _spikes: {fileID: 1804769995}
-  _x: 0
-  _y: 1
+  _collider: {fileID: 0}
 --- !u!212 &459911361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15449,28 +15449,6 @@ CompositeCollider2D:
         Y: -40000100
       - X: 890000041
         Y: -40000100
-    - - X: 60000100
-        Y: -10000041
-      - X: 60000100
-        Y: 70000041
-      - X: 60000041
-        Y: 70000100
-      - X: 50000041
-        Y: 70000100
-      - X: 50000100
-        Y: 70000041
-      - X: 50000100
-        Y: 49999959
-      - X: 50000041
-        Y: 49999900
-      - X: 49999900
-        Y: 49999900
-      - X: 49999900
-        Y: -10000041
-      - X: 49999959
-        Y: -10000100
-      - X: 60000041
-        Y: -10000100
     - - X: 650000100
         Y: -10000041
       - X: 650000100
@@ -15541,10 +15519,6 @@ CompositeCollider2D:
       - {x: 88.99998, y: 16.00001}
       - {x: 87.999985, y: 15.999974}
       - {x: 88.00002, y: -4.00001}
-    - - {x: 5.9999747, y: -1.00001}
-      - {x: 5.9999747, y: 7.0000095}
-      - {x: 5.00001, y: 6.9999743}
-      - {x: 5.0000253, y: -1.00001}
     - - {x: 64.99998, y: -1.00001}
       - {x: 65.00004, y: 2.99999}
       - {x: 66.000015, y: 3.0000253}
@@ -15707,16 +15681,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 5, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 64, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -15748,16 +15712,6 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: -2, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -15807,16 +15761,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 55, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -15857,16 +15801,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 55, y: 2, z: 0}
     second:
       serializedVersion: 2
@@ -15898,16 +15832,6 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: -2, y: 3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 3, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -15967,16 +15891,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 65, y: 4, z: 0}
     second:
       serializedVersion: 2
@@ -16007,16 +15921,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 65, y: 5, z: 0}
     second:
       serializedVersion: 2
@@ -16038,16 +15942,6 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: -2, y: 6, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 6, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -16589,13 +16483,13 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 93
+  - m_RefCount: 85
     m_Data: {fileID: 11400000, guid: 8b784afaefd404441a3d9a210ed2fddc, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 93
+  - m_RefCount: 85
     m_Data: {fileID: 21300000, guid: dfcf5093c63c6954db1b1b49d3606d84, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 93
+  - m_RefCount: 85
     m_Data:
       e00: 1
       e01: 0
@@ -16614,7 +16508,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 93
+  - m_RefCount: 85
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -16719,6 +16613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!114 &530589902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17543,10 +17438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayToActivate: 0.5
-  _spikeSpeed: 10
-  _spikes: {fileID: 255069061}
-  _x: 0
-  _y: 1
+  _collider: {fileID: 0}
 --- !u!212 &607198521
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17840,6 +17732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!212 &670093868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18391,6 +18284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _whereToMove: {x: 5, y: -2, z: 0}
+  _delayToMoveback: 1
 --- !u!114 &755026461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18765,10 +18659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayToActivate: 0.5
-  _spikeSpeed: 10
-  _spikes: {fileID: 893768650}
-  _x: 0
-  _y: 1
+  _collider: {fileID: 0}
 --- !u!212 &869082654
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18868,6 +18759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!114 &893768653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19040,6 +18932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!114 &965248998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20341,6 +20234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!1 &1147142154
 GameObject:
   m_ObjectHideFlags: 0
@@ -20390,6 +20284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 20
   _whereToMove: {x: 20, y: 0, z: 0}
+  _delayToMoveback: 1
   _delayToMove: 0.5
   _speedCurve:
     serializedVersion: 2
@@ -20808,6 +20703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _staminaBar: {fileID: 392702772}
+  _healthBar: {fileID: 0}
 --- !u!4 &1261564340
 Transform:
   m_ObjectHideFlags: 0
@@ -21151,6 +21047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!114 &1275933828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21806,10 +21703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayToActivate: 0.5
-  _spikeSpeed: 10
-  _spikes: {fileID: 965248995}
-  _x: 0
-  _y: 1
+  _collider: {fileID: 0}
 --- !u!212 &1531638574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22224,6 +22118,9 @@ MonoBehaviour:
   _deactivatableMask:
     serializedVersion: 2
     m_Bits: 2147475455
+  _interactMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1583997701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22408,7 +22305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583997695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.481869, y: 2.6049867, z: 0}
+  m_LocalPosition: {x: 24.5, y: 33.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1883841940}
@@ -22467,6 +22364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 25
   _whereToMove: {x: 0, y: 10, z: 0}
+  _delayToMoveback: 1
   _delayToMove: 0.5
   _speedCurve:
     serializedVersion: 2
@@ -23138,10 +23036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayToActivate: 0.5
-  _spikeSpeed: 10
-  _spikes: {fileID: 530589899}
-  _x: 0
-  _y: 1
+  _collider: {fileID: 0}
 --- !u!212 &1748203181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23283,6 +23178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!114 &1804769998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23716,6 +23612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!114 &1898709091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23986,7 +23883,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1583997709}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5.625
@@ -24010,7 +23907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945706092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: -10}
+  m_LocalPosition: {x: 24.5, y: 33.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1858999411}
@@ -29125,6 +29022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitAmount: 1
   _stunDuration: 0
+  _onlyColl: 0
 --- !u!212 &2048911697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29239,6 +29137,7 @@ MonoBehaviour:
   - {fileID: -588491137534595325, guid: eae4f682954cb6c40b8ce3d0f86043a7, type: 3}
   - {fileID: -2138988830764922408, guid: eae4f682954cb6c40b8ce3d0f86043a7, type: 3}
   - {fileID: -7528491788745265194, guid: eae4f682954cb6c40b8ce3d0f86043a7, type: 3}
+  _looping: 0
   _sample: 4
   _speed: 4
 --- !u!212 &2064966474

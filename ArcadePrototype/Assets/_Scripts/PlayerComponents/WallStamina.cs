@@ -12,7 +12,8 @@ public class WallStamina : MonoBehaviour
     [SerializeField] private float _wallClimbingDemish;
 
     [Header ("Demishers By Input")]
-    [SerializeField] private float _wallJumpDeminsh;
+    [SerializeField] private float _wallJumpStraight;
+    [SerializeField] private float _wallJump    ;
 
     private bool _wasOnGroundLastFrame;
 
@@ -33,9 +34,14 @@ public class WallStamina : MonoBehaviour
         ReplenishDashOnceGroundedAgain();
     }
 
+    public void DemishFromWallJumpStraight()
+    {
+        _stamina -= _wallJumpStraight;
+    }
+
     public void DemishFromWallJump()
     {
-        _stamina -= _wallJumpDeminsh;
+        _stamina -= _wallJump;
     }
 
     public void DemishFromWallGripping()

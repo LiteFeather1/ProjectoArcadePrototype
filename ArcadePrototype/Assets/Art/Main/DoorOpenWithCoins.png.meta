@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 9f20c6f975c61994faba1b7aa81e1b27
+guid: fefdef130902d544b97c4c20e6223d28
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1027508506127697419
-    second: Inside
+      213: 6543127334735634716
+    second: Door
   - first:
-      213: 3386665546269948776
-    second: Frame
+      213: 8174519704510925735
+    second: Lock
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,43 +109,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Inside
+      name: Door
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 45
-        height: 18
+        width: 64
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b060f67da81724e00800000000000000
-      internalID: 1027508506127697419
+      spriteID: c11e01bd4abddca50800000000000000
+      internalID: 6543127334735634716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Frame
+      name: Lock
       rect:
         serializedVersion: 2
-        x: 45
-        y: 0
-        width: 45
-        height: 18
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86b797afe5adffe20800000000000000
-      internalID: 3386665546269948776
+      spriteID: 7ab0ecc5c5ab17170800000000000000
+      internalID: 8174519704510925735
       vertices: []
       indices: 
       edges: []
