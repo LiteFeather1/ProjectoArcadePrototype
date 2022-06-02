@@ -36,32 +36,37 @@ public class WallSlidingNClimbing : MonoBehaviour
     private void WallSlidingAction()
     {
         float yInput = Input.GetAxisRaw("Vertical");
-        if (_d.IsOnWall() && !Input.GetButton("Jump") && (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.J)) && _wallStamina.Stamina > 0)
+        if (_d.IsOnWall() && !Input.GetButton("Jump") || Input.GetKey(KeyCode.J) && _wallStamina.Stamina > 0)
         {
             _ac.SetBool("Gripping", true);
-            if (yInput == 0)
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-                _rb.velocity = new Vector2(_rb.velocity.x, 0);
-                _wallStamina.DemishFromWallGripping();
+                if (yInput == 0)
+                {
+                    _rb.velocity = new Vector2(_rb.velocity.x, 0);
+                    _wallStamina.DemishFromWallGripping();
+                    _ac.SetBool("WallClimbing", false);
+                }
+                else if (yInput < 0)
+                {
+                    Vector2 down = new Vector2(_rb.velocity.x, -_slidingSpeed);
+                    _rb.velocity = down;
+                }
+                else if (yInput > 0)
+                {
+                    _wallStamina.DemishFromWallClimbing();
+                    Vector2 up = new Vector2(_rb.velocity.x, _climbingSpeed);
+                    _rb.velocity = up;
+                    _ac.SetBool("WallClimbing", true);
+                }
                 _rb.gravityScale = 0;
-                _ac.SetBool("WallClimbing", false);
             }
-            else if (yInput < 0)
-            {
-                Vector2 down = new Vector2(_rb.velocity.x, -_slidingSpeed);
-                _rb.velocity = down;
-            }
-            else if (yInput > 0)
-            {
-                _wallStamina.DemishFromWallClimbing();
-                Vector2 up = new Vector2(_rb.velocity.x, _climbingSpeed);
-                _rb.velocity = up;
-                _ac.SetBool("WallClimbing", true);
-            }
+            else _rb.gravityScale = 1;
         }
         else
         {
-            _rb.gravityScale = 1;
+            if(!_d.IsDashing())
+                _rb.gravityScale = 1;   
             _ac.SetBool("WallClimbing", false);
             _ac.SetBool("Gripping", false);
         }

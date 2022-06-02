@@ -7,6 +7,9 @@ public class Piston : MoveWhenPlayerAbove
     [SerializeField] private float _delayToMove;
     [SerializeField] private AnimationCurve _speedCurve;
     private float _speedTime;
+
+    private IEnumerator _movingToWhere;
+    private IEnumerator _movingBack;
     IEnumerator MoveToWhere()
     {
         _speed = 0;
@@ -21,12 +24,17 @@ public class Piston : MoveWhenPlayerAbove
         _speedTime = 0;
         yield return new WaitForSeconds(_delayToMove);
         _moveToWhere = false;
-        StartCoroutine(MoveBack());
+        _movingToWhere = null;
+        if (_movingBack == null)
+            _movingBack = MoveBack();
+        if (_movingBack != null)
+            StartCoroutine(_movingBack);
     }
 
     IEnumerator MoveBack()
     {
         _speed = 0;
+        yield return new WaitForSeconds(_delayToMoveback);
         while (!_moveToWhere && transform.position != _startPos)
         {
             _speedTime += Time.deltaTime;
@@ -35,6 +43,7 @@ public class Piston : MoveWhenPlayerAbove
             yield return null;
         }
         _speedTime = 0;
+        _movingBack = null;
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)
@@ -42,7 +51,10 @@ public class Piston : MoveWhenPlayerAbove
         if (collision.gameObject.tag == "Player")
         {
             _moveToWhere = true;
-            StartCoroutine(MoveToWhere());
+            if(_movingToWhere == null)
+                _movingToWhere = MoveToWhere();
+            if(_movingToWhere != null)
+                StartCoroutine(_movingToWhere);
         }
     }
 

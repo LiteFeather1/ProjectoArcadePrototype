@@ -72,7 +72,12 @@ public class Dash : MonoBehaviour
             float yInput = Input.GetAxisRaw("Vertical");
             _hm.enabled = false;
             _rb.velocity = _dashDirection.normalized * _dashSpeed;
+            _rb.gravityScale = 0;
             StartCoroutine(Co_ExitDashing());
+        }
+        else
+        {
+            _rb.gravityScale = 1;
         }
     }
 

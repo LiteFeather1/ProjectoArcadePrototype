@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveWhenPlayerAbove : MoveablePlats
 {
     [SerializeField] protected Vector3 _whereToMove;
-    [SerializeField] private float _delayToMoveback = 1 ;
+    [SerializeField] protected float _delayToMoveback = 1 ;
     protected Vector3 _realWhereTo;
     protected Vector3 _startPos;
     protected Vector3 _gizmosStartPos => transform.position;
@@ -49,7 +49,7 @@ public class MoveWhenPlayerAbove : MoveablePlats
         }
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
@@ -58,7 +58,7 @@ public class MoveWhenPlayerAbove : MoveablePlats
         }
     }
 
-    protected virtual void  OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {

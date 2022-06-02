@@ -20885,6 +20885,7 @@ GameObject:
   - component: {fileID: 1275933826}
   - component: {fileID: 1275933827}
   - component: {fileID: 1275933828}
+  - component: {fileID: 1275933829}
   m_Layer: 0
   m_Name: BallSPike
   m_TagString: Untagged
@@ -21061,6 +21062,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 500
+--- !u!114 &1275933829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275933819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1a2aca49a545741baac5c5857353a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &1327397192
 GameObject:
   m_ObjectHideFlags: 0
@@ -22136,7 +22150,8 @@ MonoBehaviour:
   _stamina: 100
   _wallGrippingDemish: 10
   _wallClimbingDemish: 50
-  _wallJumpDeminsh: 25
+  _wallJumpStraight: 0
+  _wallJump: 0
 --- !u!114 &1583997702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22305,7 +22320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583997695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.5, y: 33.5, z: 0}
+  m_LocalPosition: {x: 55, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1883841940}
@@ -23907,7 +23922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945706092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.5, y: 33.5, z: -10}
+  m_LocalPosition: {x: 55, y: 15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1858999411}

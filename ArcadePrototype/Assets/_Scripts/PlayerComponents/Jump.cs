@@ -66,7 +66,6 @@ public class Jump : MonoBehaviour
         {
             _autoJump -= Time.deltaTime;
         }
-
         _ac.SetFloat("VerticalSpeed", _rb.velocity.y);
     }
 
@@ -77,8 +76,8 @@ public class Jump : MonoBehaviour
             StartCoroutine(JumpSqueeze(0.75f, 1.3f, 0.15f));
             _firstJumpParticle.PlayAnimation(transform);
             _autoJump--;
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _gd.GetPistonSpeed());
-            //_rb.AddForce(Vector2.up * _jumpForce * _gd.GetPistonSpeed(), ForceMode2D.Impulse);
+            //_rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _gd.GetPistonSpeed());
+            _rb.AddForce(Vector2.up * _jumpForce * _gd.GetPistonSpeed(), ForceMode2D.Impulse);
             StartCoroutine(JumpCoolDown_Co());
             print("Jumped");
         }

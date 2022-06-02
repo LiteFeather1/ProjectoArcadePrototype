@@ -18,7 +18,6 @@ public class SineWaveHover : MonoBehaviour
     }
     private void Update()
     {
-        print(Time.time);
         if (_canMove)
         {
             _newPosition = transform.position;

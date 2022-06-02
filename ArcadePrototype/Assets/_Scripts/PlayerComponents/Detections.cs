@@ -23,7 +23,8 @@ public class Detections : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (IsGrounded()) Gizmos.color = Color.green;
+        if (IsGrounded())
+            Gizmos.color = Color.green;
         else Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere(_leftFoot.position, .0675f);
@@ -56,11 +57,10 @@ public class Detections : MonoBehaviour
             return hit.collider != null;
         }
     }
-
+    private float _pistonSpeed;
     public float GetPistonSpeed()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, _groundMask);
-    
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, _groundMask);
 
         if (hit.collider != null)
         {
@@ -73,8 +73,8 @@ public class Detections : MonoBehaviour
                 }
                 else
                 {
-                    print(piston.GetMySpeed() / 10);
-                    return piston.GetMySpeed() / 10;
+                    print(piston.GetMySpeed() / 20);
+                    return piston.GetMySpeed() / 20 ;
                 }
             }
             else
@@ -82,6 +82,7 @@ public class Detections : MonoBehaviour
                 return 1;
             }
         }
+        else
         return 1;
     }
 
