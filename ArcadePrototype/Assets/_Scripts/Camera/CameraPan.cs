@@ -22,7 +22,7 @@ public class CameraPan : MonoBehaviour
             _time += Time.deltaTime;
             _yLerp = Mathf.Lerp(_yLerp, _maxYOffSet, _time * _speed);
         }
-        else if(yInput < 0 && CanPan())
+        else if (yInput < 0 && CanPan())
         {
             _time += Time.deltaTime;
             _yLerp = Mathf.Lerp(_yLerp, -_maxYOffSet, _time * _speed);
@@ -33,6 +33,7 @@ public class CameraPan : MonoBehaviour
             _time += Time.deltaTime;
             _yLerp = Mathf.Lerp(_yLerp, 0, _time * _speed);
         }
+        else _time = 0;
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.UpArrow)) _time = 0;
 
         _cineCamOffSet.m_Offset = new Vector3(_xLerp, _yLerp);

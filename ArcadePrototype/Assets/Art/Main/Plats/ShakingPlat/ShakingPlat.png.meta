@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: 9dbda1409a97dbb4d8896a514c0a16a5
+guid: dffd0915ef522b44d8fb8287bbb628bf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5916846626480994958
-    second: OpenDoorKeys_0
+      213: 4323816040084841041
+    second: ShakingPlat_0
   - first:
-      213: 2903920979984207677
-    second: OpenDoorKeys_1
+      213: 8193439008265408777
+    second: ShakingPlat_1
+  - first:
+      213: 5263456945927427863
+    second: ShakingPlat_2
+  - first:
+      213: -2897372717419617218
+    second: ShakingPlat_3
+  - first:
+      213: 8633312116381894973
+    second: ShakingPlat_Default
+  - first:
+      213: 8515097597145877258
+    second: ShakingPlat_null
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -49,10 +61,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: OpenDoorKeys_0
+      name: ShakingPlat_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 64
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,20 +135,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 275c12e875323eda0800000000000000
-      internalID: -5916846626480994958
+      spriteID: 152a467a7c7410c30800000000000000
+      internalID: 4323816040084841041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OpenDoorKeys_1
+      name: ShakingPlat_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 48
-        height: 48
+        width: 64
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,8 +156,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3f43c3eebccc4820800000000000000
-      internalID: 2903920979984207677
+      spriteID: 9011d780e51f4b170800000000000000
+      internalID: 8193439008265408777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShakingPlat_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7171190943e8b0940800000000000000
+      internalID: 5263456945927427863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShakingPlat_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e34ab4c4dd67ac7d0800000000000000
+      internalID: -2897372717419617218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShakingPlat_Default
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d39c40ce0afafc770800000000000000
+      internalID: 8633312116381894973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShakingPlat_null
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0b89a15624bb2670800000000000000
+      internalID: 8515097597145877258
       vertices: []
       indices: 
       edges: []

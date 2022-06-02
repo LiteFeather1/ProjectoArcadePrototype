@@ -90,7 +90,7 @@ public class WallJump : MonoBehaviour
                 upForce = 1;
             }
 
-            _rb.AddForce(new Vector2 (_jumpForce.x * -xForce  * _detection.GetPistonSideSpeed(), _jumpForce.y * upForce), ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2 (_jumpForce.x * -xForce  * _detection.GetPistonSideSpeed().x, _jumpForce.y * upForce), ForceMode2D.Impulse);
             _ac.SetTrigger("WallJumped");
             _wallJump.PlayAnimation(transform);
             print("WallJumpin");

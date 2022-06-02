@@ -8,10 +8,26 @@ public class Piston : MoveWhenPlayerAbove
     [SerializeField] private AnimationCurve _speedCurve;
     private float _speedTime;
 
+    [Header("Sprites")]
+    [SerializeField] private Sprite _stop;
+    [SerializeField] private Sprite _go;
+    [SerializeField] private Sprite _backing;
+
     private IEnumerator _movingToWhere;
     private IEnumerator _movingBack;
+    private bool _once;
+
+    private SpriteRenderer _sr;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _sr = GetComponent<SpriteRenderer>();
+    }
+
     IEnumerator MoveToWhere()
     {
+        _sr.sprite = _go;
         _speed = 0;
         yield return new WaitForSeconds(_delayToMove);
         while (_moveToWhere && transform.position != _realWhereTo)
@@ -33,38 +49,46 @@ public class Piston : MoveWhenPlayerAbove
 
     IEnumerator MoveBack()
     {
+        _sr.sprite = _backing;
         _speed = 0;
         yield return new WaitForSeconds(_delayToMoveback);
         while (!_moveToWhere && transform.position != _startPos)
         {
             _speedTime += Time.deltaTime;
             _speed = _speedCurve.Evaluate(_speedTime);
-            transform.position = Vector2.MoveTowards(transform.position, _startPos, _speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _startPos, _speed/2 * Time.deltaTime);
             yield return null;
         }
         _speedTime = 0;
         _movingBack = null;
+        _once = false;
+        _sr.sprite = _stop;
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            _moveToWhere = true;
-            if(_movingToWhere == null)
-                _movingToWhere = MoveToWhere();
-            if(_movingToWhere != null)
-                StartCoroutine(_movingToWhere);
+            if (!_once)
+            {
+                
+                _once = true;
+                _moveToWhere = true;
+                if (_movingToWhere == null && _movingBack == null)
+                    _movingToWhere = MoveToWhere();
+                if (_movingToWhere != null)
+                    StartCoroutine(_movingToWhere);
+            }
         }
     }
 
-    public float GetMySpeed()
+    public Vector2 GetMySpeed()
     {
         if(_moveToWhere)
         {
-            return _speed;
+            return _whereToMove.normalized * _speed;
         }
 
-        return 1;
+        return Vector2.one;
     }
 }

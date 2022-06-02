@@ -58,7 +58,7 @@ public class Detections : MonoBehaviour
         }
     }
     private float _pistonSpeed;
-    public float GetPistonSpeed()
+    public Vector2 GetPistonSpeed()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, _groundMask);
 
@@ -67,26 +67,31 @@ public class Detections : MonoBehaviour
             Piston piston = hit.collider.GetComponent<Piston>();
             if (piston != null)
             {
-                if (piston.GetMySpeed() <= 1)
+                Vector2 force = piston.GetMySpeed();
+                if (force.x <= 1)
                 {
-                    return 1;
+                    return new Vector2(1, force.y/25);
+                }
+                else if(force.y <= 1)
+                {
+                    return new Vector2(force.x /25, 1);
                 }
                 else
                 {
-                    print(piston.GetMySpeed() / 20);
-                    return piston.GetMySpeed() / 20 ;
+                    print(force / 25);
+                    return force / 25;
                 }
             }
             else
             {
-                return 1;
+                return Vector2.one;
             }
         }
         else
-        return 1;
+        return Vector2.one;
     }
 
-    public float GetPistonSideSpeed()
+    public Vector2 GetPistonSideSpeed()
     {
         RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.right, 1f, _wallMask);
         if (hit2.collider != null)
@@ -94,22 +99,27 @@ public class Detections : MonoBehaviour
             Piston piston = hit2.collider.GetComponent<Piston>();
             if (piston != null)
             {
-                if (piston.GetMySpeed() == 1)
+                Vector2 force = piston.GetMySpeed();
+                if (force.x <= 1)
                 {
-                    return 1;
+                    return new Vector2(1, force.y / 25);
+                }
+                else if (force.y <= 1)
+                {
+                    return new Vector2(force.x / 25, 1);
                 }
                 else
                 {
-                    print(piston.GetMySpeed() / 5);
-                    return piston.GetMySpeed() / 5;
+                    print(force / 25);
+                    return force / 25;
                 }
             }
             else
             {
-                return 1;
+                return Vector2.one;
             }
         }
-        return 1;
+        return Vector2.one;
     }
 
     public bool IsDashing()

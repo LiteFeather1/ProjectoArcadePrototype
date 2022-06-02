@@ -38,7 +38,7 @@ public class Dash : MonoBehaviour
     {
         DashInput();
         ReplenishDashOnceGroundedAgain();
-        ParticleHandler();
+        //ParticleHandler();
         _d.SetDashing(_isDashing);
     }
 
@@ -83,12 +83,15 @@ public class Dash : MonoBehaviour
 
     IEnumerator Co_ExitDashing()
     {
+        emission.enabled = true;
         yield return new WaitForSeconds(_dashSpeedCurve[_dashSpeedCurve.length - 1].time - 0.3f);
         Physics2D.gravity = _gravity;
         _isDashing = false;
         _hm.enabled = true;
         _ac.SetBool("Dashing", _isDashing);
         ReplenishDashAfterDashin();
+        yield return new WaitForSeconds(0.2f);
+        emission.enabled = false;
     }
 
     /// <summary>
@@ -133,12 +136,5 @@ public class Dash : MonoBehaviour
         float direction = _dashDirection.x;
 
         transform.rotation = Quaternion.Euler(0, direction > 0 ? 0 : 180, 0);
-    }
-
-    private void ParticleHandler()
-    {
-        if (_isDashing) emission.enabled = true;
-
-        else emission.enabled = false;
     }
 }

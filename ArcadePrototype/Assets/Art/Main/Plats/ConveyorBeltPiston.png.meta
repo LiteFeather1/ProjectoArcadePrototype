@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: 9dbda1409a97dbb4d8896a514c0a16a5
+guid: c1379725046786249a3792266276a0ba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5916846626480994958
-    second: OpenDoorKeys_0
+      213: -1607745131479198730
+    second: ConveyorBeltPistonRed
   - first:
-      213: 2903920979984207677
-    second: OpenDoorKeys_1
+      213: -6392547734067913668
+    second: ConveyorBeltPistonGreen
+  - first:
+      213: 7259660746895756885
+    second: ConveyorBeltPistonBlue
+  - first:
+      213: 2354512099828312270
+    second: ConveyorBeltPistonPurPle
+  - first:
+      213: -4878021527732471123
+    second: ConveyorBeltPistonYellow
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,43 +118,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: OpenDoorKeys_0
+      name: ConveyorBeltPistonRed
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 275c12e875323eda0800000000000000
-      internalID: -5916846626480994958
+      spriteID: 6f391d4325420b9e0800000000000000
+      internalID: -1607745131479198730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OpenDoorKeys_1
+      name: ConveyorBeltPistonGreen
       rect:
         serializedVersion: 2
-        x: 48
+        x: 128
         y: 0
-        width: 48
-        height: 48
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3f43c3eebccc4820800000000000000
-      internalID: 2903920979984207677
+      spriteID: c3c572d74bb1947a0800000000000000
+      internalID: -6392547734067913668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ConveyorBeltPistonBlue
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e81986cfe7fb460800000000000000
+      internalID: 7259660746895756885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ConveyorBeltPistonPurPle
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec820a1b748eca020800000000000000
+      internalID: 2354512099828312270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ConveyorBeltPistonYellow
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daa3cc0f349cd4cb0800000000000000
+      internalID: -4878021527732471123
       vertices: []
       indices: 
       edges: []

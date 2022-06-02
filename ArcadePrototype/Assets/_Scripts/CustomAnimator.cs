@@ -9,6 +9,9 @@ public class CustomAnimator : MonoBehaviour
     [SerializeField] private float _sample;
     [SerializeField] private float _speed = 1;
     private float _speedToPlay;
+    [SerializeField] private bool _startOnAwake = true;
+    private bool _stop;
+
 
     private IEnumerator _animation;
     private SpriteRenderer _sR;
@@ -23,15 +26,17 @@ public class CustomAnimator : MonoBehaviour
         float sampleRate = 1 / _sample;
         _speedToPlay = sampleRate * _speed;
         if (!_looping) return;
-        StartTheCo();
+        if(_startOnAwake) StartTheCo();
         _sR.enabled = true;
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) StopTheCo();
     }
+
     public void PlayAnimation(Transform position)
     {
+        _stop = false;
         _sR.enabled = true;
         float sampleRate = 1 / _sample;
         _speedToPlay = sampleRate / _speed;
@@ -39,6 +44,12 @@ public class CustomAnimator : MonoBehaviour
         transform.rotation = position.rotation;
         StartTheCo();
     }
+
+    public void StopAnimation()
+    {
+        _stop = true;
+    }
+
     private void StartTheCo()
     {
         _animation = Animation();
@@ -52,13 +63,17 @@ public class CustomAnimator : MonoBehaviour
 
     IEnumerator Animation()
     {
-        foreach (var sprite in _sprites)
+        while (!_stop)
         {
-            _sR.sprite = sprite;
-            yield return new WaitForSeconds(_speedToPlay);
+            foreach (var sprite in _sprites)
+            {
+                _sR.sprite = sprite;
+                yield return new WaitForSeconds(_speedToPlay);
+            }
+            if (!_looping) _sR.enabled = false;
+            if (_looping)
+                StartTheCo();
         }
-        if (!_looping) _sR.enabled = false;
-        if (_looping)
-            StartTheCo();
     }
+
 }
