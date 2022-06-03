@@ -11,6 +11,9 @@ public class CustomAnimator : MonoBehaviour
     private float _speedToPlay;
     [SerializeField] private bool _startOnAwake = true;
     private bool _stop;
+    [SerializeField] private float _timeToWaitBetweenAnimation;
+    private float _timeBetween;
+    [SerializeField] private bool _randomizeTimeBetween;
 
 
     private IEnumerator _animation;
@@ -28,10 +31,7 @@ public class CustomAnimator : MonoBehaviour
         if (!_looping) return;
         if(_startOnAwake) StartTheCo();
         _sR.enabled = true;
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) StopTheCo();
+        _timeBetween = _timeToWaitBetweenAnimation;
     }
 
     public void PlayAnimation(Transform position)
@@ -43,11 +43,6 @@ public class CustomAnimator : MonoBehaviour
         transform.position = position.position;
         transform.rotation = position.rotation;
         StartTheCo();
-    }
-
-    public void StopAnimation()
-    {
-        _stop = true;
     }
 
     private void StartTheCo()
@@ -63,17 +58,25 @@ public class CustomAnimator : MonoBehaviour
 
     IEnumerator Animation()
     {
-        while (!_stop)
+        foreach (var sprite in _sprites)
         {
-            foreach (var sprite in _sprites)
-            {
-                _sR.sprite = sprite;
-                yield return new WaitForSeconds(_speedToPlay);
-            }
-            if (!_looping) _sR.enabled = false;
-            if (_looping)
-                StartTheCo();
+            _sR.sprite = sprite;
+            yield return new WaitForSeconds(_speedToPlay);
+        }
+        if (!_looping) _sR.enabled = false;
+        if (_looping)
+        {
+            if (_randomizeTimeBetween)
+                RandomizeTimeBetween();
+            yield return new WaitForSeconds(_timeToWaitBetweenAnimation);
+            StartTheCo();
         }
     }
 
+    private void RandomizeTimeBetween()
+    {
+        float time = _timeBetween / 2;
+        float randomTime = Random.Range(-time, time);
+        _timeToWaitBetweenAnimation = _timeBetween + randomTime;
+    }
 }

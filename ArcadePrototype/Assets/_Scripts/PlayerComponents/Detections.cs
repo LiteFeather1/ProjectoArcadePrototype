@@ -68,13 +68,13 @@ public class Detections : MonoBehaviour
             if (piston != null)
             {
                 Vector2 force = piston.GetMySpeed();
+                if(force.y <= 1)
+                {
+                    return new Vector2(force.x /25, 1);
+                }
                 if (force.x <= 1)
                 {
                     return new Vector2(1, force.y/25);
-                }
-                else if(force.y <= 1)
-                {
-                    return new Vector2(force.x /25, 1);
                 }
                 else
                 {
@@ -110,7 +110,6 @@ public class Detections : MonoBehaviour
                 }
                 else
                 {
-                    print(force / 25);
                     return force / 25;
                 }
             }

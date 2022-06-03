@@ -9,6 +9,11 @@ public class Grip2ndJumpDashReplinisher : MonoBehaviour
     [SerializeField] private bool _restoreSecondJump = true;
     [SerializeField] private bool _restoreDash = true;
 
+    [Header ("Header")]
+    [SerializeField] private Sprite _default;
+    [SerializeField] private Sprite _frame;
+
+
     private Collider2D _myColl;
     private SpriteRenderer _spriteRenderer;
     private ParticleSystem _pS;
@@ -35,9 +40,9 @@ public class Grip2ndJumpDashReplinisher : MonoBehaviour
     IEnumerator DisableSrC()
     {
         _myColl.enabled = false;
-        _spriteRenderer.enabled = false;
+        _spriteRenderer.sprite = _frame;
         yield return new WaitForSeconds(_timeToRespawn);
         _myColl.enabled = true;
-        _spriteRenderer.enabled = true;
+        _spriteRenderer.sprite = _default;
     }
 }
