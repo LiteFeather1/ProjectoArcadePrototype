@@ -10,6 +10,11 @@ public class MoveBackAndForthPlat : MoveablePlats, IButtonable
     private bool _canMove = true;
     protected Vector3 _realWhereTo;
     private Vector3 _startPos;
+
+    protected Vector3 _gizmosStartPos => transform.position;
+    protected Vector3 _gizmosWhereTo => transform.position + _whereToMove;
+    protected bool _gameStarted;
+
     private void OnEnable()
     {
         StartCoroutine(MoveToWhere());
@@ -26,7 +31,10 @@ public class MoveBackAndForthPlat : MoveablePlats, IButtonable
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(_startPos, _realWhereTo);
+        if (!_gameStarted)
+            Gizmos.DrawLine(_gizmosStartPos, _gizmosWhereTo);
+        else
+            Gizmos.DrawLine(_startPos, _realWhereTo);
     }
 
     protected virtual IEnumerator MoveToWhere()

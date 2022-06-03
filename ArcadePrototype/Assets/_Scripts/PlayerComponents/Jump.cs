@@ -26,6 +26,12 @@ public class Jump : MonoBehaviour
     [SerializeField] private CustomAnimator _secondJumpParticle;
     [SerializeField] private CustomAnimator _groundContackParticle;
 
+    [Header("VisualAid")]
+    [SerializeField] private SpriteRenderer _visualAidSR;
+    [SerializeField] private Sprite _nullSprite;
+    [SerializeField] private CustomAnimator _customAnimator;
+    [SerializeField] private Transform _visualAidTransform;
+
     private Detections _gd;
     private Rigidbody2D _rb;
     private Animator _ac;
@@ -104,6 +110,7 @@ public class Jump : MonoBehaviour
             _secondaryJumpAmount--;
             _ac.SetTrigger("SecondJump");
             _secondJumpParticle.PlayAnimation(transform);
+            StopVisualAidAnimation();
             print("Doubled");
         }
     }
@@ -133,6 +140,7 @@ public class Jump : MonoBehaviour
         if (_wasOnGroundLastFrame != _gd.IsGrounded() && !_gd.IsOnWall())
         {
             _secondaryJumpAmount = _howManySecondaryJumps;
+            //_customAnimator.PlayAnimation(_visualAidTransform);
             if(_rb.velocity.y < 1f) _groundContackParticle.PlayAnimation(_feetPos);
             StartCoroutine(JumpSqueeze(1.3f, 1f, 0.05f));
         }
@@ -142,6 +150,7 @@ public class Jump : MonoBehaviour
     public void ReplenishSecondaryJump()
     {
         _secondaryJumpAmount = _howManySecondaryJumps;
+        //_customAnimator.PlayAnimation(_visualAidTransform);
     }
 
     public void AddForceOnCollision(Vector2 normal, float force, float timeToWait)
@@ -176,5 +185,11 @@ public class Jump : MonoBehaviour
             transform.localScale = Vector3.Lerp(newSize, originalSize, t);
             yield return null;
         }
+    }
+
+    private void StopVisualAidAnimation()
+    {
+        _customAnimator.StopTheCo();
+        _visualAidSR.sprite = _nullSprite;
     }
 }
