@@ -14,6 +14,7 @@ public class CustomAnimator : MonoBehaviour
     [SerializeField] private float _timeToWaitBetweenAnimation;
     private float _timeBetween;
     [SerializeField] private bool _randomizeTimeBetween;
+    [SerializeField] private bool _disableSprite = true;
 
 
     private IEnumerator _animation;
@@ -25,7 +26,8 @@ public class CustomAnimator : MonoBehaviour
     }
     private void Start()
     {
-        _sR.enabled = false;
+        if(_disableSprite)
+            _sR.enabled = false;
         float sampleRate = 1 / _sample;
         _speedToPlay = sampleRate * _speed;
         if (!_looping) return;
@@ -63,7 +65,7 @@ public class CustomAnimator : MonoBehaviour
             _sR.sprite = sprite;
             yield return new WaitForSeconds(_speedToPlay);
         }
-        if (!_looping) _sR.enabled = false;
+        if (!_looping && _disableSprite) _sR.enabled = false;
         if (_looping)
         {
             if (_randomizeTimeBetween)

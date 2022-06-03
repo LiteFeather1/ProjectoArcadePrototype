@@ -12,6 +12,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     [Header("PlayerComponent")]
     private HorizontalMoviment _hm;
     private Jump _jump;
+    private Rigidbody2D _rb;
 
     public int HitsToReset { get => _hitsToReset; set => _hitsToReset = Mathf.Clamp(value, 0, 3); }
 
@@ -20,6 +21,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         _resetPos = transform.position;
         _hm = GetComponent<HorizontalMoviment>();
         _jump = GetComponent<Jump>();
+        _rb = GetComponent<Rigidbody2D>();
     }
     private void Start()
     {
@@ -44,7 +46,9 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
 
     public void Die()
     {
+        _rb.velocity = Vector2.zero;
         transform.position = _resetPos;
+        _rb.velocity = Vector2.zero;
         HitsToReset = 3;
         Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
     }
