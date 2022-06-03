@@ -402,3 +402,4 @@ Received Import Request.
 Start importing Assets/Prefabs/Main/PistonCrusher.prefab using Guid(211853360c7ee814794308e85eaafb12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0875a98687db12fb9febeb09dec8740b') in 0.048940 seconds 
   Import took 0.096514 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
