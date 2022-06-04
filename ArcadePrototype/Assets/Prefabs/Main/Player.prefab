@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140691635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22, y: -1, z: 0}
+  m_LocalPosition: {x: -0.14, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6139636761505032463}
@@ -14866,7 +14866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19eda47a3e2a0443b0d44f85fe61978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 9
+  _moveSpeed: 8
   acceleration: 7.5
   decceleration: 50
   velPower: 0.6
@@ -14886,7 +14886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _groundMask:
     serializedVersion: 2
-    m_Bits: 16576
+    m_Bits: 20672
   _wallMask:
     serializedVersion: 2
     m_Bits: 1088
@@ -14925,7 +14925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dc839699a0b204b9d6f401a41eb56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 10
+  _jumpForce: 11
   _fallMultiplier: 2.5
   _lowJumpMultiplier: 3
   _secondaryJumpForce: 7.5
@@ -15061,7 +15061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288fd0d5622b5a942a2da04df1f7b8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitsToReset: 2
+  _hitsToReset: 3
   _invulnerabilityTime: 1
 --- !u!70 &6139636761505032451
 CapsuleCollider2D:

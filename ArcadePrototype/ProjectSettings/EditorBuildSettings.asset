@@ -75,6 +75,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Hooke's Gravity/Level22.unity
     guid: 657d834306cb95d44a53529a8a89a4e6
   - enabled: 1
+    path: Assets/Scenes/Arcade/MainStart.unity
+    guid: 0a6e9eb55e24ae442824083f908c3030
+  - enabled: 1
     path: Assets/Scenes/Arcade/World1-1.unity
     guid: 10b1d129043eb97458b80d62c7073fb7
+  - enabled: 1
+    path: Assets/Scenes/Arcade/DoubleJump.unity
+    guid: aaa73d68fc17cf643aa888886e222c89
+  - enabled: 1
+    path: Assets/Scenes/Arcade/WallJump.unity
+    guid: 07eb4ff635cd1aa4183c7b57e19cdb71
   m_configObjects: {}

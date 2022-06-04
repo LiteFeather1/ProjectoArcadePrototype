@@ -35,12 +35,14 @@ public class Jump : MonoBehaviour
     private Detections _gd;
     private Rigidbody2D _rb;
     private Animator _ac;
+    private WallStamina _wallstamina;
 
     private void Awake()
     {
         _gd = GetComponent<Detections>();
         _rb = GetComponent<Rigidbody2D>();
         _ac = GetComponent<Animator>();
+        _wallstamina = GetComponent<WallStamina>();
         _secondaryJumpAmount = _howManySecondaryJumps;
     }
 
@@ -144,7 +146,7 @@ public class Jump : MonoBehaviour
             if(_rb.velocity.y < 1f) _groundContackParticle.PlayAnimation(_feetPos);
             StartCoroutine(JumpSqueeze(1.3f, 1f, 0.05f));
         }
-        _wasOnGroundLastFrame = _gd.IsGrounded() || _gd.IsOnWall();
+        _wasOnGroundLastFrame = _gd.IsGrounded() || (_gd.IsOnWall() && _wallstamina.Stamina >= 0) ;
     }
 
     public void ReplenishSecondaryJump()

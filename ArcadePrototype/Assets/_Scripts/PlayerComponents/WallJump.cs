@@ -73,13 +73,13 @@ public class WallJump : MonoBehaviour
             {
                 if (xForce == 0)
                 {
-                    xForce = .33f * _direction;
-                    upForce = .75f;
+                    xForce = 0f * _direction;
+                    upForce = .8f;
                     _wS.DemishFromWallJumpStraight();
                 }
                 else if (xForce != 0)
                 {
-                    upForce = 1;
+                    upForce = .75f;
                     xForce = Input.GetAxisRaw("Horizontal");
                     _wS.DemishFromWallJump();
                 }
@@ -87,10 +87,11 @@ public class WallJump : MonoBehaviour
             else
             {
                 xForce = StoredDirection();
-                upForce = 1;
+                upForce = .5f;
             }
-
-            _rb.AddForce(new Vector2 (_jumpForce.x * -xForce  * _detection.GetPistonSideSpeed().x, _jumpForce.y * upForce), ForceMode2D.Impulse);
+            _rb.velocity = Vector2.zero;
+            //_rb.AddForce(new Vector2 (_jumpForce.x * -xForce  * _detection.GetPistonSideSpeed().x, _jumpForce.y * upForce), ForceMode2D.Impulse);
+            _rb.velocity = new Vector2(_jumpForce.x * -xForce * _detection.GetPistonSideSpeed().x, _jumpForce.y * upForce);
             _ac.SetTrigger("WallJumped");
             _wallJump.PlayAnimation(transform);
             print("WallJumpin");

@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 2644722455358061445}
   - component: {fileID: 635379323857103952}
   - component: {fileID: 8048006087166750161}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LevelTemplate1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

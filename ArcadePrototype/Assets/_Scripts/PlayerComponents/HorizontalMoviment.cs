@@ -48,7 +48,7 @@ public class HorizontalMoviment : MonoBehaviour
     private void FixedUpdate()
     {
         HorizontalMovimentLogic();
-        //Friction();
+        Friction();
     }
 
     private void HorizontalMovimentLogic()

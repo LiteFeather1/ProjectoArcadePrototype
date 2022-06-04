@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6684280692868331844}
   - component: {fileID: 6684280692868331847}
   - component: {fileID: 6684280692868331845}
+  - component: {fileID: 698686151}
   m_Layer: 6
   m_Name: PistonCrusher
   m_TagString: Untagged
@@ -109,7 +110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6684280692868331840}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.25, y: 23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -221,6 +222,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 741380bdb3c63b840b43f77b3e53ed09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &698686151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684280692868331840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91133699bb37a194484053c0ce93801c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6684280694229422628

@@ -14,8 +14,6 @@ public class AddForceOnCollision : MonoBehaviour
         Jump playerJump = collision.gameObject.GetComponent<Jump>();
         if(playerJump != null)
         {
-            print(collision.transform.position.y);
-            print(transform.position.y);
             if (_onlyFromAbove)
                 if (transform.position.y +.55f >= collision.transform.position.y) return;
 

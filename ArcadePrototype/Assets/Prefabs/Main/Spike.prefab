@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6151589275845657976}
   - component: {fileID: 6151589275845657979}
   - component: {fileID: 6151589275845657978}
-  - component: {fileID: 6151589275845657981}
   - component: {fileID: 6151589275845657980}
   - component: {fileID: 6151589275845657977}
   - component: {fileID: 1278159303}
@@ -76,13 +75,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bb40b04c28815924ab2e00f2d3e92117, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 2
+  m_Size: {x: 12, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,38 +100,19 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.275}
+  m_Offset: {x: 0.01, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 12, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.45}
+  m_Size: {x: 12, y: 0.45}
   m_EdgeRadius: 0
---- !u!251 &6151589275845657981
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6151589275845657983}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RotationalOffset: 0
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
-  m_UseSideFriction: 1
-  m_UseSideBounce: 0
-  m_SideArc: 1
 --- !u!114 &6151589275845657980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd0874701858524cbcf75a5ac2f9593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitAmount: 1
+  _hitAmount: 3
   _stunDuration: 0
   _onlyColl: 1
 --- !u!114 &6151589275845657977
@@ -162,6 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bounceForce: 0
   _disableTime: 0
+  _onlyFromAbove: 0
+  _onlyUp: 0
 --- !u!61 &1278159303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,18 +157,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 12, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.7}
+  m_Size: {x: 12, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &1278159304
 MonoBehaviour:

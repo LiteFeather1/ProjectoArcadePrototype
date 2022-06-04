@@ -28,6 +28,11 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) TakeDamage(3, 1);
+    }
+
     public void TakeDamage(int hitAmount, float stunDuration)
     {
         if (_canGetHit)

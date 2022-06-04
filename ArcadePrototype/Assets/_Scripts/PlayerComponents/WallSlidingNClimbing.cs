@@ -15,7 +15,6 @@ public class WallSlidingNClimbing : MonoBehaviour
 
     [Header("Particles")]
     [SerializeField] private ParticleSystem _slidingParticle;
-    private ParticleSystem.EmissionModule _sliddingEmission;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,7 +23,6 @@ public class WallSlidingNClimbing : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _wallStamina = GetComponent<WallStamina>();
         _ac = GetComponent<Animator>();
-        _sliddingEmission = _slidingParticle.emission;
     }
 
     private void FixedUpdate()
@@ -36,7 +34,7 @@ public class WallSlidingNClimbing : MonoBehaviour
     private void WallSlidingAction()
     {
         float yInput = Input.GetAxisRaw("Vertical");
-        if (_d.IsOnWall() && !Input.GetButton("Jump") || Input.GetKey(KeyCode.J) && _wallStamina.Stamina > 0)
+        if (_d.IsOnWall() && !Input.GetButton("Jump") && _wallStamina.Stamina >= 0)
         {
             _ac.SetBool("Gripping", true);
             if (Input.GetKey(KeyCode.Mouse0))
@@ -57,6 +55,7 @@ public class WallSlidingNClimbing : MonoBehaviour
                     _wallStamina.DemishFromWallClimbing();
                     Vector2 up = new Vector2(_rb.velocity.x, _climbingSpeed);
                     _rb.velocity = up;
+                    if(_rb.velocity.y >= 0.1f)
                     _ac.SetBool("WallClimbing", true);
                 }
                 _rb.gravityScale = 0;
@@ -74,7 +73,7 @@ public class WallSlidingNClimbing : MonoBehaviour
 
     private void SliddingEmissionHandler()
     {
-        if (_rb.velocity.y < -0.1f && _d.IsOnWall() && Input.GetKey(KeyCode.Mouse0)) _slidingParticle.Play();
+        if (_rb.velocity.y < -0.2f && _d.IsOnWall()) _slidingParticle.Play();
         else _slidingParticle.Stop();
     }
 }
