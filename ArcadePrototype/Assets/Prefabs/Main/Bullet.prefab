@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5371458393128186185}
   - component: {fileID: 398832807034257805}
   - component: {fileID: -321538166839832659}
+  - component: {fileID: -2364625858891334824}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124512417262519732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.40699, y: -5.3044987, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 045b15ec09bba42448d89db77fa6f20a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 2105002787996962550, guid: 701260c7c6a8a054794c46a0c05c1166, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,16 +132,42 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.027}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    pivot: {x: 0.75, y: 0.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 0.35, y: 0.35}
   m_EdgeRadius: 0
+--- !u!114 &-2364625858891334824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124512417262519732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8869869649b1a8f439c5ac1b81541c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: 2105002787996962550, guid: 701260c7c6a8a054794c46a0c05c1166, type: 3}
+  - {fileID: 3168673432929209937, guid: 701260c7c6a8a054794c46a0c05c1166, type: 3}
+  - {fileID: 6539123155892474107, guid: 701260c7c6a8a054794c46a0c05c1166, type: 3}
+  - {fileID: 261168915672709916, guid: 701260c7c6a8a054794c46a0c05c1166, type: 3}
+  - {fileID: 604259819742671280, guid: 701260c7c6a8a054794c46a0c05c1166, type: 3}
+  - {fileID: 7013111834482392256, guid: 701260c7c6a8a054794c46a0c05c1166, type: 3}
+  _looping: 1
+  _sample: 6
+  _speed: 0.75
+  _startOnAwake: 1
+  _timeToWaitBetweenAnimation: 0
+  _randomizeTimeBetween: 0
+  _disableSprite: 0

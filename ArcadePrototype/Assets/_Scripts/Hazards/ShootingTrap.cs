@@ -4,31 +4,45 @@ using UnityEngine;
 
 public class ShootingTrap : MonoBehaviour, IButtonable
 {
-    [SerializeField] private float _speed = 500;
-    [Range(0,3)][SerializeField] private int _damage;
+    [Header("Stats")]
+    [SerializeField] private float _speed = 10;
+    [Range(0,3)][SerializeField] private int _damage = 1;
     [SerializeField] private float _stunDuration;
-    [SerializeField] private float _distanceToShot = 10;
+    [SerializeField] private float _distanceToShot = 1;
 
     [SerializeField] private float _fireRate = 1;
     private float _timePassed;
 
+    [Header("Bullet")]
     [SerializeField] private int _howManyBullets = 1;
     [SerializeField] private float _timeBetweenBullets = 0.1f;
     [SerializeField] private float _spreadFactor;
-    [SerializeField] private float _bulletLifeSpan;
+    [SerializeField] private float _bulletLifeSpan = 10;
 
+    [Header("Firing")]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private Transform _objectToFace;
+    [HideInInspector] private Transform _objectToFace;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite s_Firing;
+    [SerializeField] private Sprite s_Stopped;
 
     private bool _canShot = true;
+
+    private SpriteRenderer _sr;
+
+    private void Awake()
+    {
+        _sr = GetComponent<SpriteRenderer>();
+    }
 
     private void Update()
     {
         float distance = Vector2.Distance(transform.position, transform.position);
         if (distance < _distanceToShot)
         {
-            FacePlayer();
+            //FacePlayer();
             _timePassed += Time.deltaTime;
             if (_timePassed > _fireRate)
             {
@@ -71,8 +85,10 @@ public class ShootingTrap : MonoBehaviour, IButtonable
     public void ToInterract(bool state)
     {
         _canShot = state;
+        if (_canShot)
+            _sr.sprite = s_Firing;
+        else
+            _sr.sprite = s_Stopped;
     }
-
-
 }
 

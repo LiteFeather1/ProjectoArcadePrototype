@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         _damage = damage;
         _speed = speed;
         _stunDuration = stunDuration;
-        _rb.AddForce(direction * _speed);
+        _rb.velocity = (direction * _speed);
         Destroy(gameObject, lifeSpan);
     }
 
