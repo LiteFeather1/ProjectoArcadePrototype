@@ -65488,7 +65488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3162529478151394840, guid: 0e77c7c70a5bff44281385445faf0a0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.750004
+      value: 21.250004
       objectReference: {fileID: 0}
     - target: {fileID: 3162529478151394840, guid: 0e77c7c70a5bff44281385445faf0a0b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -66500,6 +66500,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitsToReset: 3
   _invulnerabilityTime: 1
+  _death:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!70 &6139636760122927802
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

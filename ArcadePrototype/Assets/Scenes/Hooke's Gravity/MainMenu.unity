@@ -2468,7 +2468,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &153112848
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3297,7 +3297,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &178490353
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3883,7 +3883,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &209727407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5798,7 +5798,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &287401206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6657,7 +6657,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &307130920
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7117,7 +7117,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &321595412
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7265,7 +7265,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &322599326
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8565,7 +8565,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &405387727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9026,7 +9026,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &450053428
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9349,7 +9349,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &455112147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12805,7 +12805,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &600016000
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13070,7 +13070,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &609032086
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13233,7 +13233,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &615270771
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14057,7 +14057,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &654196697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16858,7 +16858,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &768177670
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17463,7 +17463,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &780153789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17585,7 +17585,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &786247516
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19582,7 +19582,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &871756371
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19863,7 +19863,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &886601933
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23783,7 +23783,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1087784963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23998,7 +23998,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1096245258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25521,7 +25521,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1181752672
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26622,7 +26622,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1248937291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28721,7 +28721,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1332964792
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30097,7 +30097,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1399102274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30441,7 +30441,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1414808310
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30589,7 +30589,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1428608893
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33289,7 +33289,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1605625091
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34970,7 +34970,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1731728218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36136,7 +36136,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1784663915
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36787,7 +36787,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1833293512
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37990,7 +37990,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &1887146048
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38572,7 +38572,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!50 &1932899302
 Rigidbody2D:
   serializedVersion: 4
@@ -40006,7 +40006,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &2026270635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40947,7 +40947,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &2119138283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41513,7 +41513,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &2131899720
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41814,7 +41814,7 @@ MonoBehaviour:
   _minSpeed: 1.5
   _maxSpeed: 2.5
   _directions: 1
-  _whereToReset: {fileID: 890061889}
+  _whereToSet: {fileID: 890061889}
 --- !u!212 &2141496445
 SpriteRenderer:
   m_ObjectHideFlags: 0

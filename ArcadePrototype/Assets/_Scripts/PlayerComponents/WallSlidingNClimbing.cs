@@ -69,7 +69,9 @@ public class WallSlidingNClimbing : MonoBehaviour
                 }
                 _rb.gravityScale = 0;
             }
-            else _rb.gravityScale = 1;
+            else 
+                if(!_d.IsDashing())
+                    _rb.gravityScale = 1;
         }
         else
         {

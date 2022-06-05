@@ -7,6 +7,7 @@ public class MoveBackAndForthPlat : MoveablePlats, IButtonable
     [SerializeField] protected Vector3 _whereToMove;
     [SerializeField] private float _delayToMove;
     [SerializeField] private float _delayToMoveBack;
+    [SerializeField] private float _delayToStart;
     private bool _canMove = true;
     protected Vector3 _realWhereTo;
     private Vector3 _startPos;
@@ -39,6 +40,8 @@ public class MoveBackAndForthPlat : MoveablePlats, IButtonable
 
     protected virtual IEnumerator MoveToWhere()
     {
+        yield return new WaitForSeconds(_delayToStart);
+        _delayToStart = 0;
         while (transform.position != _realWhereTo)
         {
             transform.position = Vector2.MoveTowards(transform.position, _realWhereTo, _speed * Time.deltaTime);

@@ -11,7 +11,6 @@ public class ChangeLevelActive : MonoBehaviour
 
     private PolygonCollider2D _myCollider;
     [SerializeField] private Vector2[] _points;
-
     private void Start()
     {
         _myCollider = GetComponent<PolygonCollider2D>();

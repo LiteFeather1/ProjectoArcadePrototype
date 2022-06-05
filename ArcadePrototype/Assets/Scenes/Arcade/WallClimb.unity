@@ -54206,6 +54206,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 6139636760122927801}
+    - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
       propertyPath: _doorToOpen
       value: 
       objectReference: {fileID: 1521401487}
@@ -54518,6 +54522,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 6139636760122927801}
     - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
       propertyPath: _doorToOpen
       value: 
@@ -55017,6 +55025,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorOpenWithCoin
       objectReference: {fileID: 0}
+    - target: {fileID: 4176653964302396627, guid: 8be04387805481d498b6c8c4ac32ca5e, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 6139636760122927801}
     - target: {fileID: 4176653964302396627, guid: 8be04387805481d498b6c8c4ac32ca5e, type: 3}
       propertyPath: _coinsToCollect
       value: 4
@@ -55604,6 +55616,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 6139636760122927801}
     - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
       propertyPath: _doorToOpen
       value: 
@@ -57851,6 +57867,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 6139636760122927801}
+    - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
       propertyPath: _doorToOpen
       value: 
       objectReference: {fileID: 1521401487}
@@ -58657,6 +58677,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitsToReset: 3
   _invulnerabilityTime: 1
+  _death:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!70 &6139636760122927802
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Arcade/MainStart.unity
+    guid: 0a6e9eb55e24ae442824083f908c3030
+  - enabled: 1
     path: Assets/Scenes/Hooke's Gravity/MainMenu.unity
     guid: b536761f85237234fa0a79ee8a9bed20
   - enabled: 0
@@ -75,9 +78,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Hooke's Gravity/Level22.unity
     guid: 657d834306cb95d44a53529a8a89a4e6
   - enabled: 1
-    path: Assets/Scenes/Arcade/MainStart.unity
-    guid: 0a6e9eb55e24ae442824083f908c3030
-  - enabled: 1
     path: Assets/Scenes/Arcade/World1-1.unity
     guid: 10b1d129043eb97458b80d62c7073fb7
   - enabled: 1
@@ -86,4 +86,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Arcade/WallJump.unity
     guid: 07eb4ff635cd1aa4183c7b57e19cdb71
+  - enabled: 1
+    path: Assets/Scenes/Arcade/WallClimb.unity
+    guid: 605ccf55faa251945a4366a9ff4a05be
+  - enabled: 1
+    path: Assets/Scenes/Arcade/Dash.unity
+    guid: d3f5016ed0688964da29711bd61cb595
   m_configObjects: {}
