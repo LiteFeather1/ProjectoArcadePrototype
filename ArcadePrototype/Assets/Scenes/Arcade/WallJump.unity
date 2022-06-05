@@ -46877,9 +46877,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You Have Unlocked Wall Jump!\n\nPress Space while next to a wall to jump!\n\nYou
-    can also now hold to a wall by holding left click! \n\nThis green ticket bar
-    represents your grip strenght!\n"
+  m_text: "You Have Unlocked Wall Jump!\n\nPress Space while next to a wall to  wall
+    jump!\n\nYou can also now hold to a wall by holding left click! \n\nThis green
+    ticket bar represents your grip strenght!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c76f357c8ef89f9488db3da4500d22cf, type: 2}
   m_sharedMaterial: {fileID: 2917552244853420540, guid: c76f357c8ef89f9488db3da4500d22cf, type: 2}

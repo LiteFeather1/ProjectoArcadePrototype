@@ -157,6 +157,7 @@ public class Jump : MonoBehaviour
 
     public void AddForceOnCollision(Vector2 normal, float force, float timeToWait)
     {
+        _rb.velocity = new Vector2(_rb.velocity.x, 0);
         _rb.AddForce(normal * force);
         StartCoroutine(DisableGravity(timeToWait));
     }

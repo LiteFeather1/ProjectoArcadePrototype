@@ -9,7 +9,7 @@ public class ShootingTrap : MonoBehaviour, IButtonable
     [Range(0,3)][SerializeField] private int _damage = 1;
     [SerializeField] private float _stunDuration;
     [SerializeField] private float _distanceToShot = 1;
-
+    [SerializeField] private float _delay;
     [SerializeField] private float _fireRate = 1;
     private float _timePassed;
 
@@ -70,6 +70,7 @@ public class ShootingTrap : MonoBehaviour, IButtonable
 
     IEnumerator ShotInDirection()
     {
+        yield return new WaitForSeconds(_delay);
         for (int i = 0; i < _howManyBullets; i++)
         {
             GameObject newFire = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);

@@ -53,11 +53,33 @@ public class Detections : MonoBehaviour
             {
                 rayColor = Color.red;
             }
-            Debug.DrawRay(transform.position, transform.right * .25f, rayColor, 0);
+            Debug.DrawRay(transform.position, transform.right * .33f, rayColor, 0);
             return hit.collider != null;
         }
     }
-    private float _pistonSpeed;
+
+    public bool WallFinished()
+    {
+        if (IsOnWall())
+        {
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + .5f), transform.right, 1f, _wallMask);
+
+            Color rayColor;
+            if (hit.collider != null)
+            {
+                rayColor = Color.green;
+            }
+            else
+            {
+                rayColor = Color.red;
+            }
+
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + .5f), transform.right * 1f, rayColor, 0);
+            return hit.collider != null;
+        }
+        return true;
+    }
+
     public Vector2 GetPistonSpeed()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, _groundMask);

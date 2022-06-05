@@ -27,7 +27,7 @@ public class MoveWhenPlayerAbove : MoveablePlats
         if(!_gameStarted)
         Gizmos.DrawLine(_gizmosStartPos, _gizmosWhereTo);
         else
-        Gizmos.DrawLine(_startPos, _realWhereTo);
+        Gizmos.DrawLine(_gizmosStartPos, _realWhereTo);
     }
 
     IEnumerator MoveToWhere()
