@@ -23,6 +23,7 @@ public class HorizontalMoviment : MonoBehaviour
     [Header ("Dust")]
     [SerializeField] private ParticleSystem _dust;
 
+    public bool FacingRight { get => _facingRight; }
 
     private void Awake()
     {

@@ -44,7 +44,7 @@ public class WallSlidingNClimbing : MonoBehaviour
         if (_d.IsOnWall() && !Input.GetButton("Jump") && _wallStamina.Stamina >= 0)
         {
             _ac.SetBool("Gripping", true);
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetButton("GripWall"))
             {
                 if (yInput == 0)
                 {
@@ -59,9 +59,14 @@ public class WallSlidingNClimbing : MonoBehaviour
                 }
                 else if (yInput > 0 && _d.WallFinished())
                 {
+                    if(_rb.velocity.y >= 0.2f)
                     _wallStamina.DemishFromWallClimbing();
+                    else
+                        _wallStamina.DemishFromWallGripping();
+
                     Vector2 up = new Vector2(_rb.velocity.x, _climbingSpeed);
                     _rb.velocity = up;
+
                     if(_rb.velocity.y >= 0.1f)
                     {
                         _ac.SetBool("WallClimbing", true);

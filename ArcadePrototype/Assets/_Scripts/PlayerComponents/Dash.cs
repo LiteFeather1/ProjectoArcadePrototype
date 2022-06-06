@@ -47,19 +47,45 @@ public class Dash : MonoBehaviour
         DashAction();
     }
     
+    private void DashLogic()
+    {
+        Physics2D.gravity = Vector2.zero;
+        _dashTime = 0f;
+        _dashSpeed = _dashSpeedCurve.Evaluate(_dashTime);
+        _canDash = false;
+        _isDashing = true; 
+        _ac.SetTrigger("DashAccel");
+        _ac.SetBool("Dashing", _isDashing);
+        DashFlip();
+    }
     private void DashInput()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse1) && _canDash && !_isDashing)
+        if(_canDash && !_isDashing)
         {
-            Physics2D.gravity = Vector2.zero;
-            _dashTime = 0f;
-            _dashSpeed = _dashSpeedCurve.Evaluate(_dashTime);
-            _canDash = false;
-            _isDashing = true;
-            _dashDirection = MouseDirection();
-            _ac.SetTrigger("DashAccel");
-            _ac.SetBool("Dashing", _isDashing);
-            DashFlip();
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                _dashDirection = MouseDirection();
+                DashLogic();
+            }
+
+            if(Input.GetButtonDown("Dash"))
+            {
+                float xInput = Input.GetAxisRaw("Horizontal");
+                float yInput = Input.GetAxisRaw("Vertical");
+                if(Input.GetAxisRaw("Horizontal") == 0 && yInput == 0)
+                {
+                    print("gotHere");
+                    if (_hm.FacingRight)
+                        xInput = 1;
+                    else
+                        xInput = -1;
+                }
+
+                Vector2 inputDirection = new Vector2(xInput, yInput);
+
+                _dashDirection = inputDirection;
+                DashLogic();
+            }
         }
     }
 
