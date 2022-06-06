@@ -11,6 +11,9 @@ public class ChangeLevelActive : MonoBehaviour
 
     private PolygonCollider2D _myCollider;
     [SerializeField] private Vector2[] _points;
+
+    public CinemachineConfiner Confiner { get => _confiner; set => _confiner = value; }
+
     private void Start()
     {
         _myCollider = GetComponent<PolygonCollider2D>();
@@ -49,7 +52,7 @@ public class ChangeLevelActive : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _currentLevelLoaded.SetActive(true);
-            _confiner.m_BoundingShape2D = _myCollider;
+            Confiner.m_BoundingShape2D = _myCollider;
         }
     }
 
@@ -58,7 +61,7 @@ public class ChangeLevelActive : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _currentLevelLoaded.SetActive(false);
-            _confiner.m_BoundingShape2D = null;
+            Confiner.m_BoundingShape2D = null;
         }
     }
 }

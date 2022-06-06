@@ -45959,7 +45959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1921120397288448498, guid: 3c676fff025de1d49bf559d66fa45207, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c676fff025de1d49bf559d66fa45207, type: 3}
@@ -48035,6 +48035,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitsToReset: 3
   _invulnerabilityTime: 1
+  _death:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!70 &6139636760122927802
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
