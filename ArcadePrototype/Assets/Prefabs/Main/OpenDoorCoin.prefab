@@ -117,7 +117,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doorToOpen: {fileID: 0}
+  _default: {fileID: -5916846626480994958, guid: 9dbda1409a97dbb4d8896a514c0a16a5, type: 3}
   _collectedSprite: {fileID: 2903920979984207677, guid: 9dbda1409a97dbb4d8896a514c0a16a5, type: 3}
+  _player: {fileID: 0}
 --- !u!114 &229545354635200314
 MonoBehaviour:
   m_ObjectHideFlags: 0

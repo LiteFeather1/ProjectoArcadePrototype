@@ -41910,10 +41910,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2644722457174267033}
     m_Modifications:
-    - target: {fileID: 8544615169460375868, guid: 1afd63b176b48fb48b68dcb283328b6e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8544615169460375870, guid: 1afd63b176b48fb48b68dcb283328b6e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -41961,10 +41957,6 @@ PrefabInstance:
     - target: {fileID: 8544615169460375874, guid: 1afd63b176b48fb48b68dcb283328b6e, type: 3}
       propertyPath: m_Name
       value: RestoreGrip2ndJumpDash (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8544615169460375874, guid: 1afd63b176b48fb48b68dcb283328b6e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1afd63b176b48fb48b68dcb283328b6e, type: 3}
@@ -47172,10 +47164,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2644722457174267033}
     m_Modifications:
-    - target: {fileID: 3462376521700721225, guid: 59c503c3576bbe14da26b05ff6c066e7, type: 3}
-      propertyPath: _color1.rgba
-      value: 4281869429
-      objectReference: {fileID: 0}
     - target: {fileID: 3462376521700721228, guid: 59c503c3576bbe14da26b05ff6c066e7, type: 3}
       propertyPath: m_Name
       value: RestoreHealthFrame

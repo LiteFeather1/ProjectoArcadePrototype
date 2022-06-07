@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _color1:
     serializedVersion: 2
-    rgba: 4281348261
+    rgba: 4281869429
   _color2:
     serializedVersion: 2
     rgba: 4282144719
@@ -152,7 +152,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!199 &1809632105635495859
 ParticleSystemRenderer:
   serializedVersion: 6

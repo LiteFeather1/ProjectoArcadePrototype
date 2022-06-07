@@ -26,7 +26,7 @@ public class WallSlidingNClimbing : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetAxisRaw("Vertical") >= 1 && !_d.WallFinished() && !Input.GetKey(KeyCode.Space))
+        if (Input.GetAxisRaw("Vertical") >= 1 && !_d.WallFinished() && !Input.GetButton("Jump"))
         {
             _rb.velocity = Vector2.zero;
             _ac.SetBool("WallClimbing", false);

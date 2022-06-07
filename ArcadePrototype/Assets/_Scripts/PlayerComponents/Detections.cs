@@ -10,7 +10,11 @@ public class Detections : MonoBehaviour
     [SerializeField] private Transform _leftFoot;
     private bool _isDashing;
 
+    private Vector2 _wallDirection;
+
     private Animator _ac;
+
+    public Vector2 WallDirection { get => _wallDirection; }
 
     private void Awake()
     {
@@ -54,6 +58,9 @@ public class Detections : MonoBehaviour
                 rayColor = Color.red;
             }
             Debug.DrawRay(transform.position, transform.right * .33f, rayColor, 0);
+
+            _wallDirection = hit.point.normalized;
+
             return hit.collider != null;
         }
     }

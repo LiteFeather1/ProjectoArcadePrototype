@@ -37,10 +37,6 @@ public class WallJump : MonoBehaviour
     {
         WallJumpAction();
     }
-    private void LateUpdate()
-    {
-        StoredDirection();
-    }
 
     private void WallJumpInput()
     {
@@ -60,7 +56,7 @@ public class WallJump : MonoBehaviour
 
     private void WallJumpAction()
     {
-        if(_jumping && !_detection.IsGrounded())
+        if (_jumping && !_detection.IsGrounded())
         {
             _hm.enabled = false;
             StartCoroutine(Co_ReactivateHorizontalMoviment());
@@ -71,22 +67,24 @@ public class WallJump : MonoBehaviour
             float upForce = 0;
             if (_wS.Stamina > 0)
             {
-                if (xForce == 0)
+                if (Input.GetAxis("Vertical") >= 1)
                 {
                     xForce = 0f * _direction;
                     upForce = .8f;
                     _wS.DemishFromWallJumpStraight();
+                    print("If");
                 }
-                else if (xForce != 0)
+                else 
                 {
-                    upForce = .75f;
-                    xForce = Input.GetAxisRaw("Horizontal");
+                    upForce = .8f;
+                    xForce = _detection.WallDirection.x;
                     _wS.DemishFromWallJump();
+                    print("else");
                 }
             }
             else
             {
-                xForce = StoredDirection();
+                xForce = _detection.WallDirection.x;
                 upForce = .5f;
             }
             _rb.velocity = Vector2.zero;
@@ -96,12 +94,6 @@ public class WallJump : MonoBehaviour
             _wallJump.PlayAnimation(transform);
             print("WallJumpin");
         }
-    }
-    private float StoredDirection()
-    {
-        if (Input.GetAxisRaw("Horizontal") != 0)
-            _storedDirection = Input.GetAxisRaw("Horizontal");
-        return _storedDirection;
     }
 
     IEnumerator Co_ReactivateHorizontalMoviment()

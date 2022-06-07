@@ -9,6 +9,7 @@ public class FlickBoxCollider : MonoBehaviour
 
     void Start()
     {
+        _component = GetComponent<BoxCollider2D>();
         StartCoroutine(Co_Flicker());
     }
 

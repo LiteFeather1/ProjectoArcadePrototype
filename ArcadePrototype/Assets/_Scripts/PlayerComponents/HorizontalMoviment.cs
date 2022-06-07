@@ -36,19 +36,22 @@ public class HorizontalMoviment : MonoBehaviour
     {
         if ((_direction < 0 && _facingRight) || (_direction > 0 && !_facingRight))
         {
-            Flip();
+            if (!_gd.IsOnWall())
+                Flip();
             if (_gd.IsGrounded()) _dust.Play();
         }
         if ((_direction < 0 && transform.localRotation.y == 0) || (_direction > 0 && transform.localEulerAngles.y == 180) && !_gd.IsDashing())
         {
-            Flip();
+            if (!_gd.IsOnWall())
+                Flip();
         }
 
         _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
     }
     private void FixedUpdate()
     {
-        HorizontalMovimentLogic();
+        if (!Input.GetButton("GripWall"))
+            HorizontalMovimentLogic();
         Friction();
     }
 
