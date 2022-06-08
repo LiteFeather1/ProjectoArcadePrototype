@@ -23,6 +23,8 @@ public class AddForceOnCollision : MonoBehaviour
                 playerJump.AddForceOnCollision(-normal, _bounceForce, _disableTime);
             }
             else playerJump.AddForceOnCollision(Vector2.up, _bounceForce, _disableTime);
+
+            print(gameObject.name);
         }
     }
 }

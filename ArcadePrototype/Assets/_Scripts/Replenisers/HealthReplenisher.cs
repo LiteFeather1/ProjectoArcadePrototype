@@ -37,7 +37,6 @@ public class HealthReplenisher : MonoBehaviour
             collision.GetComponent<PlayerHitBox>().RestoreHealth(_amountToRestore);
             _pS.Play();
             _sr.enabled = false;
-            Destroy(gameObject,1f);
         }
     }
 }

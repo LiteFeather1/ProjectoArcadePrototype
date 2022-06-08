@@ -103,8 +103,8 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.tag == "CheckPoint")
         {
+            RestoreHealth(2);
             _resetPos = collision.transform.position;
-            HitsToReset = 3;
         }
     }
 }

@@ -7,9 +7,8 @@ public class WallJump : MonoBehaviour
 {
     [SerializeField] private Vector2 _jumpForce;
     private bool _jumping;
-    private float _storedDirection;
 
-    int _direction;
+    float _direction;
 
     private Detections _detection;
     private HorizontalMoviment _hm;
@@ -18,6 +17,8 @@ public class WallJump : MonoBehaviour
     private Animator _ac;
     [SerializeField] private CustomAnimator _wallJump;
 
+    private HorizontalMoviment _horizontal;
+
     private void Awake()
     {
         _detection = GetComponent<Detections>();
@@ -25,12 +26,12 @@ public class WallJump : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _wS = GetComponent<WallStamina>();
         _ac = GetComponent<Animator>();
+        _horizontal = GetComponent<HorizontalMoviment>();
     }
 
     private void Update()
     {
         WallJumpInput();
-        Direction();
     }
 
     private void FixedUpdate()
@@ -67,7 +68,7 @@ public class WallJump : MonoBehaviour
             float upForce = 0;
             if (_wS.Stamina > 0)
             {
-                if (Input.GetAxis("Vertical") >= 1)
+                if (Input.GetAxis("Vertical") >= .5f)
                 {
                     xForce = 0f * _direction;
                     upForce = .8f;
@@ -77,15 +78,25 @@ public class WallJump : MonoBehaviour
                 else 
                 {
                     upForce = .8f;
-                    xForce = _detection.WallDirection.x;
+                    if (_horizontal.FacingRight)
+                        xForce = 1;
+                    else
+                        xForce = -1;
+                    _horizontal.Flip(true);
                     _wS.DemishFromWallJump();
-                    print("else");
+                    print(_direction);
                 }
             }
             else
             {
-                xForce = _detection.WallDirection.x;
+                if (_horizontal.FacingRight)
+                    xForce = 1;
+                else
+                    xForce = -1;
+                _horizontal.Flip(true);
+                _direction = _direction * -1;
                 upForce = .5f;
+                print("WallJumpElse2");
             }
             _rb.velocity = Vector2.zero;
             //_rb.AddForce(new Vector2 (_jumpForce.x * -xForce  * _detection.GetPistonSideSpeed().x, _jumpForce.y * upForce), ForceMode2D.Impulse);
@@ -100,11 +111,5 @@ public class WallJump : MonoBehaviour
     {
         yield return new WaitForSeconds(0.125f);
         _hm.enabled = true;
-    }
-
-    private void Direction()
-    {
-        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow))) _direction = 1;
-        else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.RightArrow))) _direction = -1;
     }
 }

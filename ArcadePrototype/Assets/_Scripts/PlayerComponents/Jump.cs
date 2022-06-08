@@ -8,7 +8,9 @@ public class Jump : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _fallMultiplier = 2.5f;
     [SerializeField] private float _lowJumpMultiplier = 3f;
-    private float _autoJumpReseter = .1f;
+    private float _coyoteReseter = .15f;
+    private float _coyoteTimer;
+    private float _autoJumpReseter = .2f;
     private float _autoJump;
     private bool _canJump = true;
 
@@ -61,11 +63,12 @@ public class Jump : MonoBehaviour
 
     private void JumpInput()
     {
+        CoyoteTime();
         if (Input.GetButtonDown("Jump"))
         {
             _autoJump = _autoJumpReseter;
             _ac.SetTrigger("Jumped");
-            if (!_gd.IsGrounded() && !_gd.IsOnWall())
+            if (_coyoteTimer < -.1f && !_gd.IsOnWall())
             {
                 _secondaryJumping = true;
             }
@@ -76,11 +79,19 @@ public class Jump : MonoBehaviour
         }
         _ac.SetFloat("VerticalSpeed", _rb.velocity.y);
     }
-
+    private float CoyoteTime()
+    {
+        if (_gd.IsGrounded() && _canJump)
+            _coyoteTimer = _coyoteReseter;
+        else
+            _coyoteTimer -= Time.deltaTime;
+        return _coyoteTimer;
+    }
     private void JumpAction()
     {
-        if (_autoJump > 0 && _gd.IsGrounded() && _canJump)
+        if (_autoJump > 0 && _coyoteTimer > 0f)
         {
+            _coyoteTimer--;
             StartCoroutine(JumpSqueeze(0.75f, 1.3f, 0.15f));
             _firstJumpParticle.PlayAnimation(transform);
             _autoJump--;
@@ -146,7 +157,7 @@ public class Jump : MonoBehaviour
             if(_rb.velocity.y < 1f) _groundContackParticle.PlayAnimation(_feetPos);
             StartCoroutine(JumpSqueeze(1.3f, 1f, 0.05f));
         }
-        _wasOnGroundLastFrame = _gd.IsGrounded() || (_gd.IsOnWall() && _wallstamina.Stamina >= 0) ;
+        _wasOnGroundLastFrame = _gd.IsGrounded() || (_gd.IsOnWall() && _wallstamina.Stamina > 0) ;
     }
 
     public void ReplenishSecondaryJump()

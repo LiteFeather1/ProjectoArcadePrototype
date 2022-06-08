@@ -43,9 +43,9 @@ public class WallSlidingNClimbing : MonoBehaviour
         float yInput = Input.GetAxisRaw("Vertical");
         if (_d.IsOnWall() && !Input.GetButton("Jump") && _wallStamina.Stamina >= 0)
         {
-            _ac.SetBool("Gripping", true);
             if (Input.GetButton("GripWall"))
             {
+                _ac.SetBool("Gripping", true);
                 if (yInput == 0)
                 {
                     _rb.velocity = new Vector2(_rb.velocity.x, 0);

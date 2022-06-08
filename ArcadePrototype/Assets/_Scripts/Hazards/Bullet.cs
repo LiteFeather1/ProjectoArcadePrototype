@@ -30,6 +30,10 @@ public class Bullet : MonoBehaviour
 
         if (damageble != null)
         {
+            Vector2 normal = transform.position - collision.transform.position;
+            normal.y = normal.y / 4f;
+            print(normal.normalized);
+            collision.gameObject.GetComponent<Jump>().AddForceOnCollision(-normal.normalized, 500f, 0);
             damageble.TakeDamage(_damage, _stunDuration);
             Destroy(gameObject);
         }

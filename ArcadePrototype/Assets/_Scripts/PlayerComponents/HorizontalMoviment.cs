@@ -24,6 +24,7 @@ public class HorizontalMoviment : MonoBehaviour
     [SerializeField] private ParticleSystem _dust;
 
     public bool FacingRight { get => _facingRight; }
+    public float Direction { get => _direction; }
 
     private void Awake()
     {
@@ -37,27 +38,28 @@ public class HorizontalMoviment : MonoBehaviour
         if ((_direction < 0 && _facingRight) || (_direction > 0 && !_facingRight))
         {
             if (!_gd.IsOnWall())
-                Flip();
+                Flip(false);
             if (_gd.IsGrounded()) _dust.Play();
         }
         if ((_direction < 0 && transform.localRotation.y == 0) || (_direction > 0 && transform.localEulerAngles.y == 180) && !_gd.IsDashing())
         {
             if (!_gd.IsOnWall())
-                Flip();
+                Flip(false);
         }
 
         _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
     }
     private void FixedUpdate()
     {
-        if (!Input.GetButton("GripWall"))
+        _direction = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButton("GripWall") && _gd.IsOnWall())
+        { }
+        else
             HorizontalMovimentLogic();
         Friction();
     }
-
     private void HorizontalMovimentLogic()
     {
-        _direction = Input.GetAxisRaw("Horizontal");
         float targetSpeed = _moveSpeed * _direction;
         float speedDifference = targetSpeed - _rb.velocity.x;
         float accelerartionRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
@@ -67,10 +69,20 @@ public class HorizontalMoviment : MonoBehaviour
         _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
     }
 
-    public void Flip()
+    public void Flip(bool flipSwitch)
     {
-        if (_direction > 0) _facingRight = true;
-        else _facingRight = false;
+        if (!flipSwitch)
+        {
+            if (_direction > 0)
+                _facingRight = true;
+            else
+                _facingRight = false;
+        }
+        else
+        {
+            _facingRight = !_facingRight;
+            _direction = _direction * -1f;
+        }
         transform.rotation = Quaternion.Euler(0, _facingRight ? 0 : 180, 0);
     }
 

@@ -1,8 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Main_GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _levels;
+    [SerializeField] private List<GameObject>  _levels;
     public static Main_GameManager Instance;
 
     private void Awake()
@@ -15,7 +17,6 @@ public class Main_GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -29,5 +30,10 @@ public class Main_GameManager : MonoBehaviour
         {
             item.SetActive(false);
         }
+    }
+    [ContextMenu("Get All Contents")]
+    private void GetAllContents()
+    {
+        _levels = FindObjectsOfType<GameObject>().Where(t => t.name.ToLower().Contains("mycontent")).ToList();
     }
 }

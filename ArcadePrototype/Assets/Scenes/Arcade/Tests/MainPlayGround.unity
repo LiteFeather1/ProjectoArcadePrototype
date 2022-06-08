@@ -38944,6 +38944,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1478503365}
+    - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
       propertyPath: _doorToOpen
       value: 
       objectReference: {fileID: 2094426337}
@@ -42223,6 +42227,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1478503365}
+    - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
       propertyPath: _doorToOpen
       value: 
       objectReference: {fileID: 2094426337}
@@ -42307,6 +42315,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438005557}
   m_CullTransparentMesh: 1
+--- !u!114 &1478503365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6139636761505032448, guid: 2d477316b1449c441a322622f165310f, type: 3}
+  m_PrefabInstance: {fileID: 1723727153}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288fd0d5622b5a942a2da04df1f7b8e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1489544265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45695,7 +45714,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684528108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
   m_Name: 
@@ -45949,6 +45968,14 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 747524149}
+    - target: {fileID: 6139636761505032451, guid: 2d477316b1449c441a322622f165310f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5071225
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139636761505032451, guid: 2d477316b1449c441a322622f165310f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0035612583
+      objectReference: {fileID: 0}
     - target: {fileID: 6139636761505032453, guid: 2d477316b1449c441a322622f165310f, type: 3}
       propertyPath: _wallJump
       value: 
@@ -46813,6 +46840,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1478503365}
+    - target: {fileID: 229545354635200310, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
       propertyPath: _doorToOpen
       value: 
       objectReference: {fileID: 2094426337}
@@ -47212,6 +47243,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3961781358344911869, guid: 59c503c3576bbe14da26b05ff6c066e7, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1478503365}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59c503c3576bbe14da26b05ff6c066e7, type: 3}
 --- !u!4 &3542397270501119210
@@ -47286,6 +47321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorOpenWithCoin
       objectReference: {fileID: 0}
+    - target: {fileID: 4176653964302396627, guid: 8be04387805481d498b6c8c4ac32ca5e, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1478503365}
     - target: {fileID: 4176653964302396627, guid: 8be04387805481d498b6c8c4ac32ca5e, type: 3}
       propertyPath: _coinsToCollect
       value: 1
