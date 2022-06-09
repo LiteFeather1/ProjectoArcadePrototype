@@ -7,6 +7,7 @@ public class HurtBox : MonoBehaviour
     [SerializeField] private int _hitAmount = 1;
     [SerializeField] private float _stunDuration;
     [SerializeField] private bool _onlyColl;
+    private bool _canDamage  = true;
     //[SerializeField] private bool _onlyTrigger;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -15,7 +16,8 @@ public class HurtBox : MonoBehaviour
 
         if(damageable != null)
         {
-            damageable.TakeDamage(_hitAmount, _stunDuration);
+            if(_canDamage)
+                damageable.TakeDamage(_hitAmount, _stunDuration);
         }
     }
 
@@ -26,13 +28,23 @@ public class HurtBox : MonoBehaviour
 
         if (damageable != null)
         {
-            damageable.TakeDamage(_hitAmount, _stunDuration);
+            print(_canDamage);
+            if (_canDamage)
+            {
+                damageable.TakeDamage(_hitAmount, _stunDuration);
+                print(_canDamage);
+            }
         }
     }
 
     public void SetMyDamage(int damage)
     {
         _hitAmount = damage;
+    }
+
+    public void SetCanDoDamage(bool boolean)
+    {
+        _canDamage = boolean;
     }
 }
 

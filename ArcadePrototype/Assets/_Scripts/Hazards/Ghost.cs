@@ -7,55 +7,99 @@ public class Ghost : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private float _speed;
 
-    [Header ("Distances")]
+    [Header("Distances")]
+    private float _distance;
     [SerializeField] private float _distanceToChase;
     [SerializeField] private float _distanceToPatrol;
     private Vector3 _randomPosPatrol;
     private Vector2 _startPos;
 
-    private bool _followingPlayer;
-    private bool _followingPlayerLastFrame;
-
-    //hurtBox disable
+    private bool _chassingPlayer;
+    private bool _wasChassingPlayerLastFrame;
 
     [Header("Components")]
     private SpriteRenderer _sr;
+    private HurtBox _hurtBox;
+
+    [Header("Gizmos")]
+    private bool _started;
+    private Vector2 _startPosGizmos => transform.position;
 
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
+        _hurtBox = GetComponent<HurtBox>();
+        _hurtBox.SetCanDoDamage(false);
     }
 
     private void Start()
     {
         _startPos = transform.position;
         RandomPointToPatrol();
+        _started = true;
     }
 
     private void Update()
     {
-        float distance = Vector2.Distance(transform.position, _playerTransform.position);
+        _distance = Vector2.Distance(transform.position, _playerTransform.position);
 
-        if(distance <= _distanceToChase && PlayerFacingMe())
+        if(_distance <= _distanceToChase && PlayerFacingMe())
         {
             Moviment(_playerTransform.position);
+            _chassingPlayer = true;
         }
         else
         {
-            Moviment(_randomPosPatrol);
+            _chassingPlayer = false;
+            if(PlayerFacingMe())
+                Moviment(_randomPosPatrol);
             if (transform.position == _randomPosPatrol)
                 RandomPointToPatrol();
         }
-        WasFollowinPlayerLastFrame();
-        Limit();
+        //Limit();
         HandleMyAlpha();
+        HandleHurtBox();
+        WasFacingPlayerLastFrame();
+        WasChassingPlayerLastFrame();
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Limit
+        Gizmos.color = Color.green;
+        if (!_started) Gizmos.DrawWireSphere(_startPosGizmos, _distanceToChase);
+        else Gizmos.DrawWireSphere(_startPos, _distanceToChase);
+        if (_started)
+        {
+            //RandomPoint to patroll
+            Gizmos.DrawSphere(_randomPosPatrol, .25f);
+        }
+
+        //Distance That can Follow
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(_startPosGizmos, _distanceToChase);
+
+        //Patrol
+        Gizmos.color = Color.yellow;
+        if (!_started) Gizmos.DrawWireSphere(_startPosGizmos, _distanceToPatrol);
+        else Gizmos.DrawWireSphere(_startPos, _distanceToPatrol);
     }
 
     private bool PlayerFacingMe()
     {
         float myYRotation = transform.localEulerAngles.y;
         float playerYRotattion = _playerTransform.localEulerAngles.y;
-        return playerYRotattion == myYRotation;
+        if (_distance <= _distanceToChase)
+            return playerYRotattion != myYRotation;
+        else
+            return true;
+    }
+    /// <summary>
+    /// Needs to be last method on Update
+    /// </summary>
+    private bool WasFacingPlayerLastFrame()
+    {
+        return  PlayerFacingMe();
     }
 
     private void HandleMyAlpha()
@@ -67,13 +111,14 @@ public class Ghost : MonoBehaviour
 
     private void Moviment(Vector2 whatToChase)
     {
-        transform.position = Vector2.MoveTowards(transform.position, whatToChase, _speed * Time.deltaTime);
         HandleFaceDirection(whatToChase.x);
+        transform.position = Vector2.MoveTowards(transform.position, whatToChase, _speed * Time.deltaTime);
     }
 
-    private void HandleFaceDirection(float directionX)
+    private void HandleFaceDirection(float whatImChassingX)
     {
-        transform.rotation = Quaternion.Euler(0, directionX >= 0 ? 0 : 180, 0);
+        float directionX = transform.position.x - whatImChassingX;
+        transform.rotation = Quaternion.Euler(0, directionX > 0 ? 0 : 180, 0);
     }
 
     private void Limit()
@@ -92,16 +137,24 @@ public class Ghost : MonoBehaviour
 
     private void RandomPointToPatrol()
     {
-        Vector2 randomPoint = Random.insideUnitCircle * (_distanceToChase - (_distanceToChase / 5));
+        Vector2 randomPoint = Random.insideUnitCircle * (_distanceToPatrol - (_distanceToPatrol / 5));
         _randomPosPatrol = _startPos + randomPoint;
     }
 
-    private void WasFollowinPlayerLastFrame()
+    private void WasChassingPlayerLastFrame()
     {
-        if (_followingPlayer != _followingPlayerLastFrame)
+        if (_wasChassingPlayerLastFrame != _chassingPlayer)
         {
             RandomPointToPatrol();
         }
-        _followingPlayerLastFrame = _followingPlayer;
+        _wasChassingPlayerLastFrame = _chassingPlayer;
+    }
+
+    private void HandleHurtBox()
+    {
+        if (!WasFacingPlayerLastFrame())
+            _hurtBox.SetCanDoDamage(false);
+        else
+            _hurtBox.SetCanDoDamage(true);
     }
 }

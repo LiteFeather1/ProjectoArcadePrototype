@@ -59795,7 +59795,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 1328347438}
   _speed: 5
   _distanceToChase: 5
-  _distanceToPatrol: 5
+  _distanceToPatrol: 3.27
 --- !u!4 &1916439505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 229545354635200309, guid: ba5171092e3505f47b93390054f1d9b6, type: 3}
