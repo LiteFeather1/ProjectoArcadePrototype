@@ -45,14 +45,14 @@ public class Ghost : MonoBehaviour
 
         if(_distance <= _distanceToChase && PlayerFacingMe())
         {
-            Moviment(_playerTransform.position);
+            Moviment(_playerTransform.position, _speed);
             _chassingPlayer = true;
         }
         else
         {
             _chassingPlayer = false;
             if(PlayerFacingMe())
-                Moviment(_randomPosPatrol);
+                Moviment(_randomPosPatrol, _speed/2);
             if (transform.position == _randomPosPatrol)
                 RandomPointToPatrol();
         }
@@ -109,10 +109,10 @@ public class Ghost : MonoBehaviour
         _sr.color = PlayerFacingMe() ? color : colorHaflAlpha;
     }
 
-    private void Moviment(Vector2 whatToChase)
+    private void Moviment(Vector2 whatToChase, float speed)
     {
         HandleFaceDirection(whatToChase.x);
-        transform.position = Vector2.MoveTowards(transform.position, whatToChase, _speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, whatToChase, speed * Time.deltaTime);
     }
 
     private void HandleFaceDirection(float whatImChassingX)

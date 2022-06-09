@@ -23,7 +23,7 @@ public class ChangeLevelActive : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        if (_points !=  null)
+        if (_points != null)
         {
             Gizmos.DrawLine(_points[0], _points[_points.Length - 1]);
             for (int i = 1; i < _points.Length; i++)

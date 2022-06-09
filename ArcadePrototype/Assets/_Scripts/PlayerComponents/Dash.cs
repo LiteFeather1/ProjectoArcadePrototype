@@ -163,4 +163,18 @@ public class Dash : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, direction > 0 ? 0 : 180, 0);
     }
+
+    private void DashSquash(float squash)
+    {
+        transform.localScale = new Vector3(1f, squash);
+    }
+
+    private void DashStrecht(float strecht)
+    {
+        transform.localScale = new Vector3(strecht, 1f);
+    }
+    private void DashNormal()
+    {
+        transform.localScale = new Vector3(1f, 1f);
+    }
 }
