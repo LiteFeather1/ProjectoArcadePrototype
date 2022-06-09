@@ -40772,14 +40772,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 860091905}
     m_Modifications:
-    - target: {fileID: 4476153983760614128, guid: 34a33e2eec37ef643a5718a08f0d7696, type: 3}
-      propertyPath: m_Size.y
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4476153983760614135, guid: 34a33e2eec37ef643a5718a08f0d7696, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4476153983930981972, guid: 34a33e2eec37ef643a5718a08f0d7696, type: 3}
       propertyPath: m_Name
       value: PassablePlayMiddlePost_Main (1)

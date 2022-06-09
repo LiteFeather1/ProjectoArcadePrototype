@@ -159,7 +159,15 @@ public class Detections : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ICollectable collectable = collision.GetComponent<ICollectable>();
-        if (collectable != null) collectable.ToCollect();
+        if (collectable != null)
+            collectable.ToCollect();
+
+        if (_isDashing)
+        {
+            IDashInteractable dashInteractable = collision.GetComponent<IDashInteractable>();
+            if (dashInteractable != null)
+                dashInteractable.DashInteract();
+        }
     }
 }
 

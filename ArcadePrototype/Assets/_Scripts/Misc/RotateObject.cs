@@ -15,4 +15,9 @@ public class RotateObject : MonoBehaviour
     {
         _rotation = _rotation * -1;
     }
+
+    public void SetRotation(Vector3 newRotation)
+    {
+        _rotation = newRotation;
+    }
 }

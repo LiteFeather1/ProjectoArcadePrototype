@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: 6012150608834467379
     second: Base
+  - first:
+      213: 7480489333114898579
+    second: BreakableChain
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -170,6 +173,27 @@ TextureImporter:
       bones: []
       spriteID: 3361abfff137f6350800000000000000
       internalID: 6012150608834467379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakableChain
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 63
+        height: 64
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39889664a6900d760800000000000000
+      internalID: 7480489333114898579
       vertices: []
       indices: 
       edges: []

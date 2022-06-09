@@ -11,7 +11,6 @@ public class Main_UiManager : MonoBehaviour
 
     [SerializeField] private TMP_Text _fps;
 
-
     public static Main_UiManager Instance;
 
     private void Awake()

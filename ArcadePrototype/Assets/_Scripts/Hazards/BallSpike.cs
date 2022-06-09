@@ -6,14 +6,15 @@ using UnityEngine;
 public class BallSpike : MonoBehaviour
 {
     [SerializeField] private float _speed;
-
+    [SerializeField] private bool _addForceOnEnable = true;
     protected Rigidbody2D _rb;
 
     private RotateObject _rotateComponent;
 
     protected void OnEnable()
     {
-        AddStartingForce();
+        if(_addForceOnEnable)
+            AddStartingForce();
     }
 
     protected void Awake()
@@ -30,6 +31,14 @@ public class BallSpike : MonoBehaviour
         float y = Random.value < 0.5f ? Random.Range(-1, -.5f) : Random.Range(-1, -.5f);
 
         _rb.velocity = new Vector2(x , y).normalized * _speed;
+    }
+
+    public void AddForce(Transform myContent)
+    {
+        _rb.isKinematic = false;
+        _addForceOnEnable = true;
+        transform.SetParent(myContent);
+        AddStartingForce();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -14,6 +14,8 @@ public class Jump : MonoBehaviour
     private float _autoJump;
     private bool _canJump = true;
 
+    private bool _canAddForce = true;
+
     [Header("Secondary Jumps")]
     [SerializeField] private float _secondaryJumpForce;
     [SerializeField] private int _howManySecondaryJumps = 1;
@@ -171,6 +173,22 @@ public class Jump : MonoBehaviour
         _rb.velocity = new Vector2(_rb.velocity.x, 0);
         _rb.AddForce(normal * force);
         StartCoroutine(DisableGravity(timeToWait));
+    }
+
+    public void AddForceOnCollisionTimed(Vector2 normal, float force, float timeToWait)
+    {
+        if (!_canAddForce) return;
+        StartCoroutine(WaitToAddcollision());
+        _rb.velocity = new Vector2(_rb.velocity.x, 0);
+        _rb.AddForce(normal * force);
+        StartCoroutine(DisableGravity(timeToWait));
+    }
+
+    IEnumerator WaitToAddcollision()
+    {
+        _canAddForce = false;
+        yield return new WaitForSeconds(.25f);
+        _canAddForce = true;
     }
 
     //Disables gravity so the on add force can go higher without the player needing to press spaces
