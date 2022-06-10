@@ -32,7 +32,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     }
     private void Start()
     {
-        Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
+        Main_InGameUiManager.Instance.HealthToDisplay(HitsToReset, 3);
     }
 
     private void Update()
@@ -49,7 +49,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
             StartCoroutine(Co_invulnerability());
             StartCoroutine(StunDuration_Co(stunDuration));
             StartCoroutine(BlinkRed());
-            Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
+            Main_InGameUiManager.Instance.HealthToDisplay(HitsToReset, 3);
             if (HitsToReset <= 0)
             {
                 Die();
@@ -62,7 +62,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         _rb.velocity = Vector2.zero;
         transform.position = _resetPos;
         HitsToReset = 3;
-        Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
+        Main_InGameUiManager.Instance.HealthToDisplay(HitsToReset, 3);
         Death?.Invoke();
     }
 
@@ -96,7 +96,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     public void RestoreHealth(int amountToRestore)
     {
         HitsToReset += amountToRestore;
-        Main_UiManager.Instance.HealthToDisplay(HitsToReset, 3);
+        Main_InGameUiManager.Instance.HealthToDisplay(HitsToReset, 3);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

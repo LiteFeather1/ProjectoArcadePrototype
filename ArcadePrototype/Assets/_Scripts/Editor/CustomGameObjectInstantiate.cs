@@ -7,7 +7,6 @@ using Cinemachine;
 public class CustomGameObjectInstantiate : MonoBehaviour
 {
     [MenuItem("GameObject/MyCategory/Level Template", false, 10)]
-
     static void CreateLevelTemplate(MenuCommand menuCommand)
     {
         // Create a custom game object

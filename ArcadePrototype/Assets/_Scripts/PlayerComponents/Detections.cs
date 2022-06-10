@@ -60,11 +60,11 @@ public class Detections : MonoBehaviour
         }
     }
 
-    public bool WallFinished()
+    public bool WallNotFinished()
     {
         if (IsOnWall())
         {
-            RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + .5f), transform.right, 1f, _wallMask);
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + .5f), transform.right, .5f, _wallMask);
 
             Color rayColor;
             if (hit.collider != null)

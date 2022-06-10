@@ -4,14 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Main_UiManager : MonoBehaviour
+public class Main_InGameUiManager : MonoBehaviour
 {
     [SerializeField] private Image _staminaBar;
     [SerializeField] private Image _healthBar;
 
     [SerializeField] private TMP_Text _fps;
+    [SerializeField] private TMP_Text txt_time;
 
-    public static Main_UiManager Instance;
+    public static Main_InGameUiManager Instance;
+
+    private PersistentTimer _persistentTimer;
 
     private void Awake()
     {
@@ -23,11 +26,14 @@ public class Main_UiManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _persistentTimer = PersistentTimer.Instance;
     }
 
     private void Update()
     {
         FpsCounter();
+        TimeToDisplay();
     }
 
     public void StaminaBarToDisplay(float currentStamina, float maxStamina)
@@ -43,5 +49,16 @@ public class Main_UiManager : MonoBehaviour
     private void FpsCounter()
     {
         _fps.text = (1 / Time.unscaledDeltaTime).ToString("00");
+    }
+
+    public void TimeToDisplay()
+    {
+
+        if (_persistentTimer == null)
+            return;
+        float minutes = Mathf.FloorToInt(_persistentTimer.Timer / 60);
+        float seconds = (_persistentTimer.Timer % 60);
+
+        txt_time.text = string.Format("{0:00}:{1:00.00}", minutes, seconds);
     }
 }

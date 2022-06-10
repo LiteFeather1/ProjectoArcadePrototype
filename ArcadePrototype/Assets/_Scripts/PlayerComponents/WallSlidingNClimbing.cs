@@ -26,7 +26,7 @@ public class WallSlidingNClimbing : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetAxisRaw("Vertical") >= 1 && !_d.WallFinished() && !Input.GetButton("Jump"))
+        if (Input.GetAxisRaw("Vertical") >= 1 && !_d.WallNotFinished() && !Input.GetButton("Jump"))
         {
             _rb.velocity = Vector2.zero;
             _ac.SetBool("WallClimbing", false);
@@ -57,20 +57,20 @@ public class WallSlidingNClimbing : MonoBehaviour
                     Vector2 down = new Vector2(_rb.velocity.x, -_slidingSpeed);
                     _rb.velocity = down;
                 }
-                else if (yInput > 0 && _d.WallFinished())
+                else if (yInput > 0)
                 {
-                    if(_rb.velocity.y >= 0.2f)
-                    _wallStamina.DemishFromWallClimbing();
-                    else
-                        _wallStamina.DemishFromWallGripping();
-
-                    Vector2 up = new Vector2(_rb.velocity.x, _climbingSpeed);
-                    _rb.velocity = up;
-
-                    if(_rb.velocity.y >= 0.1f)
+                    if (_d.WallNotFinished())
                     {
+                        Vector2 up = new Vector2(_rb.velocity.x, _climbingSpeed);
+                        _rb.velocity = up;
+                    }
+                    if (_rb.velocity.y >= 0.2f)
+                    {
+                        _wallStamina.DemishFromWallClimbing();
                         _ac.SetBool("WallClimbing", true);
                     }
+                    else
+                        _wallStamina.DemishFromWallGripping();
                 }
                 _rb.gravityScale = 0;
             }

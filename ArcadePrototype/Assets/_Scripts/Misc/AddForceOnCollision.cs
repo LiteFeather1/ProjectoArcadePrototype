@@ -15,16 +15,16 @@ public class AddForceOnCollision : MonoBehaviour
         if(playerJump != null)
         {
             if (_onlyFromAbove)
-                if (transform.position.y +.55f >= collision.transform.position.y) return;
+                if (transform.position.y +.55f >= collision.transform.position.y) 
+                    return;
 
             if (!_onlyUp)
             {
                 Vector2 normal = collision.GetContact(0).normal;
                 playerJump.AddForceOnCollision(-normal, _bounceForce, _disableTime);
             }
-            else playerJump.AddForceOnCollision(Vector2.up, _bounceForce, _disableTime);
-
-            print(gameObject.name);
+            else 
+                playerJump.AddForceOnCollision(Vector2.up, _bounceForce, _disableTime);
         }
     }
 }

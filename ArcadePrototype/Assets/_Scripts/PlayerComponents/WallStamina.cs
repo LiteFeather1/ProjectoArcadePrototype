@@ -30,7 +30,7 @@ public class WallStamina : MonoBehaviour
 
     private void Update()
     {
-        Main_UiManager.Instance.StaminaBarToDisplay(_stamina, _maxStamina);
+        Main_InGameUiManager.Instance.StaminaBarToDisplay(_stamina, _maxStamina);
         ReplenishDashOnceGroundedAgain();
     }
 

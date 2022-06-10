@@ -69,8 +69,7 @@ public class Jump : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             _autoJump = _autoJumpReseter;
-            _ac.SetTrigger("Jumped");
-            if (_coyoteTimer < -.1f && !_gd.IsOnWall())
+            if (_coyoteTimer < -.1f && !_gd.IsOnWall() && !_secondaryJumping)
             {
                 _secondaryJumping = true;
             }
@@ -93,6 +92,7 @@ public class Jump : MonoBehaviour
     {
         if (_autoJump > 0 && _coyoteTimer > 0f)
         {
+            _ac.SetTrigger("Jumped");
             _coyoteTimer--;
             StartCoroutine(JumpSqueeze(0.75f, 1.3f, 0.15f));
             _firstJumpParticle.PlayAnimation(transform);
