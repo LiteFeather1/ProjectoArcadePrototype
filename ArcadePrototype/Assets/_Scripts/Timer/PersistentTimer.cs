@@ -12,4 +12,9 @@ public class PersistentTimer : ComplexSingleton<PersistentTimer>
     {
         _time += Time.deltaTime;
     }
+    
+    public void DisableMe()
+    {
+        this.enabled = false;
+    }
 }
