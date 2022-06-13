@@ -33,6 +33,7 @@ public class Main_InGameUiManager : MonoBehaviour
 
     private void Start()
     {
+        _persistentTimer = PersistentTimer.Instance;
         PersistentDeathCount.Instance.UpdateDeathCount();
     }
 

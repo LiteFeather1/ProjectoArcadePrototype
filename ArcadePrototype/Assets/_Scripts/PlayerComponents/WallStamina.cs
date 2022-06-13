@@ -20,17 +20,20 @@ public class WallStamina : MonoBehaviour
     [Header("Components")]
     Detections _d;
 
+    private Main_InGameUiManager _igUiGameInstance;
+
     public float Stamina { get => _stamina;}
 
     private void Awake()
     {
         _d = GetComponent<Detections>();
+        _igUiGameInstance = Main_InGameUiManager.Instance;
         _maxStamina = _stamina;
     }
 
     private void Update()
     {
-        Main_InGameUiManager.Instance.StaminaBarToDisplay(_stamina, _maxStamina);
+        _igUiGameInstance?.StaminaBarToDisplay(_stamina, _maxStamina);
         ReplenishDashOnceGroundedAgain();
     }
 

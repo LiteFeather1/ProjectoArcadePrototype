@@ -35,17 +35,17 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
 
-        _uiInstance = Main_InGameUiManager.Instance;
         _persistentDeathCount = PersistentDeathCount.Instance;
     }
     private void Start()
     {
+        _uiInstance = Main_InGameUiManager.Instance;
         _uiInstance.HealthToDisplay(HitsToReset, 3);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) TakeDamage(1, 0);
+        if (Input.GetKeyDown(KeyCode.R)) TakeDamage(3, 0);
     }
 
     public void TakeDamage(int hitAmount, float stunDuration)
@@ -54,14 +54,14 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         {
             _canGetHit = false;
             HitsToReset -= hitAmount;
+
             StartCoroutine(Co_invulnerability());
             StartCoroutine(StunDuration_Co(stunDuration));
             StartCoroutine(BlinkRed());
+
             _uiInstance.HealthToDisplay(HitsToReset, 3);
             if (HitsToReset <= 0)
-            {
                 Die();
-            }
         }
     }
 
@@ -106,7 +106,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     public void RestoreHealth(int amountToRestore)
     {
         HitsToReset += amountToRestore;
-        Main_InGameUiManager.Instance.HealthToDisplay(HitsToReset, 3);
+        _uiInstance.HealthToDisplay(HitsToReset, 3);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
