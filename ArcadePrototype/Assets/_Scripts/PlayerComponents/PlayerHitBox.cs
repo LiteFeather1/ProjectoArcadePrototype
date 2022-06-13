@@ -19,8 +19,13 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
 
+    [Header("Instance")]
+    private Main_InGameUiManager _uiInstance;
+    private PersistentDeathCount _persistentDeathCount;
+
     public int HitsToReset { get => _hitsToReset; set => _hitsToReset = Mathf.Clamp(value, 0, 3); }
     public UnityEvent Death { get => _death; set => _death = value; }
+
 
     private void Awake()
     {
@@ -29,10 +34,13 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         _jump = GetComponent<Jump>();
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
+
+        _uiInstance = Main_InGameUiManager.Instance;
+        _persistentDeathCount = PersistentDeathCount.Instance;
     }
     private void Start()
     {
-        Main_InGameUiManager.Instance.HealthToDisplay(HitsToReset, 3);
+        _uiInstance.HealthToDisplay(HitsToReset, 3);
     }
 
     private void Update()
@@ -49,7 +57,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
             StartCoroutine(Co_invulnerability());
             StartCoroutine(StunDuration_Co(stunDuration));
             StartCoroutine(BlinkRed());
-            Main_InGameUiManager.Instance.HealthToDisplay(HitsToReset, 3);
+            _uiInstance.HealthToDisplay(HitsToReset, 3);
             if (HitsToReset <= 0)
             {
                 Die();
@@ -62,8 +70,10 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         _rb.velocity = Vector2.zero;
         transform.position = _resetPos;
         HitsToReset = 3;
-        Main_InGameUiManager.Instance.HealthToDisplay(HitsToReset, 3);
+
         Death?.Invoke();
+        _uiInstance?.HealthToDisplay(HitsToReset, 3);
+        _persistentDeathCount?.AddDeath();
     }
 
     IEnumerator Co_invulnerability()

@@ -48,10 +48,11 @@ public class HorizontalMoviment : MonoBehaviour
         }
 
         _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
+        _direction = Input.GetAxisRaw("Horizontal");
     }
+
     private void FixedUpdate()
     {
-        _direction = Input.GetAxisRaw("Horizontal");
         if (Input.GetButton("GripWall") && _gd.IsOnWall())
         { }
         else
@@ -65,8 +66,6 @@ public class HorizontalMoviment : MonoBehaviour
         float accelerartionRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
         float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerartionRate, velPower) * Mathf.Sign(speedDifference);
         _rb.AddForce(movement * Vector2.right);
-
-        _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
     }
 
     public void Flip(bool flipSwitch)
@@ -83,6 +82,7 @@ public class HorizontalMoviment : MonoBehaviour
             _facingRight = !_facingRight;
             _direction = _direction * -1f;
         }
+
         transform.rotation = Quaternion.Euler(0, _facingRight ? 0 : 180, 0);
     }
 

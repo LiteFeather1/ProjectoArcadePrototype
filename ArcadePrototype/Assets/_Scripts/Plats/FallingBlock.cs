@@ -21,7 +21,6 @@ public class FallingBlock : MonoBehaviour
     protected Vector3 _gizmosWhereTo => transform.position + _whereToMove;
     private bool _gameStarted;
 
-
     private void OnEnable()
     {
         _player.Death.AddListener(Reset);
@@ -67,14 +66,32 @@ public class FallingBlock : MonoBehaviour
         this.enabled = true;
     }
 
+    IEnumerator DelayToMove()
+    {
+        yield return new WaitForSeconds(.5f);
+        _canMove = true;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             if (_first == true)
             {
-                _canMove = true;
                 _first = false;
+                StartCoroutine(DelayToMove());
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            if(_first == true)
+            {
+                _first = false;
+                StartCoroutine(DelayToMove());
             }
         }
     }

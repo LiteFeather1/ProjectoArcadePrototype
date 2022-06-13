@@ -11,6 +11,7 @@ public class Main_InGameUiManager : MonoBehaviour
 
     [SerializeField] private TMP_Text _fps;
     [SerializeField] private TMP_Text txt_time;
+    [SerializeField] private TMP_Text txt_DeathCount;
 
     public static Main_InGameUiManager Instance;
 
@@ -28,6 +29,11 @@ public class Main_InGameUiManager : MonoBehaviour
         }
 
         _persistentTimer = PersistentTimer.Instance;
+    }
+
+    private void Start()
+    {
+        PersistentDeathCount.Instance.UpdateDeathCount();
     }
 
     private void Update()
@@ -51,7 +57,7 @@ public class Main_InGameUiManager : MonoBehaviour
         _fps.text = (1 / Time.unscaledDeltaTime).ToString("00");
     }
 
-    public void TimeToDisplay()
+    private void TimeToDisplay()
     {
 
         if (_persistentTimer == null)
@@ -59,6 +65,11 @@ public class Main_InGameUiManager : MonoBehaviour
         float minutes = Mathf.FloorToInt(_persistentTimer.Timer / 60);
         float seconds = (_persistentTimer.Timer % 60);
 
-        txt_time.text = string.Format("{0:00}:{1:00.00}", minutes, seconds);
+        txt_time.text = "Timer : " + string.Format("{0:00}:{1:00.00}", minutes, seconds);
+    }
+
+    public void DeathCountToDisplay(int deathCount)
+    {
+        txt_DeathCount.text = "Death Count : " + deathCount.ToString();
     }
 }

@@ -6,7 +6,7 @@ public class PersistentTimer : ComplexSingleton<PersistentTimer>
 {
     [SerializeField] private float _time;
 
-    public float Timer { get => _time;} 
+    public float Timer { get => _time; }
 
     private void Update()
     {

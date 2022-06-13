@@ -68,7 +68,7 @@ public class RecorderPlayer : MonoBehaviour
             speedToAdd = 5;
         }
 
-        _speeds.Add(speedToAdd);
+        _speeds.Add(speedToAdd * 2);
     }
 
     private void Eraser()
