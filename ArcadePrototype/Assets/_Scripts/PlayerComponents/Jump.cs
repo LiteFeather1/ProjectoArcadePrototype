@@ -54,6 +54,7 @@ public class Jump : MonoBehaviour
     {
         JumpInput();
         ReplenishSecondaryJumOnceGroundedAgain();
+        CheckTopSpeed();
     }
 
     private void FixedUpdate()
@@ -61,6 +62,7 @@ public class Jump : MonoBehaviour
         JumpAction();
         Gravity();
         SecondJumpAction();
+        LimitYVelocity();
     }
 
     private void JumpInput()
@@ -97,11 +99,32 @@ public class Jump : MonoBehaviour
             StartCoroutine(JumpSqueeze(0.75f, 1.3f, 0.15f));
             _firstJumpParticle.PlayAnimation(transform);
             _autoJump--;
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _gd.GetPistonSpeed().y);
-            //_rb.AddForce(Vector2.up * _jumpForce * _gd.GetPistonSpeed(), ForceMode2D.Impulse);
-            print(_gd.GetPistonSpeed());
+
+            if (_gd.GetPistonSpeed().x == 1 || _gd.GetPistonSpeed().x == 0)
+            {
+                _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _gd.GetPistonSpeed().y);
+            }
+            else
+            {
+                float xVelocity = _rb.velocity.x;
+                if (xVelocity > -0.5f)
+                    xVelocity = 5;
+                if (xVelocity < 0.5f)
+                    xVelocity = -5;
+
+                bool velocityEqual = Mathf.Sign(xVelocity) == Mathf.Sign(_gd.GetPistonSpeed().x);
+                if(velocityEqual)
+                    _rb.velocity = new Vector2(_gd.GetPistonSpeed().x * _jumpForce * xVelocity, _jumpForce * _gd.GetPistonSpeed().y);
+                else
+                {
+                    float velocityDIff = _gd.GetPistonSpeed().x - xVelocity;
+                    _rb.velocity = new Vector2(_jumpForce *  -velocityDIff / 10, _jumpForce * _gd.GetPistonSpeed().y);
+                    //print(velocityDIff/2);
+                }
+            }
+            //print(_gd.GetPistonSpeed());
             StartCoroutine(JumpCoolDown_Co());
-            print("Jumped");
+            //print("Jumped");
         }
     }
 
@@ -126,7 +149,7 @@ public class Jump : MonoBehaviour
             _ac.SetTrigger("SecondJump");
             _secondJumpParticle.PlayAnimation(transform);
             StopVisualAidAnimation();
-            print("Doubled");
+            //print("Doubled");
         }
     }
 
@@ -223,5 +246,20 @@ public class Jump : MonoBehaviour
     {
         _customAnimator.StopTheCo();
         _visualAidSR.sprite = _nullSprite;
+    }
+
+    private void LimitYVelocity()
+    {
+        if (_rb.velocity.y > 25)
+            _rb.velocity = new Vector2(_rb.velocity.x, 25);
+        if (_rb.velocity.y < -25)
+            _rb.velocity = new Vector2(_rb.velocity.x, -25);
+    }
+
+    private float _topYSpeed;
+    private void CheckTopSpeed()
+    {
+        if (_topYSpeed <= _rb.velocity.y)
+            _topYSpeed = _rb.velocity.y;
     }
 }

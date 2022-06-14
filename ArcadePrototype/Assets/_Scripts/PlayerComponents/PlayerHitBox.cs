@@ -34,11 +34,11 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         _jump = GetComponent<Jump>();
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
-
-        _persistentDeathCount = PersistentDeathCount.Instance;
     }
+
     private void Start()
     {
+        _persistentDeathCount = PersistentDeathCount.Instance;
         _uiInstance = Main_InGameUiManager.Instance;
         _uiInstance.HealthToDisplay(HitsToReset, 3);
     }

@@ -12,7 +12,6 @@ public class Detections : MonoBehaviour
 
     private Animator _ac;
 
-
     private void Awake()
     {
         _ac = GetComponent<Animator>();
@@ -43,7 +42,7 @@ public class Detections : MonoBehaviour
     {
         if (true)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, .33f, _wallMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, .395f, _wallMask);
 
             Color rayColor;
             if (hit.collider != null)
@@ -84,7 +83,7 @@ public class Detections : MonoBehaviour
 
     public Vector2 GetPistonSpeed()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, _groundMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, _groundMask);
 
         if (hit.collider != null)
         {
@@ -92,17 +91,15 @@ public class Detections : MonoBehaviour
             if (piston != null)
             {
                 Vector2 force = piston.GetMySpeed();
-                if(force.y <= 1)
+                if (force.y <= 1)
+                    force.y = 1;
+                if(force.y == 1)
                 {
-                    return new Vector2(force.x /25, 1);
-                }
-                if (force.x <= 1)
-                {
-                    return new Vector2(1, force.y/25);
+                    return new Vector2(force.x / 25, force.y);
                 }
                 else
                 {
-                    print(force / 25);
+                    //print(force / 25);
                     return force / 25;
                 }
             }
@@ -124,18 +121,12 @@ public class Detections : MonoBehaviour
             if (piston != null)
             {
                 Vector2 force = piston.GetMySpeed();
+                if (force.y <= 1)
+                    force.y = 1;
                 if (force.x <= 1)
-                {
-                    return new Vector2(1, force.y / 25);
-                }
-                else if (force.y <= 1)
-                {
-                    return new Vector2(force.x / 25, 1);
-                }
-                else
-                {
-                    return force / 25;
-                }
+                    force.x = 1;
+                print("if");
+                return force / 20;
             }
             else
             {

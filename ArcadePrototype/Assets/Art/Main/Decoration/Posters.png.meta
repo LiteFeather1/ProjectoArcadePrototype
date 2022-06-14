@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 0a28fcdf758cf334898515c6bfe3f288
+guid: 4e88cc2868b99f147a5cab803d396c9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -704048016973295337
-    second: Poles_0
-  - first:
-      213: 6321950349944329382
-    second: Poles_1
-  - first:
-      213: -4701496446004766043
-    second: Poles_2
-  - first:
-      213: -1437378907074872
-    second: Poles_Lamp
-  - first:
-      213: -5943919803030477018
-    second: Poles_UnlitLamp
+      213: 6006963005492293884
+    second: Posters_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +46,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -118,106 +106,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Poles_0
+      name: Posters_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.075}
-      border: {x: 0, y: 4, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7111d7b0f08ba36f0800000000000000
-      internalID: -704048016973295337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Poles_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.075}
-      border: {x: 0, y: 4, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a4961029541cb750800000000000000
-      internalID: 6321950349944329382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Poles_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 4
-        width: 64
-        height: 60
-      alignment: 9
-      pivot: {x: 0.5, y: 0.075}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5aadf1754ede0ceb0800000000000000
-      internalID: -4701496446004766043
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Poles_Lamp
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.8}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ce06d426b4eafff0800000000000000
-      internalID: -1437378907074872
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Poles_UnlitLamp
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.8}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62765fe6e64f28da0800000000000000
-      internalID: -5943919803030477018
+      spriteID: cf0f749f6050d5350800000000000000
+      internalID: 6006963005492293884
       vertices: []
       indices: 
       edges: []

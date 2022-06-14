@@ -27,12 +27,12 @@ public class WallStamina : MonoBehaviour
     private void Awake()
     {
         _d = GetComponent<Detections>();
-        _igUiGameInstance = Main_InGameUiManager.Instance;
         _maxStamina = _stamina;
     }
 
     private void Update()
     {
+        _igUiGameInstance = Main_InGameUiManager.Instance;
         _igUiGameInstance?.StaminaBarToDisplay(_stamina, _maxStamina);
         ReplenishDashOnceGroundedAgain();
     }

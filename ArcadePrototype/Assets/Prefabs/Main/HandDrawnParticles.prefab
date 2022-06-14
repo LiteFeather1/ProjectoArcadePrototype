@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 9
   m_Sprite: {fileID: 8875891070595972140, guid: 415db4ca6a6528e42a72e90269308075, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,6 +103,10 @@ MonoBehaviour:
   _looping: 0
   _sample: 4
   _speed: 2
+  _startOnAwake: 1
+  _timeToWaitBetweenAnimation: 0
+  _randomizeTimeBetween: 0
+  _disableSprite: 1
 --- !u!1 &887098437654372731
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +178,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 9
   m_Sprite: {fileID: 8875891070595972140, guid: 415db4ca6a6528e42a72e90269308075, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -206,6 +210,10 @@ MonoBehaviour:
   _looping: 0
   _sample: 4
   _speed: 2
+  _startOnAwake: 1
+  _timeToWaitBetweenAnimation: 0
+  _randomizeTimeBetween: 0
+  _disableSprite: 1
 --- !u!1 &887098437662666151
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +285,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 9
   m_Sprite: {fileID: 8875891070595972140, guid: 415db4ca6a6528e42a72e90269308075, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -309,6 +317,10 @@ MonoBehaviour:
   _looping: 0
   _sample: 4
   _speed: 2
+  _startOnAwake: 1
+  _timeToWaitBetweenAnimation: 0
+  _randomizeTimeBetween: 0
+  _disableSprite: 1
 --- !u!1 &887098437968216279
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +392,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 9
   m_Sprite: {fileID: 8875891070595972140, guid: 415db4ca6a6528e42a72e90269308075, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -412,6 +424,10 @@ MonoBehaviour:
   _looping: 0
   _sample: 4
   _speed: 2
+  _startOnAwake: 1
+  _timeToWaitBetweenAnimation: 0
+  _randomizeTimeBetween: 0
+  _disableSprite: 1
 --- !u!1 &887098438578827808
 GameObject:
   m_ObjectHideFlags: 0

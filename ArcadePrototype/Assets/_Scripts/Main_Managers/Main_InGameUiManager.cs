@@ -27,14 +27,12 @@ public class Main_InGameUiManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        _persistentTimer = PersistentTimer.Instance;
     }
 
     private void Start()
     {
         _persistentTimer = PersistentTimer.Instance;
-        PersistentDeathCount.Instance.UpdateDeathCount();
+        PersistentDeathCount.Instance?.UpdateDeathCount();
     }
 
     private void Update()

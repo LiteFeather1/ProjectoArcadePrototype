@@ -16,7 +16,7 @@ public class Piston : MoveWhenPlayerAbove
     private IEnumerator _movingToWhere;
     private IEnumerator _movingBack;
     private bool _once;
-
+    private int _moving;
     private SpriteRenderer _sr;
 
     protected override void Awake()
@@ -27,6 +27,7 @@ public class Piston : MoveWhenPlayerAbove
 
     IEnumerator MoveToWhere()
     {
+        _moving = 1;
         _sr.sprite = _go;
         _speed = 0;
         yield return new WaitForSeconds(_delayToMove);
@@ -51,6 +52,7 @@ public class Piston : MoveWhenPlayerAbove
     {
         _sr.sprite = _backing;
         _speed = 0;
+        _moving = -1;
         yield return new WaitForSeconds(_delayToMoveback);
         while (!_moveToWhere && transform.position != _startPos)
         {
@@ -70,8 +72,7 @@ public class Piston : MoveWhenPlayerAbove
         if (collision.gameObject.tag == "Player")
         {
             if (!_once)
-            {
-                
+            {         
                 _once = true;
                 _moveToWhere = true;
                 if (_movingToWhere == null && _movingBack == null)
@@ -86,7 +87,7 @@ public class Piston : MoveWhenPlayerAbove
     {
         if(_moveToWhere)
         {
-            return _whereToMove.normalized * _speed;
+            return _whereToMove.normalized * _speed * _moving;
         }
 
         return Vector2.one;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecorderPlayer : MonoBehaviour
+public class PlayerRecorder : MonoBehaviour
 {
     [Header ("What To Record")]
     [SerializeField] private Transform _whatToRecord;
@@ -31,7 +31,6 @@ public class RecorderPlayer : MonoBehaviour
         _startPos = transform.position;
         _playerHitbox.Death.AddListener(Reset);
     }
-
 
     void Update()
     {
@@ -68,7 +67,7 @@ public class RecorderPlayer : MonoBehaviour
             speedToAdd = 5;
         }
 
-        _speeds.Add(speedToAdd * 2);
+        _speeds.Add(speedToAdd * 1.75f);
     }
 
     private void Eraser()

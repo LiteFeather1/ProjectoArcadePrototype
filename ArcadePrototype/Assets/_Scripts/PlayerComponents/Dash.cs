@@ -74,7 +74,6 @@ public class Dash : MonoBehaviour
                 float yInput = Input.GetAxisRaw("Vertical");
                 if(Input.GetAxisRaw("Horizontal") == 0 && yInput == 0)
                 {
-                    print("gotHere");
                     if (_hm.FacingRight)
                         xInput = 1;
                     else

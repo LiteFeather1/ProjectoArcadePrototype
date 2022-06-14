@@ -59,6 +59,9 @@ public class WallJump : MonoBehaviour
     {
         if (_jumping && !_detection.IsGrounded())
         {
+            Vector2 pistonSideSpeed = _detection.GetPistonSideSpeed();
+            if (pistonSideSpeed.x < 1)
+                pistonSideSpeed.x = 1;
             _jumping = false;
             _hm.enabled = false;
             StartCoroutine(Co_ReactivateHorizontalMoviment());
@@ -73,7 +76,6 @@ public class WallJump : MonoBehaviour
                     xForce = 0f * _direction;
                     upForce = .8f;
                     _wS.DemishFromWallJumpStraight();
-                    print("If");
                 }
                 else 
                 {
@@ -84,8 +86,6 @@ public class WallJump : MonoBehaviour
                         xForce = -1;
                     _horizontal.Flip(true);
                     _wS.DemishFromWallJump();
-                    print(Input.GetAxis("Vertical"));
-                    print(_direction);
                 }
             }
             else
@@ -100,11 +100,9 @@ public class WallJump : MonoBehaviour
                 print("WallJumpElse2");
             }
             _rb.velocity = Vector2.zero;
-            //_rb.AddForce(new Vector2 (_jumpForce.x * -xForce  * _detection.GetPistonSideSpeed().x, _jumpForce.y * upForce), ForceMode2D.Impulse);
-            _rb.velocity = new Vector2(_jumpForce.x * -xForce * _detection.GetPistonSideSpeed().x, _jumpForce.y * upForce);
+            _rb.velocity = new Vector2(_jumpForce.x * -xForce * pistonSideSpeed.x, _jumpForce.y * upForce * pistonSideSpeed.y);
             _ac.SetTrigger("WallJumped");
             _wallJump.PlayAnimation(transform);
-            print("WallJumpin");
         }
     }
 

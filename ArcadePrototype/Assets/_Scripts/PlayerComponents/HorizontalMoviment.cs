@@ -39,7 +39,10 @@ public class HorizontalMoviment : MonoBehaviour
         {
             if (!_gd.IsOnWall())
                 Flip(false);
-            if (_gd.IsGrounded()) _dust.Play();
+            if (_gd.IsGrounded())
+            {
+                _dust.Play();
+            }
         }
         if ((_direction < 0 && transform.localRotation.y == 0) || (_direction > 0 && transform.localEulerAngles.y == 180) && !_gd.IsDashing())
         {
@@ -49,6 +52,7 @@ public class HorizontalMoviment : MonoBehaviour
 
         _ac.SetFloat("HorizontalSpeed", Mathf.Abs(_rb.velocity.x));
         _direction = Input.GetAxisRaw("Horizontal");
+        CheckTopSpeed();
     }
 
     private void FixedUpdate()
@@ -58,6 +62,7 @@ public class HorizontalMoviment : MonoBehaviour
         else
             HorizontalMovimentLogic();
         Friction();
+        LimitHorizontalSpeed();
     }
     private void HorizontalMovimentLogic()
     {
@@ -95,6 +100,21 @@ public class HorizontalMoviment : MonoBehaviour
 
             _rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
         }
+    }
+
+    private void LimitHorizontalSpeed()
+    {
+        if (_rb.velocity.x > 30)
+            _rb.velocity = new Vector2(30, _rb.velocity.y);
+        if (_rb.velocity.x < -30)
+            _rb.velocity = new Vector2(-30, _rb.velocity.y);
+    }
+
+    private float _topXSpeed;
+    private void CheckTopSpeed()
+    {
+        if (_topXSpeed <= _rb.velocity.x)
+            _topXSpeed = _rb.velocity.x;
     }
 
     private void OnDisable()
