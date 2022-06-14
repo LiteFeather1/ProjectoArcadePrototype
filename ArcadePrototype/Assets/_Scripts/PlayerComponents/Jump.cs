@@ -103,6 +103,7 @@ public class Jump : MonoBehaviour
             if (_gd.GetPistonSpeed().x == 1 || _gd.GetPistonSpeed().x == 0)
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _gd.GetPistonSpeed().y);
+                print("if");
             }
             else
             {
@@ -122,9 +123,8 @@ public class Jump : MonoBehaviour
                     //print(velocityDIff/2);
                 }
             }
-            //print(_gd.GetPistonSpeed());
+            print(_gd.GetPistonSpeed());
             StartCoroutine(JumpCoolDown_Co());
-            //print("Jumped");
         }
     }
 

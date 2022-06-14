@@ -83,7 +83,7 @@ public class Detections : MonoBehaviour
 
     public Vector2 GetPistonSpeed()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, _groundMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, _groundMask);
 
         if (hit.collider != null)
         {
@@ -91,6 +91,7 @@ public class Detections : MonoBehaviour
             if (piston != null)
             {
                 Vector2 force = piston.GetMySpeed();
+                print(force);
                 if (force.y <= 1)
                     force.y = 1;
                 if(force.y == 1)
@@ -99,7 +100,7 @@ public class Detections : MonoBehaviour
                 }
                 else
                 {
-                    //print(force / 25);
+                    print(force / 25);
                     return force / 25;
                 }
             }
