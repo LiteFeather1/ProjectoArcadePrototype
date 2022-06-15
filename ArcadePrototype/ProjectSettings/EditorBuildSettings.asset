@@ -95,4 +95,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Arcade/Dash.unity
     guid: d3f5016ed0688964da29711bd61cb595
+  - enabled: 1
+    path: Assets/Scenes/Arcade/ChaseLevel.unity
+    guid: b2485575613719342806d055b7b18ac7
   m_configObjects: {}

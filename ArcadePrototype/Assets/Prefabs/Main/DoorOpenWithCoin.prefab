@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 9
   m_Sprite: {fileID: 6543127334735634716, guid: fefdef130902d544b97c4c20e6223d28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   _coinsToCollect: 3
   _movimentSpeed: 5
   _whereToMove: {x: 0, y: 3, z: 0}
+  _player: {fileID: 0}
   _lockSprite: {fileID: 4176653964402256881}
 --- !u!1 &4176653964402256883
 GameObject:

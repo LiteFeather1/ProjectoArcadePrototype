@@ -7,6 +7,10 @@ public class PersistentTimer : ComplexSingleton<PersistentTimer>
     [SerializeField] private float _time;
 
     public float Timer { get => _time; }
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     private void Update()
     {
@@ -17,4 +21,10 @@ public class PersistentTimer : ComplexSingleton<PersistentTimer>
     {
         this.enabled = false;
     }
+
+    public void EnableMe()
+    {
+        this.enabled = true;
+    }
 }
+

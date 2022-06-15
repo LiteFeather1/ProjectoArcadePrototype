@@ -76,6 +76,11 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         _persistentDeathCount?.AddDeath();
     }
 
+    public void GoToLastCheckPoint()
+    {
+        TakeDamage(3, 0.25f);
+    }
+
     IEnumerator Co_invulnerability()
     {
         yield return new WaitForSeconds(_invulnerabilityTime);
