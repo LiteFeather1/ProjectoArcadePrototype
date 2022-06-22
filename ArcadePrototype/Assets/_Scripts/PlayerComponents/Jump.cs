@@ -94,7 +94,6 @@ public class Jump : MonoBehaviour
     {
         if (_autoJump > 0 && _coyoteTimer > 0f)
         {
-            _ac.SetTrigger("Jumped");
             _coyoteTimer--;
             StartCoroutine(JumpSqueeze(0.75f, 1.3f, 0.15f));
             _firstJumpParticle.PlayAnimation(transform);
@@ -160,11 +159,11 @@ public class Jump : MonoBehaviour
         {
             if (_rb.velocity.y < 0)
             {
-                _rb.velocity += Vector2.up * Physics2D.gravity * _fallMultiplier * Time.deltaTime;
+                _rb.velocity += _fallMultiplier * Time.deltaTime * Physics2D.gravity * Vector2.up;
             }
             if (_rb.velocity.y > 0 && !Input.GetButton("Jump"))
             {
-                _rb.velocity += Vector2.up * Physics2D.gravity * _lowJumpMultiplier * Time.deltaTime;
+                _rb.velocity += _lowJumpMultiplier * Time.deltaTime * Physics2D.gravity * Vector2.up;
             }
         }
     }
@@ -212,7 +211,11 @@ public class Jump : MonoBehaviour
         yield return new WaitForSeconds(.25f);
         _canAddForce = true;
     }
-
+    
+    public void StartDisableGravity(float timeToWait)
+    {
+        StartCoroutine(DisableGravity(timeToWait));
+    }
     //Disables gravity so the on add force can go higher without the player needing to press spaces
     IEnumerator DisableGravity(float timeToWait)
     {

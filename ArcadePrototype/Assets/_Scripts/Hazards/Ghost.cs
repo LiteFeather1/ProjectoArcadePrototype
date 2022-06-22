@@ -23,7 +23,7 @@ public class Ghost : MonoBehaviour
 
     [Header("Gizmos")]
     private bool _started;
-    private Vector2 _startPosGizmos => transform.position;
+    private Vector2 StartPosGizmos => transform.position;
 
     private void Awake()
     {
@@ -67,7 +67,7 @@ public class Ghost : MonoBehaviour
     {
         //Limit
         Gizmos.color = Color.green;
-        if (!_started) Gizmos.DrawWireSphere(_startPosGizmos, _distanceToChase);
+        if (!_started) Gizmos.DrawWireSphere(StartPosGizmos, _distanceToChase);
         else Gizmos.DrawWireSphere(_startPos, _distanceToChase);
         if (_started)
         {
@@ -77,11 +77,11 @@ public class Ghost : MonoBehaviour
 
         //Distance That can Follow
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(_startPosGizmos, _distanceToChase);
+        Gizmos.DrawWireSphere(StartPosGizmos, _distanceToChase);
 
         //Patrol
         Gizmos.color = Color.yellow;
-        if (!_started) Gizmos.DrawWireSphere(_startPosGizmos, _distanceToPatrol);
+        if (!_started) Gizmos.DrawWireSphere(StartPosGizmos, _distanceToPatrol);
         else Gizmos.DrawWireSphere(_startPos, _distanceToPatrol);
     }
 

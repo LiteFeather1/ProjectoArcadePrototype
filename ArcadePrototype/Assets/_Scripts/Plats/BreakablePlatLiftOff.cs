@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class BreakablePlatLiftOff : ShakingPlat
 {
-    private bool _canGetDestroyed;
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
-            _canGetDestroyed = true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             if(Input.GetKey(KeyCode.Space))
             {

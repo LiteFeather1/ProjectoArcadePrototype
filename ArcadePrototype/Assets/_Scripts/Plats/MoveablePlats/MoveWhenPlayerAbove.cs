@@ -8,10 +8,11 @@ public class MoveWhenPlayerAbove : MoveablePlats
     [SerializeField] protected float _delayToMoveback = 1 ;
     protected Vector3 _realWhereTo;
     protected Vector3 _startPos;
-    protected Vector3 _gizmosStartPos => transform.position;
-    protected Vector3 _gizmosWhereTo => transform.position + _whereToMove;
+    protected Vector3 GizmosStartPos => transform.position;
+    protected Vector3 GizmosWhereTo => transform.position + _whereToMove;
     protected bool _moveToWhere;
     protected bool _gameStarted;
+
     protected override void Awake()
     {
         base.Awake();
@@ -25,9 +26,9 @@ public class MoveWhenPlayerAbove : MoveablePlats
     {
         Gizmos.color = Color.red;
         if(!_gameStarted)
-        Gizmos.DrawLine(_gizmosStartPos, _gizmosWhereTo);
+        Gizmos.DrawLine(GizmosStartPos, GizmosWhereTo);
         else
-        Gizmos.DrawLine(_gizmosStartPos, _realWhereTo);
+        Gizmos.DrawLine(GizmosStartPos, _realWhereTo);
     }
 
     IEnumerator MoveToWhere()
@@ -51,7 +52,7 @@ public class MoveWhenPlayerAbove : MoveablePlats
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
             _moveToWhere = true;
             StartCoroutine(MoveToWhere());
@@ -60,7 +61,7 @@ public class MoveWhenPlayerAbove : MoveablePlats
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             _moveToWhere = false;
             StartCoroutine(MoveBack());

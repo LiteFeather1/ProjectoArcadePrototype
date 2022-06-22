@@ -14,6 +14,7 @@ public class HorizontalMoviment : MonoBehaviour
 
     private float _direction;
     private bool _facingRight = true;
+    private bool _canInput = true;
 
     [Header ("Components")]
     private Rigidbody2D _rb;
@@ -60,7 +61,8 @@ public class HorizontalMoviment : MonoBehaviour
         if (Input.GetButton("GripWall") && _gd.IsOnWall())
         { }
         else
-            HorizontalMovimentLogic();
+            if(_canInput)
+                HorizontalMovimentLogic();
         Friction();
         LimitHorizontalSpeed();
     }
@@ -85,7 +87,7 @@ public class HorizontalMoviment : MonoBehaviour
         else
         {
             _facingRight = !_facingRight;
-            _direction = _direction * -1f;
+            _direction *= -1f;
         }
 
         transform.rotation = Quaternion.Euler(0, _facingRight ? 0 : 180, 0);
@@ -120,5 +122,17 @@ public class HorizontalMoviment : MonoBehaviour
     private void OnDisable()
     {
         _rb.velocity = Vector2.zero;
+    }
+
+    public void StartDisableInput()
+    {
+        StartCoroutine(DisableInput());
+    }
+
+    IEnumerator DisableInput()
+    {
+        _canInput = false;
+        yield return new WaitForSeconds(0.125f);
+        _canInput = true;
     }
 }

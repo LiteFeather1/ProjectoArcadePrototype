@@ -22,6 +22,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
     [Header("Instance")]
     private Main_InGameUiManager _uiInstance;
     private PersistentDeathCount _persistentDeathCount;
+    private PersistentScore _persistentScore;
 
     public int HitsToReset { get => _hitsToReset; set => _hitsToReset = Mathf.Clamp(value, 0, 3); }
     public UnityEvent Death { get => _death; set => _death = value; }
@@ -38,9 +39,10 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        _persistentDeathCount = PersistentDeathCount.Instance;
         _uiInstance = Main_InGameUiManager.Instance;
         _uiInstance.HealthToDisplay(HitsToReset, 3);
+        _persistentDeathCount = PersistentDeathCount.Instance;
+        _persistentScore = PersistentScore.Instance;
     }
 
     private void Update()
@@ -74,6 +76,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
         Death?.Invoke();
         _uiInstance?.HealthToDisplay(HitsToReset, 3);
         _persistentDeathCount?.AddDeath();
+        _persistentScore?.LoseOnDeath();
     }
 
     public void GoToLastCheckPoint()
@@ -116,7 +119,7 @@ public class PlayerHitBox : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "CheckPoint")
+        if (collision.gameObject.CompareTag("CheckPoint"))
         {
             RestoreHealth(2);
             _resetPos = collision.transform.position;

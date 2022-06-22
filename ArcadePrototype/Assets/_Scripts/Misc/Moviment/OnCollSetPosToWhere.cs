@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetPosOnColl : ConstantMoviment
+public class OnCollSetPosToWhere : ConstantMoviment
 {
     [SerializeField] private Transform _whereToSet;
     private float _whereToHeight;
@@ -23,7 +23,7 @@ public class SetPosOnColl : ConstantMoviment
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Destroyer")
+        if (collision.gameObject.CompareTag("Destroyer"))
         {
             _canMove = false;
             StartCoroutine(WaitToMove());

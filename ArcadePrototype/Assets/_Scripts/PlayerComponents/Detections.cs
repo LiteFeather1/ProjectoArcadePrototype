@@ -87,10 +87,10 @@ public class Detections : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Piston piston = hit.collider.GetComponent<Piston>();
-            if (piston != null)
+            IIGiveSpeed iGiveSpeed = hit.collider.GetComponent<IIGiveSpeed>();
+            if (iGiveSpeed != null)
             {
-                Vector2 force = piston.GetMySpeed();
+                Vector2 force = iGiveSpeed.GetMySpeed();
                 print(force);
                 if (force.y <= 1)
                     force.y = 1;
@@ -110,7 +110,7 @@ public class Detections : MonoBehaviour
             }
         }
         else
-        return Vector2.one;
+            return Vector2.one;
     }
 
     public Vector2 GetPistonSideSpeed()
@@ -118,15 +118,14 @@ public class Detections : MonoBehaviour
         RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.right, 1f, _wallMask);
         if (hit2.collider != null)
         {
-            Piston piston = hit2.collider.GetComponent<Piston>();
-            if (piston != null)
+            IIGiveSpeed iGiveSpeed = hit2.collider.GetComponent<IIGiveSpeed>();
+            if (iGiveSpeed != null)
             {
-                Vector2 force = piston.GetMySpeed();
+                Vector2 force = iGiveSpeed.GetMySpeed();
                 if (force.y <= 1)
                     force.y = 1;
                 if (force.x <= 1)
                     force.x = 1;
-                print("if");
                 return force / 20;
             }
             else

@@ -15,6 +15,7 @@ public class Main_InGameUiManager : MonoBehaviour
     [SerializeField] private TMP_Text _fps;
     [SerializeField] private TMP_Text txt_time;
     [SerializeField] private TMP_Text txt_DeathCount;
+    [SerializeField] private TMP_Text txt_Score;
 
     [SerializeField] private PlayerHitBox _player;
 
@@ -22,6 +23,7 @@ public class Main_InGameUiManager : MonoBehaviour
 
     private PersistentTimer _persistentTimer;
     private PersistentDeathCount _persistentDeathCount;
+    private PersistentScore _persistentScore;
 
     private void Awake()
     {
@@ -38,9 +40,14 @@ public class Main_InGameUiManager : MonoBehaviour
     private void Start()
     {
         _persistentTimer = PersistentTimer.Instance;
-        _persistentTimer?.EnableMe();
+        if (_persistentTimer != null)
+            _persistentTimer.EnableMe();
+
         _persistentDeathCount = PersistentDeathCount.Instance;
-        _persistentDeathCount?.UpdateDeathCount();
+        if(_persistentDeathCount != null)
+         _persistentDeathCount.UpdateDeathCount();
+
+        _persistentScore = PersistentScore.Instance;
         Time.timeScale = 1;
     }
 
@@ -48,6 +55,8 @@ public class Main_InGameUiManager : MonoBehaviour
     {
         FpsCounter();
         TimeToDisplay();
+        ScoreToDisplay();
+
         PauseGameInput();
     }
 
@@ -89,6 +98,13 @@ public class Main_InGameUiManager : MonoBehaviour
         else
             _pauseScreen.SetActive(true);
 
+    }
+
+    private void ScoreToDisplay()
+    {
+        if (_persistentScore == null)
+            return;
+        txt_Score.text = "Score : " + _persistentScore.Score.ToString("0000");
     }
     #endregion
 

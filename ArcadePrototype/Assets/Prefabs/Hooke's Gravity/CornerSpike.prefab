@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6362513631418736788}
   - component: {fileID: 6362513631418736791}
   - component: {fileID: 2321217993050904720}
-  - component: {fileID: 6335139228589194053}
   m_Layer: 0
   m_Name: CornerSpike
   m_TagString: Spike
@@ -110,15 +109,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &6335139228589194053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6362513631418736790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87953d0b31b04a54194cad066e28d1a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

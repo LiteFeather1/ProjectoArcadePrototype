@@ -10,7 +10,6 @@ public class CustomAnimator : MonoBehaviour
     [SerializeField] private float _speed = 1;
     private float _speedToPlay;
     [SerializeField] private bool _startOnAwake = true;
-    private bool _stop;
     [SerializeField] private float _timeToWaitBetweenAnimation;
     private float _timeBetween;
     [SerializeField] private bool _randomizeTimeBetween;
@@ -38,12 +37,10 @@ public class CustomAnimator : MonoBehaviour
 
     public void PlayAnimation(Transform position)
     {
-        _stop = false;
         _sR.enabled = true;
         float sampleRate = 1 / _sample;
         _speedToPlay = sampleRate / _speed;
-        transform.position = position.position;
-        transform.rotation = position.rotation;
+        transform.SetPositionAndRotation(position.position, position.rotation);
         StartTheCo();
     }
 

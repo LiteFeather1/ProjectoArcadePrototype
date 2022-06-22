@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,8 @@ public class Dash : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _ac;
 
+    private Action _dashedAction;
+
     private void Awake()
     {
         _hm = GetComponent<HorizontalMoviment>();
@@ -34,17 +37,18 @@ public class Dash : MonoBehaviour
         emission = _dashParticle.emission;
         _gravity = Physics2D.gravity;
     }
+
     private void Update()
     {
-        DashInput();
+        MouseDashInput();
+        KeyboardControllerDashInput();
         ReplenishDashOnceGroundedAgain();
-        //ParticleHandler();
         _d.SetDashing(_isDashing);
     }
 
     private void FixedUpdate()
     {
-        DashAction();
+        DashVerb();
     }
     
     private void DashLogic()
@@ -58,21 +62,30 @@ public class Dash : MonoBehaviour
         _ac.SetBool("Dashing", _isDashing);
         DashFlip();
     }
-    private void DashInput()
+
+    private void MouseDashInput()
     {
         if(_canDash && !_isDashing)
         {
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
+                DashedEvent();
                 _dashDirection = MouseDirection();
                 DashLogic();
             }
+        }
+    }
 
-            if(Input.GetButtonDown("Dash"))
+    private void KeyboardControllerDashInput()
+    {
+        if (_canDash && !_isDashing)
+        {
+            if (Input.GetButtonDown("Dash"))
             {
+                DashedEvent();
                 float xInput = Input.GetAxisRaw("Horizontal");
                 float yInput = Input.GetAxisRaw("Vertical");
-                if(Input.GetAxisRaw("Horizontal") == 0 && yInput == 0)
+                if (Input.GetAxisRaw("Horizontal") == 0 && yInput == 0)
                 {
                     if (_hm.FacingRight)
                         xInput = 1;
@@ -88,13 +101,12 @@ public class Dash : MonoBehaviour
         }
     }
 
-    private void DashAction()
+    private void DashVerb()
     {
         if(_isDashing)
         {
             _dashTime += Time.deltaTime;
             _dashSpeed = _dashSpeedCurve.Evaluate(_dashTime);
-            float yInput = Input.GetAxisRaw("Vertical");
             _hm.enabled = false;
             _rb.velocity = _dashDirection.normalized * _dashSpeed;
             _rb.gravityScale = 0;
@@ -163,17 +175,34 @@ public class Dash : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, direction > 0 ? 0 : 180, 0);
     }
 
+    #region AnimationEvents
     private void DashSquash(float squash)
     {
         transform.localScale = new Vector3(1f, squash);
     }
-
     private void DashStrecht(float strecht)
     {
         transform.localScale = new Vector3(strecht, 1f);
     }
+
     private void DashNormal()
     {
         transform.localScale = new Vector3(1f, 1f);
+    }
+    #endregion
+
+    private void DashedEvent()
+    {
+        _dashedAction?.Invoke();
+    }
+
+    public void AddMethodToDashEvent(Action action)
+    {
+        _dashedAction += action;
+    }
+
+    public void RemoveMethodFromDashEvent(Action action)
+    {
+        _dashedAction -= action;
     }
 }

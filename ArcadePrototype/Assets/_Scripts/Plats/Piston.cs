@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Piston : MoveWhenPlayerAbove
+public class Piston : MoveWhenPlayerAbove, IIGiveSpeed
 {
     [SerializeField] private float _delayToMove;
     [SerializeField] private AnimationCurve _speedCurve;
@@ -69,7 +69,7 @@ public class Piston : MoveWhenPlayerAbove
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (!_once)
             {         
@@ -87,7 +87,8 @@ public class Piston : MoveWhenPlayerAbove
     {
         if(_moveToWhere)
         {
-            return _whereToMove.normalized * _speed * _moving;
+            Vector2 speed = _moving * _speed * _whereToMove.normalized;
+            return speed;
         }
 
         return Vector2.one;

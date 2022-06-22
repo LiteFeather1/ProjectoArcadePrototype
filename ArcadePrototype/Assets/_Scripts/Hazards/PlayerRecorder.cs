@@ -67,7 +67,7 @@ public class PlayerRecorder : MonoBehaviour
             speedToAdd = 5;
         }
 
-        _speeds.Add(speedToAdd * 2);
+        _speeds.Add(speedToAdd * 1.9f);
     }
 
     private void Eraser()
@@ -76,7 +76,6 @@ public class PlayerRecorder : MonoBehaviour
         if (distance <= 0.33f)
         {
             _positions.RemoveAt(0);
-            print(_speeds[0]);
             _speeds.RemoveAt(0);
         }
     }
@@ -91,5 +90,10 @@ public class PlayerRecorder : MonoBehaviour
         _positions.Clear();
         _speeds.Clear();  
         transform.position = _startPos;
+    }
+
+    private void OnDisable()
+    {
+        Reset();
     }
 }

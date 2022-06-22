@@ -67,8 +67,8 @@ public class WallJump : MonoBehaviour
             StartCoroutine(Co_ReactivateHorizontalMoviment());
 
 
-            float xForce = Input.GetAxisRaw("Horizontal");
-            float upForce = 0;
+            float xForce;
+            float upForce;
             if (_wS.Stamina > 0)
             {
                 if (Input.GetAxisRaw("Vertical") >= .5f)
@@ -95,7 +95,7 @@ public class WallJump : MonoBehaviour
                 else
                     xForce = -1;
                 _horizontal.Flip(true);
-                _direction = _direction * -1;
+                _direction *= -1;
                 upForce = .5f;
                 print("WallJumpElse2");
             }
