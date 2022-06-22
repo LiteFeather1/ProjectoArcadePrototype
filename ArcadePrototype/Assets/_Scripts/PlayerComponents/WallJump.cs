@@ -15,7 +15,7 @@ public class WallJump : MonoBehaviour
     private Rigidbody2D _rb;
     private WallStamina _wS;
     private Animator _ac;
-    [SerializeField] private CustomAnimator _wallJump;
+    [SerializeField] private CustomAnimator _wallJumpParticle;
 
     private HorizontalMoviment _horizontal;
 
@@ -102,7 +102,7 @@ public class WallJump : MonoBehaviour
             _rb.velocity = Vector2.zero;
             _rb.velocity = new Vector2(_jumpForce.x * -xForce * pistonSideSpeed.x, _jumpForce.y * upForce * pistonSideSpeed.y);
             _ac.SetTrigger("WallJumped");
-            _wallJump.PlayAnimation(transform);
+            _wallJumpParticle.PlayAnimation(transform);
         }
     }
 

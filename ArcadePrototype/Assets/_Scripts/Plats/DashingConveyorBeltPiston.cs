@@ -9,7 +9,7 @@ public class DashingConveyorBeltPiston : MonoBehaviour, IIGiveSpeed
     [SerializeField] private AnimationCurve _speedCurve;
     private float _evaluateSpeedTime;
     private int _moving = 0;
-    [SerializeField] private float _movingBackSpeed;
+    [SerializeField] private AnimationCurve _movingBackSpeedCurve;
 
     [Header("Positions")]
     [SerializeField] Vector3 _whereToMove;
@@ -94,7 +94,6 @@ public class DashingConveyorBeltPiston : MonoBehaviour, IIGiveSpeed
             _evaluateSpeedTime = 0;
             yield return new WaitForSeconds(_delayToMoveBack);
             _moveToWhere = false;
-            _speed = _movingBackSpeed;
             _newDash = true;
         }
             StartCoroutine(MoveBack());
@@ -104,8 +103,11 @@ public class DashingConveyorBeltPiston : MonoBehaviour, IIGiveSpeed
     {
         while (_newDash)
         {
+            _speed = 0;
             while(!_moveToWhere && transform.position != _startPos)
             {
+                _evaluateSpeedTime += Time.deltaTime;
+                _speed = _movingBackSpeedCurve.Evaluate(_evaluateSpeedTime);
                 transform.position = Vector2.MoveTowards(transform.position, _startPos, _speed * Time.deltaTime);
                 yield return null;
             }
