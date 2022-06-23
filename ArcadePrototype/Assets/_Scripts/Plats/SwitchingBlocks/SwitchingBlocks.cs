@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class SwitchingBlocks : MonoBehaviour
+public class SwitchingBlocks : MonoBehaviour, IButtonable
 {
     [SerializeField] private BrainSwitchingBlock _brain;
 
@@ -54,5 +54,10 @@ public class SwitchingBlocks : MonoBehaviour
     {
         _sr.enabled = state;
         _bc.enabled = state;
+    }
+
+    public void ToInterract(bool state)
+    {
+        throw new System.NotImplementedException();
     }
 }

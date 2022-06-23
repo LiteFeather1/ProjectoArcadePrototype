@@ -15018,7 +15018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whereToTeleport: {fileID: 121308429}
-  _whatType: 4
+  _whatType: 1
   _transfromUp: {fileID: 834812626}
   _transfromRight: {fileID: 1316538275}
 --- !u!212 &586484351
@@ -17196,6 +17196,10 @@ PrefabInstance:
       objectReference: {fileID: 1698536664}
     - target: {fileID: 6139636761505032453, guid: 2d477316b1449c441a322622f165310f, type: 3}
       propertyPath: _wallJump
+      value: 
+      objectReference: {fileID: 618622056}
+    - target: {fileID: 6139636761505032453, guid: 2d477316b1449c441a322622f165310f, type: 3}
+      propertyPath: _wallJumpParticle
       value: 
       objectReference: {fileID: 618622056}
     - target: {fileID: 6139636761505032456, guid: 2d477316b1449c441a322622f165310f, type: 3}
