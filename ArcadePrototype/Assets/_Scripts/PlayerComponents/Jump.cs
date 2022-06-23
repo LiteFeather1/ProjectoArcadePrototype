@@ -105,23 +105,25 @@ public class Jump : MonoBehaviour
             }
             else
             {
-                float xVelocity = _rb.velocity.x;
-                if (xVelocity > -0.5f)
+                float xVelocity = Mathf.Abs(_rb.velocity.x);
+                if (Mathf.Abs(xVelocity) < 5)
                     xVelocity = 5;
-                if (xVelocity < 0.5f)
-                    xVelocity = -5;
 
-                bool velocityEqual = Mathf.Sign(xVelocity) == Mathf.Sign(_gd.GetPistonSpeed().x);
-                if(velocityEqual)
+                bool velocityEqual = Mathf.Sign(_rb.velocity.x) == Mathf.Sign(_gd.GetPistonSpeed().x);
+                if (Input.GetAxisRaw("Horizontal") == 0)
+                    velocityEqual = true;
+
+                if (velocityEqual)
+                {
                     _rb.velocity = new Vector2(_gd.GetPistonSpeed().x * _jumpForce * xVelocity, _jumpForce * _gd.GetPistonSpeed().y);
+                }
                 else
                 {
                     float velocityDIff = _gd.GetPistonSpeed().x - xVelocity;
-                    _rb.velocity = new Vector2(_jumpForce *  -velocityDIff / 10, _jumpForce * _gd.GetPistonSpeed().y);
-                    //print(velocityDIff/2);
+                    _rb.velocity = new Vector2(_jumpForce * -velocityDIff / 10, _jumpForce * _gd.GetPistonSpeed().y);
                 }
             }
-            print(_gd.GetPistonSpeed());
+            //print(_gd.GetPistonSpeed());
             StartCoroutine(JumpCoolDown_Co());
         }
     }

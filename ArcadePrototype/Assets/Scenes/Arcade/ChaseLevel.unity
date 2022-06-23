@@ -48142,6 +48142,10 @@ PrefabInstance:
       propertyPath: _wallJump
       value: 
       objectReference: {fileID: 2129275505}
+    - target: {fileID: 6139636761505032453, guid: 2d477316b1449c441a322622f165310f, type: 3}
+      propertyPath: _wallJumpParticle
+      value: 
+      objectReference: {fileID: 2129275505}
     - target: {fileID: 6139636761505032458, guid: 2d477316b1449c441a322622f165310f, type: 3}
       propertyPath: _firstJumpParticle
       value: 

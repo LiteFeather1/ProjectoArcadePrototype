@@ -32700,7 +32700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpForce: {x: 7.5, y: 10}
-  _wallJump: {fileID: 887098438320274848}
+  _wallJumpParticle: {fileID: 887098438320274848}
 --- !u!114 &6139636760122927805
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -91,17 +91,16 @@ public class Detections : MonoBehaviour
             if (iGiveSpeed != null)
             {
                 Vector2 force = iGiveSpeed.GetMySpeed();
-                print(force);
+                //print(force);
                 if (force.y <= 1)
                     force.y = 1;
                 if(force.y == 1)
                 {
-                    return new Vector2(force.x / 25, force.y);
+                    return new Vector2(force.x / 35, force.y);
                 }
                 else
                 {
-                    print(force / 25);
-                    return force / 25;
+                    return new Vector2 (force.x / 35 , force.y / 25);
                 }
             }
             else
@@ -122,10 +121,16 @@ public class Detections : MonoBehaviour
             if (iGiveSpeed != null)
             {
                 Vector2 force = iGiveSpeed.GetMySpeed();
-                if (force.y <= 1)
+                if (force.y <= 1 && force.y > 0)
                     force.y = 1;
-                if (force.x <= 1)
-                    force.x = 1;
+                else if (force.y >= -1 && force.y < 0)
+                    force.y = -1;
+
+                if (force.x <= 1 && force.x > 0)
+                    force.x= 1;
+                else if (force.x >= -1 && force.x < 0)
+                    force.x = -1;
+
                 return force / 20;
             }
             else
