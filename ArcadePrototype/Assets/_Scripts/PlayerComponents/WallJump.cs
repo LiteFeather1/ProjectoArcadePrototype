@@ -97,12 +97,12 @@ public class WallJump : MonoBehaviour
             }
 
             Vector2 pistonSideSpeed = _detection.GetPistonSideSpeed();
-            if (pistonSideSpeed.x >= 1 || pistonSideSpeed.x <= -1)
+            if (pistonSideSpeed.x > 1 || pistonSideSpeed.x < -1)
                 pistonSideSpeed = _detection.GetPistonSideSpeed() * 133 / 100;
 
             _rb.velocity = Vector2.zero;
             _rb.velocity = new Vector2(_jumpForce.x * -xForce * pistonSideSpeed.x, _jumpForce.y * upForce * pistonSideSpeed.y);
-            print(pistonSideSpeed);
+           //print(pistonSideSpeed);
             _ac.SetTrigger("WallJumped");
             _wallJumpParticle.PlayAnimation(transform);
         }

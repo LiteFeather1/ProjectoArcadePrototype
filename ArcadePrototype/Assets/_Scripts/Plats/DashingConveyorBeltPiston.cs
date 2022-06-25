@@ -32,9 +32,21 @@ public class DashingConveyorBeltPiston : MonoBehaviour, IIGiveSpeed
 
     [SerializeField] private Dash _playerDash;
 
+    private Rigidbody2D _rb;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
     private void OnEnable()
     {
         _playerDash.AddMethodToDashEvent(StartMoving);
+    }
+
+    private void Reset()
+    {
+        _playerDash = FindObjectOfType<Dash>();
     }
 
     private void Start()
@@ -87,8 +99,9 @@ public class DashingConveyorBeltPiston : MonoBehaviour, IIGiveSpeed
             {
                 _evaluateSpeedTime += Time.deltaTime;
                 _speed = _speedCurve.Evaluate(_evaluateSpeedTime);
-                transform.position = Vector2.MoveTowards(transform.position, _realWhereToMove, _speed * Time.deltaTime);
-                yield return null;
+                Vector2 posToMove = Vector2.MoveTowards(transform.position, _realWhereToMove, _speed * Time.deltaTime);
+                _rb.MovePosition(posToMove);
+                yield return new WaitForFixedUpdate();
             }
 
             _evaluateSpeedTime = 0;
@@ -108,8 +121,9 @@ public class DashingConveyorBeltPiston : MonoBehaviour, IIGiveSpeed
             {
                 _evaluateSpeedTime += Time.deltaTime;
                 _speed = _movingBackSpeedCurve.Evaluate(_evaluateSpeedTime);
-                transform.position = Vector2.MoveTowards(transform.position, _startPos, _speed * Time.deltaTime);
-                yield return null;
+                Vector2 posToMove = Vector2.MoveTowards(transform.position, _startPos, _speed * Time.deltaTime);
+                _rb.MovePosition(posToMove);
+                yield return new WaitForFixedUpdate();
             }
             _speed = 0;
             _newDash = false;
