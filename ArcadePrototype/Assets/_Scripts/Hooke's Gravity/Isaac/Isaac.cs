@@ -260,7 +260,8 @@ public class Isaac : MonoBehaviour
                 _currentSpeed = _pullSpeed;
             }
 
-            transform.position = Vector2.MoveTowards(transform.position, whereTo, _currentSpeed);
+            Vector2 posToMove = Vector2.MoveTowards(transform.position, whereTo, _currentSpeed);
+            _rb.MovePosition(posToMove);
             currentDistance = Vector2.Distance(transform.position, whereTo);
             yield return new WaitForFixedUpdate();
         }

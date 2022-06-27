@@ -9,16 +9,23 @@ public class Lightning : MonoBehaviour
 
     private Queue<GameObject> _lightings = new Queue<GameObject>();
 
+    private Vector2 _position;
+    private Vector2 _currentPosition;
+
     private bool _canMove = true;
     private bool _isHarrySolid = true;
 
     [SerializeField] private Animator _ac;
     [SerializeField] private SpriteRenderer _sr;
-
-    private Vector2 _position;
-    private Vector2 _currentPosition;
+    private Rigidbody2D _rb;
 
     ObjectPooler _objectPooler;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
     private void Start()
     {
         _position = transform.position;
@@ -43,7 +50,10 @@ public class Lightning : MonoBehaviour
     {
         while(_canMove) 
         {
-            transform.Translate(Vector2.up * _speed * Time.deltaTime, Space.Self);
+            //transform.Translate(Vector2.up * _speed * Time.deltaTime, Space.Self);
+            Vector2 test = transform.up * 100; 
+            Vector2 posToMove = Vector2.MoveTowards(transform.position, test, _speed * Time.deltaTime);
+            _rb.MovePosition(posToMove);
             _currentPosition = transform.position;
             float distance = Vector2.Distance(_currentPosition, _position);
             if (distance > .85f)
@@ -74,6 +84,7 @@ public class Lightning : MonoBehaviour
         if (Vector2.Distance(whatToMove.transform.position, transform.position) > .75f)
         {
             _harry.CurrentMoveToPoint = _harry.Co_MoveToPoint(new Vector3(posX, posY));
+            print(new Vector3(posX, posY));
             StartCoroutine(_harry.CurrentMoveToPoint);
         }
         else
@@ -90,13 +101,17 @@ public class Lightning : MonoBehaviour
         _ac.SetTrigger("Impact");
         StartCoroutine(DestroySlowly());
 
-        if (Vector2.Distance(whatToMove.transform.position, transform.position) > .75f)
+        float distance = Vector2.Distance(whatToMove.transform.position, transform.position);
+        print(distance);
+        if (distance > .5f)
         {
             whatToMove.GetComponent<Ilightnable>().TurnTrueLightning(new Vector3(posX, posY));
+            print("canMove");
         }
         else
         {
             _harry.ReturnLightningFalse();
+            print("cantmove");
         }
     }
 
@@ -127,6 +142,7 @@ public class Lightning : MonoBehaviour
             StartCoroutine(DestroySlowly());
             _harry.ReturnLightningFalse();
         }
+        print(collision.name);
     }
 
     IEnumerator DestroySlowly()

@@ -5,10 +5,17 @@ using UnityEngine;
 public class LightableBlock : MonoBehaviour, Ilightnable
 {
     private bool _lightning;
-    private float _pullSpeed = 17.5f;
+    private float _pullSpeed = 35;
     private Vector3 _whereTo;
     Vector2 dir;
     private bool _once;
+
+    private Rigidbody2D _rb;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -49,8 +56,10 @@ public class LightableBlock : MonoBehaviour, Ilightnable
 
         dir.x = Mathf.RoundToInt(dir.x);
         dir.y = Mathf.RoundToInt(dir.y);
-        print(dir);
-        transform.Translate(dir * _pullSpeed * Time.deltaTime, Space.World);
+        //print(dir);
+        Vector2 posToMove = Vector2.MoveTowards(transform.position, whereTo, _pullSpeed * Time.deltaTime);
+        _rb.MovePosition(posToMove);
+        //transform.Translate(dir * _pullSpeed * Time.deltaTime, Space.World);
     }
 
     public void TurnTrueLightning(Vector3 whereTo)
@@ -58,6 +67,7 @@ public class LightableBlock : MonoBehaviour, Ilightnable
         _lightning = true;
         _once = false;
         _whereTo = whereTo;
+        print(_whereTo);
     }
 
     public bool ReturnLightningFalse()

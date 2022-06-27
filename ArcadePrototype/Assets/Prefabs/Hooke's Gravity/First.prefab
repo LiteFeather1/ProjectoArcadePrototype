@@ -98,8 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb2b741ab9627c439615a6b256e7487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 14
-  _middleLightings: {fileID: 6781440893628016205, guid: 45b0c7580b6579f4ebe0be1629ba739e, type: 3}
+  _speed: 20
   _ac: {fileID: 8612505934122204701}
   _sr: {fileID: 746356958827369994}
 --- !u!61 &746356958827369998
