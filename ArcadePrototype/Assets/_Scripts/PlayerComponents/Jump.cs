@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Detections))]
 public class Jump : MonoBehaviour
@@ -36,10 +37,17 @@ public class Jump : MonoBehaviour
     [SerializeField] private CustomAnimator _customAnimator;
     [SerializeField] private Transform _visualAidTransform;
 
+    [Header("Events")]
+    private Action _jumpedEvent;
+    private Action _doubledJumpEvent;
+
     private Detections _gd;
     private Rigidbody2D _rb;
     private Animator _ac;
     private WallStamina _wallstamina;
+
+    public Action JumpedEvent { get => _jumpedEvent; set => _jumpedEvent = value; }
+    public Action DoubledJumpEvent { get => _doubledJumpEvent; set => _doubledJumpEvent = value; }
 
     private void Awake()
     {
@@ -125,6 +133,7 @@ public class Jump : MonoBehaviour
             }
             //print(_gd.GetPistonSpeed());
             StartCoroutine(JumpCoolDown_Co());
+            _jumpedEvent?.Invoke();
         }
     }
 
@@ -149,6 +158,7 @@ public class Jump : MonoBehaviour
             _ac.SetTrigger("SecondJump");
             _secondJumpParticle.PlayAnimation(transform);
             StopVisualAidAnimation();
+            _doubledJumpEvent?.Invoke();
             //print("Doubled");
         }
     }

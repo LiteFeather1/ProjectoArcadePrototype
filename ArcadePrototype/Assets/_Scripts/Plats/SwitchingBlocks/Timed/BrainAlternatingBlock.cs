@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrainSwitchingBlock : MonoBehaviour
+public class BrainAlternatingBlock : MonoBehaviour
 {
     [SerializeField] private float _blockTime;
 

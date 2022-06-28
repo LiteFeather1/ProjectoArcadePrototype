@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class SwitchingBlocks : MonoBehaviour, IButtonable
+public class AlternatingBlocks : MonoBehaviour, IButtonable
 {
-    [SerializeField] private BrainSwitchingBlock _brain;
+    [SerializeField] private BrainAlternatingBlock _brain;
 
     [SerializeField] private WhatNumberAmI _whatNumberAmI;
     private bool _active = true;
@@ -32,7 +32,7 @@ public class SwitchingBlocks : MonoBehaviour, IButtonable
 
     private void Start()
     {
-        if (_whatNumberAmI == WhatNumberAmI.Two)
+        if (_whatNumberAmI == WhatNumberAmI.One)
         {
             _active = false;
         }

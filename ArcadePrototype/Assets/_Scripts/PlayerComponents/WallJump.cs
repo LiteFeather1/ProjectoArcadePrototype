@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ public class WallJump : MonoBehaviour
     [SerializeField] private CustomAnimator _wallJumpParticle;
 
     private HorizontalMoviment _horizontal;
+
+    private Action _wallJumpEvent;
+
+    public Action WallJumpEvent { get => _wallJumpEvent; set => _wallJumpEvent = value; }
 
     private void Awake()
     {
@@ -105,6 +110,7 @@ public class WallJump : MonoBehaviour
            //print(pistonSideSpeed);
             _ac.SetTrigger("WallJumped");
             _wallJumpParticle.PlayAnimation(transform);
+            _wallJumpEvent?.Invoke();
         }
     }
 
