@@ -47416,7 +47416,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 18
-      m_TileSpriteIndex: 20
+      m_TileSpriteIndex: 31
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -47476,7 +47476,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 4
-      m_TileSpriteIndex: 17
+      m_TileSpriteIndex: 30
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -51277,14 +51277,14 @@ Tilemap:
     m_Data: {fileID: 1955696461650195340, guid: c609567f80567e64e9d91b11a356f872, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -6862153287541050665, guid: c609567f80567e64e9d91b11a356f872, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 8827471031536063841, guid: 9114a8200e8333c468dbe68f336959fb, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 5
     m_Data: {fileID: -6428298632415316042, guid: 9114a8200e8333c468dbe68f336959fb, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -2502475395078605671, guid: 9114a8200e8333c468dbe68f336959fb, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -4701496446004766043, guid: 0a28fcdf758cf334898515c6bfe3f288, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 6
     m_Data: {fileID: 2066188200344418693, guid: 90aae0239e033244f9acc19adfb0cadc, type: 3}
   - m_RefCount: 3
@@ -51303,10 +51303,10 @@ Tilemap:
     m_Data: {fileID: 6958147056157409064, guid: 409967ad6e72de44caaba4dbe1f64ced, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -3817043856960558184, guid: 4e88cc2868b99f147a5cab803d396c9f, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 8827471031536063841, guid: 9114a8200e8333c468dbe68f336959fb, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -4701496446004766043, guid: 0a28fcdf758cf334898515c6bfe3f288, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -8177819963656857032, guid: 4e88cc2868b99f147a5cab803d396c9f, type: 3}
   - m_RefCount: 2
@@ -83995,7 +83995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a537da7d8d6f91a42985e52ff4553e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelToLoad: WallClimb
+  _levels: 4
+  _levelToLoad: 
 --- !u!212 &1031767431
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -86116,7 +86117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698536663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.000002861023, z: -10}
+  m_LocalPosition: {x: -0.00053596497, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 128860309}

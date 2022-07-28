@@ -5,16 +5,49 @@ using UnityEngine.SceneManagement;
 
 public class MachineLoadLevel : MonoBehaviour, IIteractable
 {
+    [SerializeField] private Main_Levels _levels;
     [SerializeField] private string _levelToLoad;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
-            SceneManager.LoadScene(_levelToLoad);
+            ToInteract();
+        if (Input.GetKeyDown(KeyCode.M))
+            LevelsCompleted();
     }
+
     public void ToInteract()
     {
-        if (_levelToLoad != "")
-            SceneManager.LoadScene(_levelToLoad);
+        LoadLevel();
     }
+
+    private void LoadLevel()
+    {
+        if (_levels != Main_Levels.None)
+        {
+            SceneManager.LoadScene(_levels.ToString());
+            LevelsCompleted();
+        }
+        else
+        {
+            SceneManager.LoadScene(_levelToLoad);
+        }
+    }
+
+    private void LevelsCompleted()
+    {
+        PlayerPrefsHelper.SaveLevelsCompleted(_levels);  
+    }
+}
+
+
+
+public enum Main_Levels
+{
+    None,
+    World11,
+    DoubleJump,
+    WallJump,
+    WallClimb,
+    Dash
 }

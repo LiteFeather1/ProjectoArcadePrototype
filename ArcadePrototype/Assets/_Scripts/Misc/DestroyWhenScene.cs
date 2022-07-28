@@ -19,7 +19,7 @@ public class DestroyWhenScene : MonoBehaviour
     private void DestroOnSceneChange(Scene current, Scene next)
     {
         Scene scene = SceneManager.GetActiveScene();
-        print(scene.name);
+        //print(scene.name);
         if (scene.name == _inWhatSceneToDestroy)
             Destroy(gameObject);
     }

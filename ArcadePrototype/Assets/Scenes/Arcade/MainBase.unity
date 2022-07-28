@@ -6475,8 +6475,8 @@ RectTransform:
   - {fileID: 1095772383}
   - {fileID: 1215240815}
   - {fileID: 1400873785}
-  - {fileID: 971874019}
   - {fileID: 1613798056}
+  - {fileID: 971874019}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6687,6 +6687,12 @@ MonoBehaviour:
   txt_time: {fileID: 1215240816}
   txt_DeathCount: {fileID: 1400873786}
   txt_Score: {fileID: 1613798057}
+  txt_MusicVolume: {fileID: 0}
+  txt_SFXVolume: {fileID: 0}
+  _showTime: {fileID: 0}
+  _showDeaths: {fileID: 0}
+  _showScore: {fileID: 0}
+  _assistMode: {fileID: 0}
   _player: {fileID: 1382106042}
 --- !u!4 &849639007
 Transform:
@@ -6795,7 +6801,7 @@ RectTransform:
   - {fileID: 1923292692}
   - {fileID: 1740116909}
   m_Father: {fileID: 774240785}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6982,6 +6988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a537da7d8d6f91a42985e52ff4553e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levels: 0
   _levelToLoad: World1-1
 --- !u!212 &1031767431
 SpriteRenderer:
@@ -8618,7 +8625,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 774240785}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

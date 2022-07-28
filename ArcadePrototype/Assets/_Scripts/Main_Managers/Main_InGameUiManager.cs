@@ -4,26 +4,47 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class Main_InGameUiManager : MonoBehaviour
 {
+    [Header ("UI Frames")]
     [SerializeField] private GameObject _pauseScreen;
 
+    [Header ("Player HUD")]
     [SerializeField] private Image _staminaBar;
     [SerializeField] private Image _healthBar;
 
+    [Header ("TMP Texts")]
     [SerializeField] private TMP_Text _fps;
     [SerializeField] private TMP_Text txt_time;
     [SerializeField] private TMP_Text txt_DeathCount;
     [SerializeField] private TMP_Text txt_Score;
 
+    [SerializeField] private TMP_Text txt_MusicVolume;
+    [SerializeField] private TMP_Text txt_SFXVolume;
+
+    [Header ("Toggles")]
+    [SerializeField] private Toggle toggle_ShowTime;
+    [SerializeField] private Toggle toggle_ShowDeaths;
+    [SerializeField] private Toggle toggle_ShowScore;
+    [SerializeField] private Toggle toggle_AssistMode;
+    private bool _antiToggleOnStart;
+
+    [Header ("Player")]
     [SerializeField] private PlayerHitBox _player;
+
+    private Action _musicVolumeChanged;
+    private Action _sfxVolumeChanged;
 
     public static Main_InGameUiManager Instance;
 
     private PersistentTimer _persistentTimer;
     private PersistentDeathCount _persistentDeathCount;
     private PersistentScore _persistentScore;
+
+    public Action MusicVolumeChanged { get => _musicVolumeChanged; set => _musicVolumeChanged = value; }
+    public Action SfxVolumeChanged { get => _sfxVolumeChanged; set => _sfxVolumeChanged = value; }
 
     private void Awake()
     {
@@ -49,6 +70,10 @@ public class Main_InGameUiManager : MonoBehaviour
 
         _persistentScore = PersistentScore.Instance;
         Time.timeScale = 1;
+
+
+        UpdateToggles();
+        UpdateAllTXTs();
     }
 
     private void Update()
@@ -108,7 +133,6 @@ public class Main_InGameUiManager : MonoBehaviour
     }
     #endregion
 
-
     #region Inputs
 
     public void PauseGame()
@@ -154,5 +178,114 @@ public class Main_InGameUiManager : MonoBehaviour
         Debug.Log("Bye");
     }
 
+    public void ButtonChangeMusicVolume(float changeAmount)
+    {
+        float f = changeAmount;
+        float realChangeAmount = PlayerPrefsHelper.GetMusicVolume() + f;
+        realChangeAmount = Mathf.Clamp(realChangeAmount, PlayerPrefsHelper.MinVolume, PlayerPrefsHelper.MaxVolume);
+        PlayerPrefsHelper.SetMusicVolume(realChangeAmount);
+        UpdateMusicVolumeTXT();
+        _musicVolumeChanged?.Invoke();
+    }
+
+    public void ButtonChangeSFXVolume(float changeAmount)
+    {
+        float f = changeAmount;
+        float realChangeAmount = PlayerPrefsHelper.GetSFXVolume() + f;
+        realChangeAmount = Mathf.Clamp(realChangeAmount, PlayerPrefsHelper.MinVolume, PlayerPrefsHelper.MaxVolume);
+        PlayerPrefsHelper.SetSFXVolume(realChangeAmount);
+        UpdateSFXVolumeTXT();
+        _sfxVolumeChanged?.Invoke();
+    }
+
+    public void ToggleTime()
+    {
+        if(_antiToggleOnStart)
+            PlayerPrefsHelper.ToggleTime();
+        ShowTime();
+    }
+
+    public void ToggleDeaths()
+    {
+        if(_antiToggleOnStart)
+            PlayerPrefsHelper.ToggleDeath();
+        ShowDeaths();
+    }
+
+    public void ToggleScore()
+    {
+        if(_antiToggleOnStart)
+        PlayerPrefsHelper.ToggleScore();
+        ShowScore();
+    }
+
+    public void ToggleAssistMode()
+    {
+        if(_antiToggleOnStart)
+            PlayerPrefsHelper.ToggleAssistMode();
+    }
+
+    private void UpdateToggles()
+    {
+        toggle_ShowTime.isOn = PlayerPrefsHelper.GetBool(PlayerPrefsHelper.SHOWTIME);
+        toggle_ShowDeaths.isOn = PlayerPrefsHelper.GetBool(PlayerPrefsHelper.SHOWDEATHS);
+        toggle_ShowScore.isOn = PlayerPrefsHelper.GetBool(PlayerPrefsHelper.SHOWSCORE);
+        toggle_AssistMode.isOn = PlayerPrefsHelper.GetBool(PlayerPrefsHelper.ASSISTMODE);
+        _antiToggleOnStart = true;
+    }
+
+    private void UpdateAllTXTs()
+    {
+        UpdateMusicVolumeTXT();
+        UpdateSFXVolumeTXT();
+        ShowTime();
+        ShowDeaths();
+        ShowScore();
+    }
+
+    private void UpdateMusicVolumeTXT()
+    {
+        float v = PlayerPrefsHelper.GetMusicVolume() * 100;
+
+        string format;
+        if (v < 2)
+            format = "0";
+        else if (v == 100)
+            format = "000";
+        else
+            format = "00";
+
+        txt_MusicVolume.text = v.ToString(format) + "%";
+    }
+    
+    private void UpdateSFXVolumeTXT()
+    {
+        float v = PlayerPrefsHelper.GetSFXVolume() * 100;
+
+        string format;
+        if (v < 2)
+            format = "0";
+        else if (v == 100)
+            format = "000";
+        else
+            format = "00";
+
+        txt_SFXVolume.text = v.ToString(format) + "%";
+    }
+
+    private void ShowTime()
+    {
+        txt_time.enabled = PlayerPrefsHelper.GetBool(PlayerPrefsHelper.SHOWTIME);
+    }
+
+    private void ShowDeaths()
+    {
+        txt_DeathCount.enabled = PlayerPrefsHelper.GetBool(PlayerPrefsHelper.SHOWDEATHS);
+    }
+
+    private void ShowScore()
+    {
+        txt_Score.enabled = PlayerPrefsHelper.GetBool(PlayerPrefsHelper.SHOWSCORE);
+    }
     #endregion
 }
