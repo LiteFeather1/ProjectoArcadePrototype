@@ -28,7 +28,7 @@ public class InteractInputs : MonoBehaviour
 
     private void DeactivatePlatsBellow()
     {
-        if (Input.GetAxisRaw("Vertical") < 0)
+        if (Input.GetAxisRaw("Vertical") < 0 && Time.timeScale > 0)
         {
             float extraHeightText = .125f;
             RaycastHit2D hit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeightText, _deactivatableMask);
@@ -56,7 +56,7 @@ public class InteractInputs : MonoBehaviour
 
     private void InteractWithMachine()
     {
-        if(Input.GetButtonDown("Interact"))
+        if(Input.GetButtonDown("Interact") && Time.timeScale > 0)
         {
             RaycastHit2D hit = Physics2D.Raycast(_collider.bounds.center, transform.right, .25f, _interactMask);
 

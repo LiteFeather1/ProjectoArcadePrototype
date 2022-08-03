@@ -66,6 +66,7 @@ public class HorizontalMoviment : MonoBehaviour
         Friction();
         LimitHorizontalSpeed();
     }
+
     private void HorizontalMovimentLogic()
     {
         float targetSpeed = _moveSpeed * _direction;
@@ -77,6 +78,8 @@ public class HorizontalMoviment : MonoBehaviour
 
     public void Flip(bool flipSwitch)
     {
+        if (Time.timeScale < 1)
+            return;
         if (!flipSwitch)
         {
             if (_direction > 0)

@@ -8,8 +8,10 @@ using System;
 
 public class Main_InGameUiManager : MonoBehaviour
 {
-    [Header ("UI Frames")]
+    [Header("Pause Screen")]
+    [SerializeField] private Button _mainPauseButton;
     [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private GameObject _optionsScreen;
 
     [Header ("Player HUD")]
     [SerializeField] private Image _staminaBar;
@@ -82,7 +84,7 @@ public class Main_InGameUiManager : MonoBehaviour
         TimeToDisplay();
         ScoreToDisplay();
 
-        PauseGameInput();
+        ProcessInputs();
     }
 
     #region Displays
@@ -119,10 +121,15 @@ public class Main_InGameUiManager : MonoBehaviour
     private void DisplayPauseScreen()
     {
         if (Time.timeScale == 1)
+        {
             _pauseScreen.SetActive(false);
+            _optionsScreen.SetActive(false);
+        }
         else
+        {
             _pauseScreen.SetActive(true);
-
+            _mainPauseButton.Select();
+        }
     }
 
     private void ScoreToDisplay()
@@ -138,10 +145,30 @@ public class Main_InGameUiManager : MonoBehaviour
     public void PauseGame()
     {
         if (Time.timeScale == 1)
+        {
             Time.timeScale = 0;
+        }
         else
-            Time.timeScale = 1;
+        {
+            StartCoroutine(ShortUnPauseDelay());
+        }
+
         DisplayPauseScreen();
+    }
+
+    IEnumerator ShortUnPauseDelay()
+    {
+        yield return new WaitForEndOfFrame();
+        Time.timeScale = 1;
+        DisplayPauseScreen();
+    }
+
+    private void ProcessInputs()
+    {
+        if (_pauseScreen == null)
+            return;
+        PauseGameInput();
+        ButtonBack();
     }
 
     private void PauseGameInput()
@@ -149,6 +176,24 @@ public class Main_InGameUiManager : MonoBehaviour
         if(Input.GetButtonDown("PauseGame"))
         {
             PauseGame();
+        }
+    }
+
+    private void ButtonBack()
+    {
+        bool optionsOpen = _optionsScreen.activeInHierarchy;
+        bool pauseOpen = _pauseScreen.activeInHierarchy;
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (optionsOpen)
+            {
+                _optionsScreen.SetActive(false);
+                _mainPauseButton.Select();
+            }
+            else if (pauseOpen)
+            {
+                PauseGame();
+            }
         }
     }
     #endregion
@@ -178,6 +223,16 @@ public class Main_InGameUiManager : MonoBehaviour
         Debug.Log("Bye");
     }
 
+    public void ButtonOpenOptions()
+    {
+        _optionsScreen.SetActive(true);
+    }
+
+    public void ButtonCloseOptions()
+    {
+        _optionsScreen.SetActive(false);
+    }
+
     public void ButtonChangeMusicVolume(float changeAmount)
     {
         float f = changeAmount;
@@ -196,6 +251,11 @@ public class Main_InGameUiManager : MonoBehaviour
         PlayerPrefsHelper.SetSFXVolume(realChangeAmount);
         UpdateSFXVolumeTXT();
         _sfxVolumeChanged?.Invoke();
+    }
+
+    public void ButtonSetSelect(Selectable selectable)
+    {
+        selectable.Select();
     }
 
     public void ToggleTime()

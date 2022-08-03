@@ -6,6 +6,7 @@ public class SFXVolumeListener : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
 
+
     private void Start()
     {
         UpdateVolume();

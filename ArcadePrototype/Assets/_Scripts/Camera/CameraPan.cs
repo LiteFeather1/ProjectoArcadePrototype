@@ -19,6 +19,8 @@ public class CameraPan : MonoBehaviour
     {
         _yInput = Input.GetAxisRaw("Vertical");
 
+        if (Time.timeScale < 0)
+            return;
         if (_yInput > 0 && CanPan())
         {
             _time += Time.deltaTime;

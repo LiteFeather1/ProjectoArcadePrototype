@@ -67,7 +67,7 @@ public class Dash : MonoBehaviour
     {
         if(_canDash && !_isDashing)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse1) && Time.timeScale > 0)
             {
                 DashedEvent();
                 _dashDirection = MouseDirection();
@@ -80,7 +80,7 @@ public class Dash : MonoBehaviour
     {
         if (_canDash && !_isDashing)
         {
-            if (Input.GetButtonDown("Dash"))
+            if (Input.GetButtonDown("Dash") && Time.timeScale > 0)
             {
                 DashedEvent();
                 float xInput = Input.GetAxisRaw("Horizontal");

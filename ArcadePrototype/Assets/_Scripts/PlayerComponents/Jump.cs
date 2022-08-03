@@ -76,7 +76,7 @@ public class Jump : MonoBehaviour
     private void JumpInput()
     {
         CoyoteTime();
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && Time.timeScale > 0)
         {
             _autoJump = _autoJumpReseter;
             if (_coyoteTimer < -.1f && !_gd.IsOnWall() && !_secondaryJumping)

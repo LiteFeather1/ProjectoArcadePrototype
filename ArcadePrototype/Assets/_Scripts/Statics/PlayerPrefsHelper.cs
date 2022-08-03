@@ -39,6 +39,12 @@ public static class PlayerPrefsHelper
         PlayerPrefs.SetFloat(SFXVOLUME, 0.1f);
     }
 
+    public static void RestoreDefault()
+    {
+        RestoreDefaultSettings();
+        RestoreDefaultVolume();
+    }
+
     public static void RestoreAllDefaults()
     {
         DeleteSave();

@@ -41,13 +41,23 @@ public class MachineLoadLevel : MonoBehaviour, IIteractable
 }
 
 
-
+[System.Serializable]
 public enum Main_Levels
 {
     None,
     World11,
+    Main_Leve_l2,
+    Main_Leve_l3,
     DoubleJump,
+    Main_Level_4,
+    Main_Level_5,
     WallJump,
+    Main_Level_7,
+    Main_Level_8,
     WallClimb,
-    Dash
+    Main_Level_9,
+    Main_Level_10,
+    Dash,
+    Main_Level_11,
+    Main_Level_12
 }
